@@ -1,0 +1,582 @@
+@import "tailwindcss";
+
+/* ====================================================================
+   NATIONAL RUBBISH REMOVAL — Design Token System
+   Theme: "Yellow Accent & Dark Editorial"
+   Philosophy: Refined greyscale ladder with pure yellow brand accents.
+   ==================================================================== */
+
+:root {
+
+  /* ------------------------------------------------------------------
+     PRIMITIVES — Raw scale, never used directly in components
+     ------------------------------------------------------------------ */
+
+  /* Neutrals — A deliberate tonal staircase with the faintest cool
+     undertone. Not flat. Each step is intentional. Off-white at the
+     top (never harsh pure white), true near-black at the bottom.
+     The depth of a premium dark theme lives in THIS ladder.           */
+  --color-white:        #FFFFFF;
+  --color-black:        #000000;
+  --color-neutral-50:   #F4F4F5;   /* Soft off-white — primary text       */
+  --color-neutral-100:  #E4E4E7;   /* Bright supporting text              */
+  --color-neutral-200:  #C4C4C9;   /* Light grey                          */
+  --color-neutral-300:  #9A9AA1;   /* Secondary body copy                 */
+  --color-neutral-400:  #6B6B72;   /* Muted labels / captions             */
+  --color-neutral-600:  #3F3F45;   /* Dim UI / disabled                   */
+  --color-neutral-700:  #27272B;   /* Elevated UI / dropdowns             */
+  --color-neutral-800:  #1A1A1D;   /* Hover surfaces                      */
+  --color-neutral-850:  #151517;   /* Selected / active                   */
+  --color-neutral-900:  #101012;   /* Deep panel                          */
+  --color-neutral-950:  #0A0A0B;   /* Pure deep near-black                */
+
+  /* Accent — NRR Yellow. Same-day rubbish removal accent.
+     Primary CTA + key elements.                                        */
+  --color-accent:       #FFFF00;        /* NRR yellow — brand accent        */
+  --color-accent-dim:   #e6e600;        /* yellow hover / pressed           */
+  --color-accent-glow:  rgba(255, 255, 0, 0.16);
+
+  /* Slate — cool blue-grey chips behind footer icons (matches Vite)    */
+  --color-slate-800:    #1E293B;        /* icon chip background             */
+
+  /* ------------------------------------------------------------------
+     SEMANTIC TOKENS — What components actually consume
+     ------------------------------------------------------------------ */
+
+  /* · · · Backgrounds · · ·
+     A quiet two-step lift. Canvas is near-black; cards rise just enough
+     to register as a distinct surface. Subtlety is the point — the
+     separation should be felt more than seen.                          */
+
+  --bg-secondary:   linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);  /* Page base canvas */
+  --bg-primary:     linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);  /* Cards / panels   */
+
+
+  --bg-third:           var(--color-neutral-700);    /* #27272B — Dropdowns / elevated UI   */
+  --bg-fourth:          var(--color-neutral-800);    /* #1A1A1D — Hover backgrounds         */
+  --bg-fifth:           var(--color-neutral-850);    /* #151517 — Selected / active states  */
+  --bg-pure-black:      var(--color-neutral-950);    /* #0A0A0B — Pure deep black           */
+  --bg-solid-white:     var(--color-white);          /* #FFFFFF — White surfaces            */
+  --bg-dark:            var(--color-neutral-50);     /* #F4F4F5 — Reverse / light cards     */
+
+  /* design2 — Warm Charcoal variant */
+  --bg-design2p: linear-gradient(135deg, #1C1A17 0%, #141210 50%, #1E1B18 100%);
+  --bg-design2b: #17150F;
+
+  /* design3 — Slate Dark variant */
+  --bg-design3p: linear-gradient(135deg, #161B22 0%, #0D1117 50%, #161B22 100%);
+  --bg-design3b: #0D1117;
+
+  /* NRR Dark Gradient Background */
+  --bg-gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+
+  /* Footer icon chips — social row + Get In Touch contact icons        */
+  --bg-social-icons:    var(--color-slate-800);
+  --bg-footer-icons:    var(--color-slate-800);
+
+
+  /* · · · Text · · ·
+     Three deliberate tiers with real contrast steps between them.
+     Primary is SOFT off-white (#F4F4F5) — never harsh pure white,
+     so headlines feel refined, not glaring. Secondary clearly dims.
+     Muted is a quiet grey for labels. This hierarchy = sophistication. */
+
+  --text-primary:       var(--color-white);                    /* Pure white — headlines, key body     */
+  --text-secondary:     var(--color-white);    /* #9A9AA1 — Supporting body copy       */
+  --text-muted:         var(--color-neutral-400);    /* #6B6B72 — Labels, captions           */
+  --text-inverse:       var(--color-neutral-950);    /* #0A0A0B — Dark text on light surface */
+  --text-accent:        var(--color-accent);        /* NRR yellow — key accent text only    */
+  --text-black:         var(--color-black);         /* Pure black — text on light/yellow surfaces */
+
+  /* · · · Borders · · ·
+     Near-invisible neutral hairlines — the quiet luxury detail.
+     Yellow is reserved for --border-accent (special moments only).     */
+
+  --border-width:       4px;                         /* Global border thickness — change here to update everywhere */
+  --border:             var(--color-accent);          /* NRR yellow — brand border            */
+  --border-light:       rgba(255, 255, 255, 0.04);   /* Subtle section divider               */
+  --border-dark:        rgba(255, 255, 255, 0.16);   /* Hover / focus border — gently warms  */
+  --border-accent:      var(--color-accent);         /* Yellow — special elements only       */
+
+  /* · · · Shadows · · ·
+     Soft, deep, diffuse. Premium shadows are felt, not seen — a gentle
+     pool of dark beneath a surface, never a harsh hard edge.           */
+
+  --shadow-card:        0 1px 2px  rgba(0, 0, 0, 0.40),
+                        0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover:  0 2px 4px  rgba(0, 0, 0, 0.40),
+                        0 16px 48px rgba(0, 0, 0, 0.55),
+                        0 0 0 1px  rgba(255, 255, 255, 0.04);
+  --shadow-modal:       0 24px 80px rgba(0, 0, 0, 0.75);
+  --shadow-btn:         0 1px 3px  rgba(0, 0, 0, 0.35);
+  --shadow-btn-hover:   0 4px 16px rgba(0, 0, 0, 0.45);
+
+  /* · · · Typography · · ·
+     Syne = geometric display character, used BIG and sparing.
+     Inter = clean, neutral body. The contrast between a large confident
+     headline and small wide-tracked uppercase labels is what reads as
+     editorial sophistication.                                          */
+
+  --font-display:       'Inter', system-ui, sans-serif;
+  --font-body:          'Inter', system-ui, sans-serif;
+
+  --font-size-hero:     clamp(3rem, 8vw, 6rem);
+  --font-size-display:  clamp(2.25rem, 4vw, 3rem);
+  --font-size-title:    clamp(1.5rem, 2.5vw, 2rem);
+  --font-size-body:     1rem;
+  --font-size-sm:       0.875rem;
+  --font-size-xs:       0.6875rem;
+
+  /* Line-heights — generous. Air between lines reads as premium.       */
+  --leading-tight:      1.1;
+  --leading-snug:       1.25;
+  --leading-normal:     1.6;
+  --leading-relaxed:    1.75;
+  --leading-loose:      1.9;
+
+  /* Tracking — tight on the big stuff, wide on small uppercase labels.
+     This split is the editorial signature.                            */
+  --tracking-tight:     -0.02em;
+  --tracking-normal:    0em;
+  --tracking-wide:      0.08em;
+  --tracking-wider:     0.14em;
+  --tracking-widest:    0.20em;
+
+  /* · · · Layout & Spacing · · ·
+     Generous, almost wasteful. Space is the cheapest luxury signal.    */
+
+  --nav-height:              72px;
+  --section-padding-y:       6rem;
+  --container-max:           100%;
+  --container-max-width:     1920px;
+  --container-gutter-mobile: 6vw;
+  --container-gutter-tablet: 7vw;
+  --container-gutter-desktop: 8vw;
+
+  /* · · · Shape · · ·
+     Rounded corners matching NRR Vite (cards = 16px, btns = 12px, inputs = 8px) */
+
+  --radius-card:        16px;
+  --radius-btn:         12px;
+  --radius-input:       8px;
+
+  /* · · · Transitions · · ·
+     Calm and eased. Premium motion moves slowly and confidently.
+     Nothing snaps; everything settles.                                 */
+
+  --transition-fast:    180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:    320ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:    480ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-reveal:  680ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ====================================================================
+   TAILWIND @theme BRIDGE
+   Maps CSS variables → Tailwind utility classes
+   ==================================================================== */
+
+@theme inline {
+
+  /* Breakpoints */
+  --breakpoint-md: 1024px;
+
+  /* Primitive colors */
+  --color-white:          var(--color-white);
+  --color-black:          var(--color-black);
+  --color-neutral-50:     var(--color-neutral-50);
+  --color-neutral-100:    var(--color-neutral-100);
+  --color-neutral-200:    var(--color-neutral-200);
+  --color-neutral-300:    var(--color-neutral-300);
+  --color-neutral-400:    var(--color-neutral-400);
+  --color-neutral-600:    var(--color-neutral-600);
+  --color-neutral-700:    var(--color-neutral-700);
+  --color-neutral-800:    var(--color-neutral-800);
+  --color-neutral-850:    var(--color-neutral-850);
+  --color-neutral-900:    var(--color-neutral-900);
+  --color-neutral-950:    var(--color-neutral-950);
+  --color-accent:         var(--color-accent);
+  --color-accent-dim:     var(--color-accent-dim);
+
+  /* Semantic background colors */
+  --color-bg-primary:     var(--bg-primary);
+  --color-bg-secondary:   var(--bg-secondary);
+  --color-bg-third:       var(--bg-third);
+  --color-bg-fourth:      var(--bg-fourth);
+  --color-bg-fifth:       var(--bg-fifth);
+  --color-bg-pure-black:  var(--bg-pure-black);
+  --color-bg-dark:        var(--bg-dark);
+
+  --color-bg-design2p:    var(--bg-design2p);
+  --color-bg-design2b:    var(--bg-design2b);
+  --color-bg-design3p:    var(--bg-design3p);
+  --color-bg-design3b:    var(--bg-design3b);
+  --color-gradient-dark:  var(--bg-gradient-dark);
+
+  /* Semantic text colors */
+  --color-text-primary:   var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted:     var(--text-muted);
+  --color-text-inverse:   var(--text-inverse);
+  --color-text-accent:    var(--text-accent);
+  --color-text-black:     var(--text-black);
+
+
+  /* Semantic border colors */
+  --color-border:         var(--border);
+  --color-border-light:   var(--border-light);
+  --color-border-dark:    var(--border-dark);
+  --color-border-accent:  var(--border-accent);
+
+  /* Typography */
+  --font-display:         var(--font-display);
+  --font-body:            var(--font-body);
+
+  /* Spacing */
+  --spacing-nav:          var(--nav-height);
+  --spacing-section:      var(--section-padding-y);
+
+  /* Radii */
+  --radius-card:          var(--radius-card);
+  --radius-btn:           var(--radius-btn);
+
+  /* Transitions */
+  --transition-fast:      var(--transition-fast);
+  --transition-base:      var(--transition-base);
+  --transition-slow:      var(--transition-slow);
+}
+
+/* ====================================================================
+   BASE STYLES
+   ==================================================================== */
+
+body {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Syne renders crisply — subpixel smoothing for display use */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Selection — teal brand tint, restrained */
+::selection {
+  background: var(--color-accent-glow);
+  color: var(--text-primary);
+}
+
+/* Scrollbar — minimal, on theme */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb  { background: var(--color-neutral-700); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-neutral-600); }
+
+/* ====================================================================
+   COMPONENT LAYER
+   ==================================================================== */
+
+@layer components {
+
+  /* ---- Cards ---- */
+
+  .card {
+    background: var(--bg-primary);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-card);
+    transition:
+      transform    var(--transition-base),
+      box-shadow   var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  /* Hover — a calm lift and a gently warming hairline. No colour flash.
+     Restraint reads as premium; the movement whispers.                */
+  .card:hover {
+    transform:    translateY(-3px);
+    box-shadow:   var(--shadow-card-hover);
+    border-color: var(--border-dark);
+  }
+
+  /* Light reverse card — for contrast sections */
+  .card-reverse {
+    background: var(--bg-dark);
+    color:      var(--text-inverse);
+    border:     var(--border-width) solid rgba(0, 0, 0, 0.08);
+    padding:    2.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    transition:
+      transform  var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .card-reverse:hover {
+    transform:  translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  }
+
+  /* ---- Buttons ---- */
+
+  /* Primary — teal on dark. THE jewel. The one bold moment per view.
+     This is where the brand colour earns its keep.                    */
+  .btn-primary {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:             0.5rem;
+    font-family:     var(--font-body);
+    font-weight:     600;
+    font-size:       var(--font-size-sm);
+    letter-spacing:  var(--tracking-wider);
+    text-transform:  uppercase;
+    background:      var(--color-accent);
+    color:           var(--color-black);
+    border:          none;
+    border-radius:   var(--radius-btn);
+    padding:         0.9rem 2rem;
+    box-shadow:      var(--shadow-btn);
+    transition:
+      background  var(--transition-fast),
+      box-shadow  var(--transition-fast),
+      transform   var(--transition-fast);
+    cursor:          pointer;
+    text-decoration: none;
+    white-space:     nowrap;
+  }
+
+  .btn-primary:hover {
+    background:  var(--color-accent-dim);
+    box-shadow:  var(--shadow-btn-hover);
+    transform:   translateY(-1px);
+  }
+
+  .btn-primary:active {
+    background: var(--color-accent-dim);
+    transform:  scale(0.99);
+    box-shadow: var(--shadow-btn);
+  }
+
+  /* Outline — quiet ghost. Neutral hairline at rest, warms on hover.
+     Calm and restrained — not a teal-shouting secondary.              */
+  .btn-outline {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:             0.5rem;
+    font-family:     var(--font-body);
+    font-weight:     600;
+    font-size:       var(--font-size-sm);
+    letter-spacing:  var(--tracking-wider);
+    text-transform:  uppercase;
+    background:      transparent;
+    color:           var(--text-primary);
+    border:          var(--border-width) solid var(--border-dark);
+    border-radius:   var(--radius-btn);
+    padding:         0.9rem 2rem;
+    transition:
+      background    var(--transition-fast),
+      border-color  var(--transition-fast),
+      color         var(--transition-fast),
+      transform     var(--transition-fast);
+    cursor:          pointer;
+    text-decoration: none;
+    white-space:     nowrap;
+  }
+
+  .btn-outline:hover {
+    background:   rgba(255, 255, 255, 0.04);
+    border-color: var(--color-white);
+    color:        var(--color-white);
+    transform:    translateY(-1px);
+  }
+
+  .btn-outline:active {
+    background: rgba(255, 255, 255, 0.07);
+    transform:  scale(0.99);
+  }
+
+  /* Light — dark button on white/light surface */
+  .btn-light {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:             0.5rem;
+    font-family:     var(--font-body);
+    font-weight:     600;
+    font-size:       var(--font-size-sm);
+    letter-spacing:  var(--tracking-wider);
+    text-transform:  uppercase;
+    background:      var(--bg-pure-black);
+    color:           var(--color-white);
+    border:          none;
+    border-radius:   var(--radius-btn);
+    padding:         0.9rem 2rem;
+    transition:
+      background  var(--transition-fast),
+      transform   var(--transition-fast);
+    cursor:          pointer;
+    text-decoration: none;
+    white-space:     nowrap;
+  }
+
+  .btn-light:hover {
+    background: var(--color-neutral-800);
+    transform:  translateY(-1px);
+  }
+
+  .btn-light:active {
+    background: var(--color-neutral-700);
+    transform:  scale(0.99);
+  }
+
+  /* Outline-light — ghost button on light surface */
+  .btn-outline-light {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    gap:             0.5rem;
+    font-family:     var(--font-body);
+    font-weight:     600;
+    font-size:       var(--font-size-sm);
+    letter-spacing:  var(--tracking-wider);
+    text-transform:  uppercase;
+    background:      transparent;
+    color:           var(--text-inverse);
+    border:          var(--border-width) solid var(--text-inverse);
+    border-radius:   var(--radius-btn);
+    padding:         0.9rem 2rem;
+    transition:
+      background  var(--transition-fast),
+      transform   var(--transition-fast);
+    cursor:          pointer;
+    text-decoration: none;
+    white-space:     nowrap;
+  }
+
+  .btn-outline-light:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform:  translateY(-1px);
+  }
+
+  .btn-outline-light:active {
+    background: rgba(0, 0, 0, 0.10);
+    transform:  scale(0.99);
+  }
+}
+
+/* Focus ring — teal accent, on brand, accessible */
+.btn-primary:focus-visible,
+.btn-outline:focus-visible,
+.btn-light:focus-visible,
+.btn-outline-light:focus-visible {
+  outline:        2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ====================================================================
+   LAYOUT UTILITIES
+   ==================================================================== */
+
+.section-wrapper {
+  max-width:      var(--container-max);
+  margin-inline:  auto;
+  padding-inline: var(--container-gutter-mobile);
+}
+
+@media (min-width: 1024px) {
+  .section-wrapper {
+    padding-inline: var(--container-gutter-desktop);
+    max-width:      var(--container-max-width);
+  }
+}
+
+/* ====================================================================
+   TEXTURE & ATMOSPHERE
+   ==================================================================== */
+
+/* Noise grain — subtle analogue texture on flat dark surfaces.
+   Keep opacity very low: present but subconscious.                    */
+.noise-overlay {
+  position:       absolute;
+  inset:          0;
+  z-index:        5;
+  opacity:        0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette — draws eye inward on hero sections */
+.vignette {
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+  background:     radial-gradient(
+    ellipse at center,
+    transparent 45%,
+    rgba(0, 0, 0, 0.50) 100%
+  );
+}
+
+/* Yellow glow — for the rare accent element that earns a soft pulse */
+.accent-glow {
+  box-shadow: 0 0 20px var(--color-accent-glow),
+              0 0 40px rgba(255, 255, 0, 0.06);
+}
+
+.bg-base {
+  background: var(--bg-primary);
+}
+
+.bg-base-secondary {
+  background: var(--bg-secondary);
+}
+
+.bg-base-third {
+  background: var(--bg-third);
+}
+.bg-base-fourth {
+  background: var(--bg-fourth);
+}
+.bg-base-fifth {
+  background: var(--bg-fifth);
+}
+.bg-design2p {
+  background: var(--bg-design2p);
+}
+.bg-design2b {
+  background: var(--bg-design2b);
+}
+.bg-design3p {
+  background: var(--bg-design3p);
+}
+.bg-design3b {
+  background: var(--bg-design3b);
+}
+
+
+.hover\:bg-base:hover {
+  background: var(--bg-primary);
+}
+
+.hover\:bg-base-secondary:hover {
+  background: var(--bg-secondary);
+}
+
+.hover\:bg-base-third:hover {
+  background: var(--bg-third);
+}
+
+.hover\:bg-base-fourth:hover {
+  background: var(--bg-fourth);
+}
+
+.hover\:bg-base-fifth:hover {
+  background: var(--bg-fifth);
+}

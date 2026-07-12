@@ -1,0 +1,23 @@
+export const BUSINESS = {
+  name: "National Rubbish Removal",
+  phone: "0418 665 429",
+  phoneRaw: "+61418665429",
+  whatsapp: "0418 665 429",
+  whatsappRaw: "+61418665429",
+  whatsappLink: "https://wa.me/61418665429",
+  email: "info@nationalrubbishremoval.com.au",
+  url: "https://nationalrubbishremoval.com.au",
+  address: "",
+  directionsUrl: "",
+  openingHours: {
+    weekdays: "Mon - Fri: 6:00 AM - 9:00 PM, Sat: 7:00 AM - 9:00 PM, Sun: 8:00 AM - 9:00 PM",
+    emergency: "",
+  },
+  googlePlaceId: "",
+  googleBusinessProfile: "",
+  googleReviewLink: "",
+  googleReviewsAll: "",
+  googleScriptUrl: "",
+  serviceArea: "Sydney Metro Area",
+  mobileBreakpoint: 1023,
+};

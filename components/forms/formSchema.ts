@@ -18,6 +18,15 @@ export const ContactFormSchema = z.object({
   preferredTime: z.string().min(1, { message: "Please select a time." }),
   location: z.string().min(1, { message: "Location is required." }),
   message: z.string().max(1000).optional(),
+  photos: z
+    .array(
+      z.object({
+        url: z.string().url(),
+        name: z.string(),
+        type: z.enum(["image", "video"]),
+      })
+    )
+    .optional(),
 });
 
 export type ServiceSelection = z.infer<typeof ServiceSelectionSchema>;

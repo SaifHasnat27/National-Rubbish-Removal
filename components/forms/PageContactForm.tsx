@@ -9,6 +9,7 @@ import { ContactFormSchema, type ContactFormValues } from "./formSchema";
 import DatePicker from "./DatePicker";
 import TimePicker from "./TimePicker";
 import ServicePicker from "./ServicePicker";
+import PhotoUpload from "./PhotoUpload";
 import { BUSINESS } from "@/lib/constants";
 
 const GOOGLE_SCRIPT_URL = BUSINESS.googleScriptUrl;
@@ -60,6 +61,7 @@ export default function PageContactForm() {
   const services = watch("services", []);
   const preferredDate = watch("preferredDate", "");
   const preferredTime = watch("preferredTime", "");
+  const photos = watch("photos", []);
 
   useEffect(() => {
     if (status === "success" && successRef.current) {
@@ -105,168 +107,164 @@ export default function PageContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-7" noValidate>
 
-      {/* ── Two-column grid ── */}
-      <div className="grid grid-cols-2 gap-x-10 gap-y-7">
-
-        {/* LEFT COLUMN */}
-        <div className="flex flex-col gap-7">
-
-          {/* Name */}
-          <div>
-            <label htmlFor="name" className={labelBase}>
-              Name <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-            </label>
-            <input
-              {...register("name")}
-              id="name"
-              autoComplete="name"
-              className={fieldBase}
-              placeholder="Your name"
-            />
-            {errors.name && (
-              <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.name.message}</p>
-            )}
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label htmlFor="phone" className={labelBase}>
-              Phone <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-            </label>
-            <input
-              {...register("phone")}
-              id="phone"
-              type="tel"
-              autoComplete="tel"
-              className={fieldBase}
-              placeholder="Your phone number"
-            />
-            {errors.phone && (
-              <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.phone.message}</p>
-            )}
-          </div>
-
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className={labelBase}>
-              Email <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-            </label>
-            <input
-              {...register("email")}
-              id="email"
-              type="email"
-              autoComplete="email"
-              className={fieldBase}
-              placeholder="your.email@example.com"
-            />
-            {errors.email && (
-              <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.email.message}</p>
-            )}
-          </div>
-
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div className="flex flex-col gap-7">
-
-          {/* Services */}
-          <div>
-            <label className={labelBase}>
-              Service Interest <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-            </label>
-            <ServicePicker
-              value={services}
-              onChange={(val) => setValue("services", val, { shouldValidate: true })}
-              disabled={status === "loading"}
-              error={errors.services?.message}
-            />
-            {errors.services && (
-              <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.services.message}</p>
-            )}
-          </div>
-
-          {/* Date + Time */}
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="preferredDate" className={labelBase}>
-                Preferred Date <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-              </label>
-              <DatePicker
-                value={preferredDate}
-                onChange={(val) => setValue("preferredDate", val)}
-                disabled={status === "loading"}
-              />
-              {errors.preferredDate && (
-                <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.preferredDate.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="preferredTime" className={labelBase}>
-                Preferred Time <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-              </label>
-              <TimePicker
-                value={preferredTime}
-                onChange={(val) => setValue("preferredTime", val)}
-                selectedDate={preferredDate}
-                disabled={status === "loading"}
-              />
-              {errors.preferredTime && (
-                <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.preferredTime.message}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Location */}
-          <div>
-            <label htmlFor="location" className={labelBase}>
-              Location <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
-            </label>
-            <input
-              {...register("location")}
-              id="location"
-              autoComplete="street-address"
-              className={fieldBase}
-              placeholder="Your suburb or address"
-            />
-            {errors.location && (
-              <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.location.message}</p>
-            )}
-          </div>
-
-        </div>
-
-        {/* MESSAGE — full width, spans both columns */}
-        <div className="col-span-2">
-          <label htmlFor="message" className={labelBase}>Message</label>
-          <textarea
-            {...register("message")}
-            id="message"
-            rows={5}
-            className={`${fieldBase} resize-y`}
-            placeholder="How can we help you?"
+      {/* Name + Phone row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="name" className={labelBase}>
+            Name <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+          </label>
+          <input
+            {...register("name")}
+            id="name"
+            autoComplete="name"
+            className={fieldBase}
+            placeholder="Your name"
           />
-          {errors.message && (
-            <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.message.message}</p>
+          {errors.name && (
+            <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.name.message}</p>
           )}
         </div>
-
-        {/* SUBMIT — left aligned, spans both columns */}
-        <div className="col-span-2">
-          <Button
-            type="submit"
-            variant="secondary"
-            disabled={status === "loading"}
-          >
-            {status === "loading" && (
-              <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
-            )}
-            Send Message
-          </Button>
+        <div>
+          <label htmlFor="phone" className={labelBase}>
+            Phone <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+          </label>
+          <input
+            {...register("phone")}
+            id="phone"
+            type="tel"
+            autoComplete="tel"
+            className={fieldBase}
+            placeholder="Your phone number"
+          />
+          {errors.phone && (
+            <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.phone.message}</p>
+          )}
         </div>
-
       </div>
+
+      {/* Email */}
+      <div>
+        <label htmlFor="email" className={labelBase}>
+          Email <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+        </label>
+        <input
+          {...register("email")}
+          id="email"
+          type="email"
+          autoComplete="email"
+          className={fieldBase}
+          placeholder="your.email@example.com"
+        />
+        {errors.email && (
+          <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Services */}
+      <div>
+        <label className={labelBase}>
+          Type of Service <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+        </label>
+        <ServicePicker
+          value={services}
+          onChange={(val) => setValue("services", val, { shouldValidate: true })}
+          disabled={status === "loading"}
+          error={errors.services?.message}
+        />
+        {errors.services && (
+          <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.services.message}</p>
+        )}
+      </div>
+
+      {/* Preferred Date + Preferred Time row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="preferredDate" className={labelBase}>
+            Preferred Date <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+          </label>
+          <DatePicker
+            value={preferredDate}
+            onChange={(val) => setValue("preferredDate", val)}
+            disabled={status === "loading"}
+          />
+          {errors.preferredDate && (
+            <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.preferredDate.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="preferredTime" className={labelBase}>
+            Preferred Time <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+          </label>
+          <TimePicker
+            value={preferredTime}
+            onChange={(val) => setValue("preferredTime", val)}
+            selectedDate={preferredDate}
+            disabled={status === "loading"}
+          />
+          {errors.preferredTime && (
+            <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.preferredTime.message}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Location */}
+      <div>
+        <label htmlFor="location" className={labelBase}>
+          Location <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
+        </label>
+        <input
+          {...register("location")}
+          id="location"
+          autoComplete="street-address"
+          className={fieldBase}
+          placeholder="Your suburb or address"
+        />
+        {errors.location && (
+          <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.location.message}</p>
+        )}
+      </div>
+
+      {/* Photos / videos (optional) */}
+      <div>
+        <label className={labelBase}>
+          Photos <span className="text-[var(--text-muted)] normal-case tracking-normal">(optional — helps us quote faster)</span>
+        </label>
+        <PhotoUpload
+          value={photos ?? []}
+          onChange={(val) => setValue("photos", val)}
+          disabled={status === "loading"}
+        />
+      </div>
+
+      {/* Message */}
+      <div>
+        <label htmlFor="message" className={labelBase}>Message</label>
+        <textarea
+          {...register("message")}
+          id="message"
+          rows={5}
+          className={`${fieldBase} resize-y`}
+          placeholder="How can we help you?"
+        />
+        {errors.message && (
+          <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.message.message}</p>
+        )}
+      </div>
+
+      {/* Submit */}
+      <Button
+        type="submit"
+        variant="secondary"
+        disabled={status === "loading"}
+        className="mt-2"
+      >
+        {status === "loading" && (
+          <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
+        )}
+        Send Message
+      </Button>
     </form>
   );
 }

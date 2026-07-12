@@ -6,7 +6,7 @@ export const BUSINESS = {
   whatsappRaw: "+61418665429",
   whatsappLink: "https://wa.me/61418665429",
   email: "info@nationalrubbishremoval.com.au",
-  url: "https://nationalrubbishremoval.com.au",
+  url: "https://www.nationalrubbishremoval.com.au",
   address: "",
   directionsUrl: "",
   openingHours: {
@@ -17,7 +17,7 @@ export const BUSINESS = {
   googleBusinessProfile: "",
   googleReviewLink: "",
   googleReviewsAll: "",
-  googleScriptUrl: "",
+  googleScriptUrl: "https://n8n.srv1018041.hstgr.cloud/webhook/c95f3a55-3f8b-4a75-8dbe-05ccece57b97",
   serviceArea: "Sydney Metro Area",
   mobileBreakpoint: 1023,
 };

@@ -102,11 +102,13 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
         disabled={disabled || uploading || atLimit}
         onChange={(e) => handleFiles(e.target.files)}
       />
-      {/* Camera capture (rear camera on mobile; ignored → file pick on desktop) */}
+      {/* Camera capture — single accept type + capture so the browser opens the
+          camera app (mixing image/*,video/* with capture makes Chrome fall back
+          to the gallery). Rear camera on mobile; ignored → file pick on desktop. */}
       <input
         ref={cameraRef}
         type="file"
-        accept="image/*,video/*"
+        accept="image/*"
         capture="environment"
         className="hidden"
         disabled={disabled || uploading || atLimit}

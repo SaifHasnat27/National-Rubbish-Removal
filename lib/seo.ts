@@ -77,7 +77,7 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
     canonical: "/terms",
   },
   quoteEstimator: {
-    title: "Instant Rubbish Removal Quote Estimator | Sydney",
+    title: "Sydney Rubbish Removal Quote | Hard Rubbish Collection Price Estimator",
     description:
       "Get an instant rubbish removal price. Pick your service and load size to see a live estimate for hard rubbish collection in Sydney. No details needed.",
     keywords: "rubbish removal quote, rubbish removal cost Sydney, hard rubbish collection price",

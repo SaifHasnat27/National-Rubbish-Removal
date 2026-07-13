@@ -229,7 +229,7 @@ export default function PageContactForm() {
       {/* Photos / videos (optional) */}
       <div>
         <label className={labelBase}>
-          Photos <span className="text-[var(--text-muted)] normal-case tracking-normal">(optional — helps us quote faster)</span>
+          Upload Media
         </label>
         <PhotoUpload
           value={photos ?? []}

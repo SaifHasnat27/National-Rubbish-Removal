@@ -20,10 +20,10 @@ export default function TestPage() {
           >
             <ImagePlus aria-hidden="true" className="mx-auto mb-4 text-[var(--color-accent)]" size={48} />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
-              Photo Upload Test
+              Photo & Video Upload Test
             </h1>
             <p className="text-xl text-[var(--text-primary)]">
-              Contact form with Cloudinary photo upload. Submit posts to the webhook.
+              Contact form with camera and gallery options.
             </p>
           </motion.div>
         </div>

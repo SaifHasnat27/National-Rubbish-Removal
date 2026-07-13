@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { ImagePlus, Loader2, X, Plus, CirclePlay } from "lucide-react";
 import { uploadToCloudinary } from "@/lib/cloudinary";
+import CameraOption from "./CameraOption";
 
 // ── Guardrails (cheap client-side sanity; abuse-hardening parked) ──
 const MAX_FILES = 6;
@@ -24,9 +25,11 @@ interface PhotoUploadProps {
 }
 
 export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // library / files
+  const cameraRef = useRef<HTMLInputElement>(null); // camera capture
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   const atLimit = value.length >= MAX_FILES;
 
@@ -74,13 +77,37 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
     onChange(value.filter((p) => p.url !== url));
   };
 
+  // Below xl (1280px) → show the Camera/Gallery sheet (mobile needs the choice).
+  // At xl+ (desktop, no camera) → skip the sheet, open the file picker directly.
+  const openPicker = () => {
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 1279px)").matches;
+    if (isMobile) {
+      setSheetOpen(true);
+    } else {
+      inputRef.current?.click();
+    }
+  };
+
   return (
     <div>
+      {/* Library / files picker */}
       <input
         ref={inputRef}
         type="file"
         accept="image/*,video/*"
         multiple
+        className="hidden"
+        disabled={disabled || uploading || atLimit}
+        onChange={(e) => handleFiles(e.target.files)}
+      />
+      {/* Camera capture (rear camera on mobile; ignored → file pick on desktop) */}
+      <input
+        ref={cameraRef}
+        type="file"
+        accept="image/*,video/*"
+        capture="environment"
         className="hidden"
         disabled={disabled || uploading || atLimit}
         onChange={(e) => handleFiles(e.target.files)}
@@ -91,7 +118,7 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
       {value.length === 0 && (
         <button
           type="button"
-          onClick={() => inputRef.current?.click()}
+          onClick={openPicker}
           disabled={disabled || uploading}
           className={`
             w-full px-4 py-3
@@ -108,7 +135,7 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
           `}
         >
           <span className="flex-1 min-w-0 truncate text-left text-[var(--text-muted)]">
-            {uploading ? "Uploading..." : "Add photos or videos of your rubbish..."}
+            {uploading ? "Uploading..." : "Add photos or a quick video"}
           </span>
           {uploading ? (
             <Loader2 className="w-4 h-4 text-[var(--text-muted)] flex-shrink-0 animate-spin" aria-hidden="true" />
@@ -199,7 +226,7 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
           {!atLimit && !disabled && (
             <button
               type="button"
-              onClick={() => inputRef.current?.click()}
+              onClick={openPicker}
               disabled={uploading}
               aria-label="Add more photos or videos"
               style={{ width: 96, height: 96 }}
@@ -223,6 +250,18 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
           )}
         </div>
       )}
+
+      {/* Choice sheet — Take Photo vs Upload. Camera row only on touch devices. */}
+      <CameraOption
+        open={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        onTakePhoto={() => cameraRef.current?.click()}
+        onUpload={() => inputRef.current?.click()}
+        showCamera={
+          typeof window !== "undefined" &&
+          window.matchMedia("(max-width: 1279px)").matches // below xl (1280px)
+        }
+      />
 
       {/* Desktop-only hover behaviour for the remove button.
           Real media query + :hover — avoids Tailwind's finicky md:group-hover

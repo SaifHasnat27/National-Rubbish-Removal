@@ -140,10 +140,10 @@ export default function QuoteEstimatorPage() {
           >
             <Calculator aria-hidden="true" className="mx-auto mb-4 text-[var(--color-accent)]" size={48} />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
-              Instant Rubbish Removal Quote
+              Calculate Your Rubbish Removal Price
             </h1>
             <p className="text-xl text-[var(--text-primary)]">
-              Pick your service and load size — see the price update live. No details needed.
+              Choose your service type and load size to calculate your approximate costs instantly.
             </p>
           </motion.div>
         </div>

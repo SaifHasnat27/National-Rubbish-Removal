@@ -77,9 +77,21 @@ const guarantees = [
 ];
 
 // ─── Page ────────────────────────────────────────────────────────────────────
-export default function LocationPage() {
+export default function Design1Page() {
   return (
     <div className="bg-base-secondary">
+
+      {/* DESIGN PREVIEW ONLY — re-declares the accent tokens at :root while
+          this page is mounted, so the WHOLE site (navbar + footer included)
+          renders red on this route. Unmounts on navigation → yellow returns.
+          Throwaway: delete with this page. */}
+      <style>{`
+        :root {
+          --color-accent:      #E8272A;
+          --color-accent-dim:  #c71f22;
+          --color-accent-glow: rgba(232, 39, 42, 0.16);
+        }
+      `}</style>
 
       {/* Hero */}
       <section className="bg-base-secondary pt-[calc(var(--nav-height)+0rem)] pb-12 md:pt-[calc(var(--nav-height)+3rem)] md:pb-20">

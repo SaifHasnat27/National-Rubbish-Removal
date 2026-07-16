@@ -97,6 +97,14 @@ export default function Design3Page() {
           --radius-xl:         0px;  /* Tailwind rounded-xl → mobile menu items */
           --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
         }
+        /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
+           which collide with the token swaps above (chip or icon goes invisible).
+           Force a dark chip with a light icon on this route only. */
+        nav .xl\\:hidden > a[href^="tel:"],
+        nav .xl\\:hidden > button {
+          background-color: #1A1A1D !important;
+          color: #FFFFFF !important;
+        }
       `}</style>
 
       {/* Hero */}

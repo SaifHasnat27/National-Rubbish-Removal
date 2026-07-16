@@ -97,6 +97,14 @@ export default function Design2Page() {
           --shadow-card:       none;                /* dark-theme glow/shadow — off on light */
           --shadow-card-hover: none;
         }
+        /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
+           which collide with the token swaps above (chip or icon goes invisible).
+           Force a dark chip with a light icon on this route only. */
+        nav .xl\\:hidden > a[href^="tel:"],
+        nav .xl\\:hidden > button {
+          background-color: #1A1A1D !important;
+          color: #FFFFFF !important;
+        }
       `}</style>
 
       {/* Hero */}

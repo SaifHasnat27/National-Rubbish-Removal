@@ -81,15 +81,21 @@ export default function Design3Page() {
   return (
     <div className="bg-base-secondary">
 
-      {/* DESIGN PREVIEW ONLY — re-declares the accent tokens at :root while
-          this page is mounted, so the WHOLE site (navbar + footer included)
-          renders coral on this route. Unmounts on navigation → yellow returns.
+      {/* DESIGN PREVIEW ONLY — re-declares tokens at :root while this page is
+          mounted; whole site (navbar + footer included) gets 1px borders on
+          this route. Unmounts on navigation → 4px returns.
           Throwaway: delete with this page. */}
       <style>{`
         :root {
+          --border-width: 2px;
+          --radius-card:  0px;
           --color-accent:      #f1623a;
           --color-accent-dim:  #dd4e26;
           --color-accent-glow: rgba(241, 98, 58, 0.16);
+          --radius-btn:        0px;  /* icon chips (var-based) */
+          --radius-lg:         0px;  /* Tailwind rounded-lg → Buttons, logo chip */
+          --radius-xl:         0px;  /* Tailwind rounded-xl → mobile menu items */
+          --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
         }
       `}</style>
 

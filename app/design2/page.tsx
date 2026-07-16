@@ -83,13 +83,19 @@ export default function Design2Page() {
 
       {/* DESIGN PREVIEW ONLY — re-declares the accent tokens at :root while
           this page is mounted, so the WHOLE site (navbar + footer included)
-          renders orange on this route. Unmounts on navigation → yellow returns.
+          renders coral on this route. Unmounts on navigation → yellow returns.
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --color-accent:      #E84A1F;
-          --color-accent-dim:  #e66a0e;
-          --color-accent-glow: rgba(255, 122, 26, 0.16);
+          --color-accent:      #f1623a;
+          --color-accent-dim:  #dd4e26;
+          --color-accent-glow: rgba(241, 98, 58, 0.16);
+          --bg-secondary:      #F2F2F4;            /* page canvas — soft off-white */
+          --bg-primary:        #FFFFFF;            /* cards / navbar / footer — white */
+          --color-white:       #111113;            /* flips ALL text dark (text tokens + nav/footer links reference this) */
+          --border-dark:       rgba(0, 0, 0, 0.16); /* hover hairlines — visible on light */
+          --shadow-card:       none;                /* dark-theme glow/shadow — off on light */
+          --shadow-card-hover: none;
         }
       `}</style>
 

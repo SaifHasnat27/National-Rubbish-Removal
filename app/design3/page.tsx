@@ -83,13 +83,13 @@ export default function Design3Page() {
 
       {/* DESIGN PREVIEW ONLY — re-declares the accent tokens at :root while
           this page is mounted, so the WHOLE site (navbar + footer included)
-          renders blue on this route. Unmounts on navigation → yellow returns.
+          renders coral on this route. Unmounts on navigation → yellow returns.
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --color-accent:      #E8471A;
-          --color-accent-dim:  #3a80c8;
-          --color-accent-glow: rgba(74, 144, 217, 0.16);
+          --color-accent:      #f1623a;
+          --color-accent-dim:  #dd4e26;
+          --color-accent-glow: rgba(241, 98, 58, 0.16);
         }
       `}</style>
 

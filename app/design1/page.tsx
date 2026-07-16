@@ -87,7 +87,7 @@ export default function Design1Page() {
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --color-accent:      #E8272A;
+          --color-accent:      #F05A36;
           --color-accent-dim:  #c71f22;
           --color-accent-glow: rgba(232, 39, 42, 0.16);
         }

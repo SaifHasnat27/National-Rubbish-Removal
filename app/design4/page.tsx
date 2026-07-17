@@ -87,11 +87,31 @@ export default function Design4Page() {
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --border-width: 2px;
+          --border-width: 3px;
           --radius-card:  0px;
-          --radius-btn:   0px;  /* icon chips (var-based) */
-          --radius-lg:    0px;  /* Tailwind rounded-lg → Buttons, logo chip */
-          --radius-xl:    0px;  /* Tailwind rounded-xl → mobile menu items */
+          --bg-secondary:      #141618;  /* page canvas — original neutral black gradient */
+          --bg-primary:        #1F2428;  /* cards / navbar / footer — one quiet step up */
+          --color-accent:      #F47A20;
+          --color-accent-dim:  #dd4e26;
+          --color-accent-glow: rgba(241, 98, 58, 0.16);
+          --radius-btn:        8px;  /* icon chips (var-based) — slightly rounded */
+          --radius-lg:         8px;  /* Tailwind rounded-lg → Buttons, logo chip — slightly rounded */
+          --radius-xl:         8px;  /* Tailwind rounded-xl → mobile menu items */
+          --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
+        }
+        /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
+           which collide with the token swaps above (chip or icon goes invisible).
+           Force a dark chip with a light icon on this route only. */
+        nav .xl\\:hidden > a[href^="tel:"],
+        nav .xl\\:hidden > button {
+          background-color: #1A1A1D !important;
+          color: #FFFFFF !important;
+        }
+        /* QuickContact icon chips borrow the CARD radius token (rounded-[var(--radius-card)]),
+           which this page zeroes to keep cards sharp — so round just those chips here.
+           Scoped to <a> elements so the .card boxes themselves stay sharp. */
+        a.rounded-\\[var\\(--radius-card\\)\\] {
+          border-radius: 8px !important;
         }
       `}</style>
 

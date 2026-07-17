@@ -90,12 +90,13 @@ export default function Design1Page() {
           --color-accent:      #f1623a;
           --color-accent-dim:  #dd4e26;
           --color-accent-glow: rgba(241, 98, 58, 0.16);
-          --bg-secondary:      #FFFFFF;            /* page canvas — soft off-white */
+          --bg-secondary:      #F2F2F4;            /* page canvas — soft off-white */
           --bg-primary:        #FFFFFF;            /* cards / navbar / footer — white */
           --color-white:       #111113;            /* flips ALL text dark (text tokens + nav/footer links reference this) */
           --border-dark:       rgba(0, 0, 0, 0.16); /* hover hairlines — visible on light */
           --shadow-card:       none;                /* dark-theme glow/shadow — off on light */
           --shadow-card-hover: none;
+          --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
         }
         /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
            which collide with the token swaps above (chip or icon goes invisible).

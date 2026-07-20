@@ -81,22 +81,32 @@ export default function Design3Page() {
   return (
     <div className="bg-base-secondary">
 
-      {/* DESIGN PREVIEW ONLY — re-declares the accent tokens at :root while
-          this page is mounted, so the WHOLE site (navbar + footer included)
-          renders coral on this route. Unmounts on navigation → yellow returns.
+      {/* DESIGN PREVIEW ONLY — re-declares tokens at :root while this page is
+          mounted; whole site (navbar + footer included) gets 1px borders on
+          this route. Unmounts on navigation → 4px returns.
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --color-accent:      #F47A20;
-          --color-accent-dim:  #dd4e26;
-          --color-accent-glow: rgba(241, 98, 58, 0.16);
-          --bg-secondary:      #E2E2E6;            /* page canvas — a step darker than design2, white cards still lift */
-          --bg-primary:        #FFFFFF;            /* cards / navbar / footer — white */
-          --color-white:       #111113;            /* flips ALL text dark (text tokens + nav/footer links reference this) */
-          --border-dark:       rgba(0, 0, 0, 0.16); /* hover hairlines — visible on light */
-          --shadow-card:       none;                /* dark-theme glow/shadow — off on light */
-          --shadow-card-hover: none;
-          --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
+          /* Slate monochrome — replica of the "Digital Designer" reference.
+             No color accent: silver plays the accent role, dark text on it. */
+          --border-width: 1px;
+          --radius-card:  0px;                       /* reference cards are softly rounded */
+          --bg-secondary:      #171B21;  /* page canvas — deep blue-slate */
+          --bg-primary:        #232933;  /* cards — glassy lighter slate */
+          --bg-nav:            #232933;  /* navbar / footer — blends with canvas */
+          --border:            rgba(255, 255, 255, 0.09); /* hairline card borders */
+          --border-dark:       rgba(255, 255, 255, 0.20); /* hover — brightens */
+          --color-accent:      #E9EBEE;  /* silver = the "accent": buttons, underline, stars */
+          --color-accent-dim:  #CDD2D9;  /* silver hover */
+          --color-accent-glow: rgba(233, 235, 238, 0.10);
+          --radius-btn:        8px;
+          --radius-lg:         8px;
+          --radius-xl:         8px;
+          --color-black:       #14171C;  /* dark slate text/icons ON silver surfaces */
+          --shadow-card:       inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                               inset -10px -10px 24px rgba(0, 0, 0, 0.38); /* dark neumorphic diagonal — quiet light TL, deep shade BR */
+          --shadow-card-hover: inset 8px 8px 20px rgba(255, 255, 255, 0.07),
+                               inset -10px -10px 28px rgba(0, 0, 0, 0.48);
         }
         /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
            which collide with the token swaps above (chip or icon goes invisible).
@@ -105,6 +115,34 @@ export default function Design3Page() {
         nav .xl\\:hidden > button {
           background-color: #1A1A1D !important;
           color: #FFFFFF !important;
+        }
+        /* QuickContact icon chips borrow the CARD radius token (rounded-[var(--radius-card)]),
+           which this page zeroes to keep cards sharp — so round just those chips here.
+           Scoped to <a> elements so the .card boxes themselves stay sharp. */
+        a.rounded-\\[var\\(--radius-card\\)\\] {
+          border-radius: 8px !important;
+        }
+        /* QuickContact cards build their own shell (class bg-base, not .card) —
+           give them the same diagonal depth. */
+        .bg-base {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        /* Same diagonal depth on the FOOTER (single element). */
+        footer.bg-nav {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        /* NAVBAR AS ONE CARD: paint the fixed wrapper as the single surface
+           with ONE diagonal; its bars go transparent so no seam divides them. */
+        body > div.fixed {
+          background: var(--bg-nav);
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        body > div.fixed .bg-nav {
+          background: transparent;
+          box-shadow: none;
         }
       `}</style>
 

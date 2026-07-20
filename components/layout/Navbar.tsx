@@ -55,7 +55,7 @@ export default function Navbar() {
       {/* Top Contact Bar */}
       <div
         className={`
-          hidden xl:block bg-base
+          hidden xl:block bg-nav
           transition-all duration-300
           ${isScrolled ? 'py-1' : 'py-2'}
         `}
@@ -81,7 +81,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="w-full bg-base backdrop-blur-sm py-3 sm:py-4 transition-all duration-300">
+      <nav className="w-full bg-nav backdrop-blur-sm py-3 sm:py-4 transition-all duration-300">
         <div className="section-wrapper flex justify-between items-center min-h-[60px]">
           {/* Logo + Wordmark */}
           <Link
@@ -94,9 +94,10 @@ export default function Navbar() {
             `}
             aria-label={`${BUSINESS.name} home`}
           >
-            <span className="rounded-lg flex-shrink-0 border-[3px] border-[var(--color-accent)]">
+            {/* Logo artwork is self-framed (baked-in border + rounding) — no CSS border */}
+            <span className="flex-shrink-0">
               <Image
-                src="/web images/sydney rubbish removal near me logo.webp"
+                src="/web images/sydney rubbish removal near me logo2.png"
                 alt="Same day rubbish removal near me in Sydney logo, includes hard rubbish collection and waste removal service."
                 width={40}
                 height={40}
@@ -163,7 +164,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden backdrop-blur-sm border-t border-[var(--border-dark)] shadow-xl bg-base section-wrapper">
+          <div className="xl:hidden backdrop-blur-sm border-t border-[var(--border-dark)] shadow-xl bg-nav section-wrapper">
             {/* Navigation Items */}
             <div className="py-3 space-y-1">
               {navItems.map((item) => (

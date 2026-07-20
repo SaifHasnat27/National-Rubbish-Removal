@@ -87,24 +87,118 @@ export default function Design1Page() {
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --color-accent:      #f1623a;
-          --color-accent-dim:  #dd4e26;
-          --color-accent-glow: rgba(241, 98, 58, 0.16);
-          --bg-secondary:      #F2F2F4;            /* page canvas — soft off-white */
-          --bg-primary:        #FFFFFF;            /* cards / navbar / footer — white */
-          --color-white:       #111113;            /* flips ALL text dark (text tokens + nav/footer links reference this) */
-          --border-dark:       rgba(0, 0, 0, 0.16); /* hover hairlines — visible on light */
-          --shadow-card:       none;                /* dark-theme glow/shadow — off on light */
-          --shadow-card-hover: none;
-          --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
+          /* Greyscale editorial — Apple AirPods white reference. Monochrome:
+             light grey flat surfaces, charcoal text/icons, neumorphic pill
+             buttons, ALL depth from soft shadow pools (no gradients). */
+          --border-width: 0px;
+          --color-accent:      #F47A20;  /* dark charcoal (given) — icons, checks, buttons */
+          --color-accent-dim:  #3A3A3D;  /* charcoal hover — lightens slightly */
+          --color-accent-glow: rgba(36, 36, 38, 0.08);
+          --bg-primary:      #F0F0F0;  /* cards — solid, identical to bg-nav */
+          --bg-third:          #E5E5E7;  /* middle-section deeper gray (given) */
+          --bg-secondary:        #FFFFFF;  /* cards — pure white highlights (given) */
+          --bg-nav:            #F0F0F0;  /* navbar / footer — matches cards */
+          --color-white:       #242426;  /* primary text → dark charcoal (given) */
+          --text-secondary:    #B0B0B5;  /* muted slate gray (given) — footer legal links */
+          --text-muted:        #B0B0B5;  /* muted slate gray — labels/captions */
+          --border-dark:       #C2C2C7;  /* metallic silver (given) — hover hairlines */
+          --radius-card:       20px;
+          --radius-btn:        9999px;   /* pills — the reference's signature */
+          --radius-lg:         9999px;   /* Buttons (rounded-lg) → full pill */
+          --radius-xl:         16px;     /* mobile menu items — soft, not pill */
+          --shadow-card:       inset 8px 8px 20px rgba(255, 255, 255, 0.85),
+                               inset -10px -10px 24px rgba(0, 0, 0, 0.10); /* visible diagonal: light top-left, shade bottom-right, contained */
+          --shadow-card-hover: inset 8px 8px 20px rgba(255, 255, 255, 0.95),
+                               inset -10px -10px 28px rgba(0, 0, 0, 0.13);
+          --color-black:       #FFFFFF;  /* white text/icons ON charcoal buttons/chips */
+        }
+        /* Pill radius would crop the square logo into a circle — keep it soft-square */
+        img[alt*="Sydney logo"] {
+          border-radius: 8px !important;
         }
         /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
            which collide with the token swaps above (chip or icon goes invisible).
-           Force a dark chip with a light icon on this route only. */
+           Force a navy chip with a white icon on this route only. */
         nav .xl\\:hidden > a[href^="tel:"],
         nav .xl\\:hidden > button {
-          background-color: #1A1A1D !important;
+          background-color: #242426 !important;
           color: #FFFFFF !important;
+        }
+        /* Show the ORIGINAL logo on this route (site default is logo2).
+           Matches both nav + footer logos via their shared alt text. */
+        img[alt*="Sydney logo"] {
+          content: url("/web images/sydney rubbish removal near me logo2.png");
+        }
+        /* QuickContact cards build their own shell (class bg-base, not .card) —
+           same diagonal depth as the cards. */
+        .bg-base {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.85),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.10);
+        }
+        /* Social icons inherit the page text color (charcoal) — invisible on
+           their dark chips. Match the Get In Touch icons: accent-colored. */
+        footer div[aria-label="Social media links"] a svg {
+          color: var(--color-accent);
+        }
+        /* ALL footer icon chips: icon (not the chip bg) flips white on hover —
+           keeps it visible when the chip itself turns accent on hover. */
+        footer a:hover > svg,
+        footer a:hover svg {
+          color: #FFFFFF !important;
+        }
+        /* FOOTER — charcoal black like the nav, dark-tuned diagonal depth */
+        footer.bg-nav {
+          background: #242426;
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.06),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.45);
+        }
+        /* Footer content flips white on the black surface (links, copy, hours) */
+        footer, footer a, footer p, footer h4, footer span {
+          color: #FFFFFF;
+        }
+        /* NAVBAR AS ONE CARD: paint the fixed wrapper as the single surface
+           with ONE diagonal; its two bars (contact strip + main nav) go
+           transparent so no seam divides them. */
+        body > div.fixed {
+          background: #242426; /* charcoal black — the theme's own dark (buttons/text) */
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.06),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.45);
+        }
+        /* Nav content flips white on the black surface */
+        body > div.fixed a,
+        body > div.fixed a * {
+          color: #FFFFFF;
+        }
+        body > div.fixed .bg-nav {
+          background: transparent;
+          box-shadow: none;
+        }
+        /* SERVICE GUARANTEE CARD — orange feature card. Same diagonal depth,
+           tuned for a saturated surface; text/checks flip white; the button
+           flips charcoal so it stays visible on orange. */
+        .guarantee-card {
+          background: var(--color-accent);
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.30),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.18);
+        }
+        .guarantee-card h3,
+        .guarantee-card span {
+          color: #FFFFFF;
+        }
+        .guarantee-card svg {
+          color: #FFFFFF;
+        }
+        .guarantee-card button {
+          background: #242426;
+          border-color: #242426;
+          color: #FFFFFF;
+        }
+        .guarantee-card button:hover {
+          background: #3A3A3D;
+          border-color: #3A3A3D;
+        }
+        .guarantee-card button svg {
+          color: #FFFFFF;
         }
       `}</style>
 
@@ -201,7 +295,7 @@ export default function Design1Page() {
             </div>
           </div>
 
-          <div className="card !p-8">
+          <div className="card guarantee-card !p-8">
             <h3 className="text-2xl font-bold mb-6 text-[var(--text-primary)]">Service Guarantee</h3>
             <div className="space-y-4">
               {guarantees.map((item) => (

@@ -87,7 +87,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-base text-[var(--color-white)]">
+    <footer className="bg-nav text-[var(--color-white)]">
       <div className="section-wrapper py-12">
         <div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -102,9 +102,10 @@ export default function Footer() {
               className="w-full flex items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-300"
               aria-label={`${BUSINESS.name} home`}
             >
-              <span className="rounded-lg flex-shrink-0 border-[3px] border-[var(--color-accent)]">
+              {/* Logo artwork is self-framed (baked-in border + rounding) — no CSS border */}
+              <span className="flex-shrink-0">
                 <Image
-                  src="/web images/sydney rubbish removal near me logo.webp"
+                  src="/web images/sydney rubbish removal near me logo2.png"
                   alt="Same day rubbish removal near me in Sydney logo, includes hard rubbish collection and waste removal service."
                   width={32}
                   height={32}

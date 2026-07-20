@@ -58,6 +58,7 @@
   --bg-pure-black:      var(--color-neutral-950);    /* #0A0A0B — Pure deep black           */
   --bg-solid-white:     var(--color-white);          /* #FFFFFF — White surfaces            */
   --bg-dark:            var(--color-neutral-50);     /* #F4F4F5 — Reverse / light cards     */
+  --bg-nav:             linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
 
   /* design2 — Warm Charcoal variant */
   --bg-design2p: linear-gradient(135deg, #1C1A17 0%, #141210 50%, #1E1B18 100%);
@@ -560,6 +561,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-design3b);
 }
 
+.bg-nav {
+  background: var(--bg-nav);
+}
 
 .hover\:bg-base:hover {
   background: var(--bg-primary);

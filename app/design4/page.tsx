@@ -87,10 +87,12 @@ export default function Design4Page() {
           Throwaway: delete with this page. */}
       <style>{`
         :root {
-          --border-width: 3px;
-          --radius-card:  0px;
-          --bg-secondary:      #141618;  /* page canvas — original neutral black gradient */
-          --bg-primary:        #1F2428;  /* cards / navbar / footer — one quiet step up */
+          --border-width: 1px;
+          --radius-card:  8px;
+          --bg-secondary:      #171B21;  /* page canvas — original neutral black gradient */
+          --bg-primary:        #232933;  /* cards — one quiet step up */
+          --bg-nav:            #232933;  /* navbar / footer — matches cards */
+          --border:            rgba(255, 255, 255, 0.08); /* card borders — quiet hairline; hover (--border-dark 0.16) brightens it */
           --color-accent:      #F47A20;
           --color-accent-dim:  #dd4e26;
           --color-accent-glow: rgba(241, 98, 58, 0.16);
@@ -98,6 +100,10 @@ export default function Design4Page() {
           --radius-lg:         8px;  /* Tailwind rounded-lg → Buttons, logo chip — slightly rounded */
           --radius-xl:         8px;  /* Tailwind rounded-xl → mobile menu items */
           --color-black:       #FFFFFF; /* text/icons ON accent surfaces → white (buttons + chips) */
+          --shadow-card:       inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                               inset -10px -10px 24px rgba(0, 0, 0, 0.38); /* dark neumorphic diagonal — quiet light TL, deep shade BR */
+          --shadow-card-hover: inset 8px 8px 20px rgba(255, 255, 255, 0.07),
+                               inset -10px -10px 28px rgba(0, 0, 0, 0.48);
         }
         /* Mobile nav phone + hamburger buttons hardcode black/white bg+icon,
            which collide with the token swaps above (chip or icon goes invisible).
@@ -112,6 +118,28 @@ export default function Design4Page() {
            Scoped to <a> elements so the .card boxes themselves stay sharp. */
         a.rounded-\\[var\\(--radius-card\\)\\] {
           border-radius: 8px !important;
+        }
+        /* QuickContact cards build their own shell (class bg-base, not .card) —
+           give them the same diagonal depth. */
+        .bg-base {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        /* Same diagonal depth on the FOOTER (single element). */
+        footer.bg-nav {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        /* NAVBAR AS ONE CARD: paint the fixed wrapper as the single surface
+           with ONE diagonal; its bars go transparent so no seam divides them. */
+        body > div.fixed {
+          background: var(--bg-nav);
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.05),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.38);
+        }
+        body > div.fixed .bg-nav {
+          background: transparent;
+          box-shadow: none;
         }
       `}</style>
 

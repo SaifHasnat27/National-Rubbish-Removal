@@ -50,9 +50,16 @@ export default function ScrollParallax({
   return (
     <section className={`relative [clip-path:inset(0)] ${className}`}>
       {/* Fixed to the viewport, clipped to this section by the clip-path above.
-          `fixed inset-0` needs no height calc — it is the viewport by
-          definition, which also sidesteps the 100vh-vs-toolbar problem on
-          mobile that the old JS version had to measure around.
+
+          Height is `100lvh`, NOT `inset-0`/`100dvh`. On mobile the address bar
+          collapses and expands during scroll, which changes the viewport height
+          — and a layer sized to the *current* viewport therefore resizes
+          mid-scroll and, being object-cover, re-crops on every resize. That is
+          a visible judder, and it only shows on mobile because desktop has no
+          collapsing toolbar. `lvh` is the LARGE viewport height (toolbar
+          hidden): a static value, so the layer is sized once and never resizes.
+          It still covers the screen while the bar is showing — the excess just
+          falls outside the clip. Do not "fix" this back to dvh.
 
           DO NOT add `contain: paint` (or `transform`, `filter`, `will-change`)
           to this section. They establish a containing block for fixed-position
@@ -60,7 +67,7 @@ export default function ScrollParallax({
           of the viewport — it silently stops being fixed and becomes a static
           background. `clip-path` is deliberately the only thing here, because
           it clips without capturing. Tried and reverted. */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed top-0 left-0 w-full h-[100lvh] z-0">
         <Image
           src={src}
           alt={alt}

@@ -51,11 +51,11 @@ export default function ServicePicker({ value, onChange, disabled, error }: Serv
                     text-[var(--text-primary)]
                     bg-base-secondary
                     border border-[var(--border)]
-                    rounded-none text-sm leading-[var(--leading-normal)]
+                    rounded-[var(--radius-xl)] text-sm leading-[var(--leading-normal)]
                     transition-all duration-[var(--transition-fast)]
-                    focus:outline-none focus:border-[var(--border-dark)]
-                    focus:ring-1 focus:ring-[var(--color-black)]
-                    hover:border-[var(--color-stone-400)]
+                    focus:outline-none focus:border-[var(--color-neutral-400)]
+                    focus:ring-1 focus:ring-[var(--color-neutral-400)]
+                    hover:border-[var(--border-light)]
                     flex justify-between items-center gap-2
                     ${disabled ? "opacity-50 cursor-not-allowed" : ""}
                     ${error ? "border-red-600" : ""}
@@ -73,7 +73,7 @@ export default function ServicePicker({ value, onChange, disabled, error }: Serv
 
             {/* Dropdown */}
             {isOpen && !disabled && (
-                <div className="absolute z-50 mt-2 w-full bg-base border border-[var(--border)] shadow-lg">
+                <div className="absolute z-50 mt-2 w-full bg-base border border-[var(--border)] rounded-[var(--radius-xl)] overflow-hidden shadow-lg">
                     {SERVICES.map((name) => {
                         const isSelected = value.some((s) => s.id === name);
                         return (

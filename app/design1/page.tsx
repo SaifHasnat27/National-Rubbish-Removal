@@ -91,6 +91,7 @@ export default function Design1Page() {
              light grey flat surfaces, charcoal text/icons, neumorphic pill
              buttons, ALL depth from soft shadow pools (no gradients). */
           --border-width: 0px;
+          --border:       transparent; /* borderless at rest — border-color appears on hover (.card:hover → --border-dark) */
           --color-accent:      #F47A20;  /* dark charcoal (given) — icons, checks, buttons */
           --color-accent-dim:  #3A3A3D;  /* charcoal hover — lightens slightly */
           --color-accent-glow: rgba(36, 36, 38, 0.08);
@@ -101,7 +102,7 @@ export default function Design1Page() {
           --color-white:       #242426;  /* primary text → dark charcoal (given) */
           --text-secondary:    #B0B0B5;  /* muted slate gray (given) — footer legal links */
           --text-muted:        #B0B0B5;  /* muted slate gray — labels/captions */
-          --border-dark:       #C2C2C7;  /* metallic silver (given) — hover hairlines */
+          --border-dark:       transparent;  /* PROTOTYPE: card hover ring OFF — depth from shadow+lift alone. In globals this becomes a dedicated --border-hover token (see todo.tsx). NOTE: also blanks the nav mobile-menu divider on this route. */
           --radius-card:       20px;
           --radius-btn:        9999px;   /* pills — the reference's signature */
           --radius-lg:         9999px;   /* Buttons (rounded-lg) → full pill */
@@ -109,8 +110,47 @@ export default function Design1Page() {
           --shadow-card:       inset 8px 8px 20px rgba(255, 255, 255, 0.85),
                                inset -10px -10px 24px rgba(0, 0, 0, 0.10); /* visible diagonal: light top-left, shade bottom-right, contained */
           --shadow-card-hover: inset 8px 8px 20px rgba(255, 255, 255, 0.95),
-                               inset -10px -10px 28px rgba(0, 0, 0, 0.13);
+                               inset -10px -10px 28px rgba(0, 0, 0, 0.13),
+                               0 16px 32px rgba(0, 0, 0, 0.12); /* outer pool appears under the lifting card */
           --color-black:       #FFFFFF;  /* white text/icons ON charcoal buttons/chips */
+
+          /* ── FROZEN PASS-THROUGH TOKENS ──────────────────────────────
+             The render tree (page + Navbar/Footer/Wordmark/Button/
+             QuickContact + .card/.bg-base/.section-wrapper) consumes these
+             but they were NOT pinned above, so they fell through to
+             globals.css and would DRIFT the moment globals is edited.
+             Pinned here at their current resolved values → design1 is now
+             fully self-contained and immune to the globals rebuild.
+             (No visual change — this only freezes what already renders.)   */
+
+          /* Text / accent — visible, theme-critical */
+          --text-primary:      #242426;  /* was var(--color-white) → charcoal body/headings */
+          --text-black:        #FFFFFF;  /* was var(--color-black) → white icon on orange chip */
+          --text-accent:       #F47A20;  /* was var(--color-accent) → orange highlight text (QuickContact) */
+
+          /* Footer icon chips — visible on the charcoal footer */
+          --bg-social-icons:   #1E293B;  /* was var(--color-slate-800) */
+          --bg-footer-icons:   #1E293B;  /* was var(--color-slate-800) */
+
+          /* Layout & motion — freeze so geometry/timing can't drift */
+          --nav-height:              72px;
+          --container-max:           100%;
+          --container-max-width:     1920px;
+          --container-gutter-mobile: 6vw;
+          --container-gutter-desktop: 8vw;
+          --transition-base:   320ms cubic-bezier(0.4, 0, 0.2, 1);
+          --transition-fast:   180ms cubic-bezier(0.4, 0, 0.2, 1);
+          --tracking-wider:    0.14em;
+
+          /* Neutral primitives — consumed via Button/Navbar/Footer hover &
+             divider states. design1 never re-themed these, so they render
+             DARK right now; frozen as-is (revisit in the globals rebuild). */
+          --color-neutral-100: #E4E4E7;
+          --color-neutral-200: #C4C4C9;
+          --color-neutral-400: #6B6B72;
+          --color-neutral-600: #3F3F45;
+          --color-neutral-700: #27272B;
+          --color-neutral-800: #1A1A1D;
         }
         /* Pill radius would crop the square logo into a circle — keep it soft-square */
         img[alt*="Sydney logo"] {
@@ -134,6 +174,19 @@ export default function Design1Page() {
         .bg-base {
           box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.85),
                       inset -10px -10px 24px rgba(0, 0, 0, 0.10);
+        }
+        /* QuickContact cards: same hover border reveal + rising pool as .card */
+        .bg-base:hover {
+          border-color: var(--border-dark);
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.95),
+                      inset -10px -10px 28px rgba(0, 0, 0, 0.13),
+                      0 16px 32px rgba(0, 0, 0, 0.12);
+        }
+        /* Transparent border must be TRULY invisible at rest: stop the card
+           background from painting under the border strip. */
+        .card,
+        .bg-base {
+          background-clip: padding-box;
         }
         /* Social icons inherit the page text color (charcoal) — invisible on
            their dark chips. Match the Get In Touch icons: accent-colored. */
@@ -177,9 +230,16 @@ export default function Design1Page() {
            tuned for a saturated surface; text/checks flip white; the button
            flips charcoal so it stays visible on orange. */
         .guarantee-card {
-          background: var(--color-accent);
+          background-color: var(--color-accent);
           box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.30),
                       inset -10px -10px 24px rgba(0, 0, 0, 0.18);
+        }
+        /* Hover — keep the orange-tuned insets, lift, and a stronger floor
+           pool so the cast shadow actually reads on the orange surface. */
+        .guarantee-card:hover {
+          box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.30),
+                      inset -10px -10px 24px rgba(0, 0, 0, 0.18),
+                      0 20px 40px rgba(0, 0, 0, 0.28);
         }
         .guarantee-card h3,
         .guarantee-card span {

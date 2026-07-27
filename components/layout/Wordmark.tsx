@@ -14,14 +14,19 @@ export default function Wordmark({
   /** Overrides the name's default responsive text sizes (e.g. "text-lg" in the footer). */
   nameClassName?: string;
 }) {
-  const nameSize =
-    nameClassName || (isScrolled ? 'text-base sm:text-xl xl:text-lg' : 'text-base sm:text-xl');
+  /* Sizes are static. The scrolled-state shrink used to animate font-size,
+     which re-runs layout on every frame of the transition — the whole nav
+     (and the page below it) reflowed 60x per collapse. The Link wrapper in
+     Navbar now scales the logo + wordmark together with a transform instead,
+     which the compositor handles for free. See gsap-performance: animate
+     transform/opacity, never width/height/font-size. */
+  const nameSize = nameClassName || 'text-base sm:text-xl';
 
   return (
     <span className={`min-w-0 ${className}`}>
       {showName && (
         <span
-          className={`block font-bold leading-tight transition-all duration-300 text-[var(--color-accent)] ${nameSize}`}
+          className={`block font-bold leading-tight text-[var(--color-accent)] ${nameSize}`}
         >
           National Rubbish Removal
         </span>

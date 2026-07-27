@@ -14,17 +14,17 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center font-medium transition-all duration-[var(--transition-base)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[var(--color-accent)] disabled:opacity-50 disabled:pointer-events-none hover:shadow-md active:scale-[0.98] cursor-pointer";
+    "inline-flex items-center justify-center font-medium transition-all duration-[var(--transition-base)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[var(--color-accent)] disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] cursor-pointer";
 
   const variantClasses = {
 
-    // Primary — solid NRR yellow, black text. THE jewel CTA, matches Vite.
+    // Primary — solid orange accent, white text. THE jewel CTA.
     primary:
-      "rounded-lg normal-case tracking-normal bg-[var(--color-accent)] text-[var(--color-black)] border-2 border-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] hover:border-[var(--color-accent-dim)]",
+      "rounded-lg normal-case tracking-normal bg-[var(--color-accent)] text-[var(--color-white)] border-2 border-[var(--color-accent)] hover:bg-[var(--color-accent-dim)] hover:border-[var(--color-accent-dim)] shadow-[inset_0_2px_2px_rgba(255,255,255,0.30),inset_0_-2px_2px_rgba(0,0,0,0.18)] hover:shadow-[inset_0_2px_2px_rgba(255,255,255,0.30),inset_0_-2px_2px_rgba(0,0,0,0.18),0_10px_24px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0",
 
-    // Secondary — quieter sibling on dark. Subtler border, warms on hover.
+    // Secondary — charcoal sibling to primary. Same 3D pop recipe, same shape, dark fill.
     secondary:
-      "rounded-none uppercase bg-[var(--btn-secondary-bg,var(--color-neutral-800))] text-[var(--btn-secondary-text,var(--color-neutral-100))] border border-[var(--btn-secondary-border,var(--color-neutral-600))] hover:bg-[var(--btn-secondary-hover-bg,var(--color-neutral-700))] hover:border-[var(--btn-secondary-hover-border,var(--color-neutral-400))]",
+      "rounded-lg normal-case tracking-normal bg-[var(--bg-nav)] text-[var(--text-black)] border-2 border-[var(--bg-nav)] hover:bg-[var(--color-accent-dim)] hover:border-[var(--color-accent-dim)] shadow-[inset_0_2px_2px_rgba(255,255,255,0.12),inset_0_-2px_2px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_2px_2px_rgba(255,255,255,0.12),inset_0_-2px_2px_rgba(0,0,0,0.35),0_10px_24px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0",
   };
 
   const sizes = {

@@ -110,14 +110,14 @@ export default function TimePicker({ value, onChange, selectedDate, disabled }: 
           text-[var(--text-primary)]
           bg-base-secondary
           border border-[var(--border)]
-          rounded-none
+          rounded-[var(--radius-xl)]
           text-sm leading-[var(--leading-normal)]
           placeholder:text-[var(--text-muted)]
           transition-all duration-[var(--transition-fast)]
           focus:outline-none
-          focus:border-[var(--border-dark)]
-          focus:ring-1 focus:ring-[var(--color-black)]
-          hover:border-[var(--color-stone-400)]
+          focus:border-[var(--color-neutral-400)]
+          focus:ring-1 focus:ring-[var(--color-neutral-400)]
+          hover:border-[var(--border-light)]
           flex justify-between items-center
           ${disabled ? "opacity-50 cursor-not-allowed" : ""}
         `}
@@ -129,7 +129,7 @@ export default function TimePicker({ value, onChange, selectedDate, disabled }: 
             </button>
 
             {isOpen && !disabled && (
-                <div className="absolute z-50 mt-2 w-full bg-base border border-[var(--border)] shadow-lg max-h-60 overflow-y-auto">
+                <div className="absolute z-50 mt-2 w-full bg-base border border-[var(--border)] rounded-[var(--radius-xl)] shadow-lg max-h-60 overflow-y-auto">
                     {availableSlots.length > 0 ? (
                         availableSlots.map(slot => (
                             <button

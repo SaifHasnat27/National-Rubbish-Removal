@@ -9,8 +9,11 @@ import { ContactFormSchema, type ContactFormValues } from "./formSchema";
 import DatePicker from "./DatePicker";
 import TimePicker from "./TimePicker";
 import ServicePicker from "./ServicePicker";
+import SizePicker from "./SizePicker";
+import PriceEstimate from "./PriceEstimate";
 import PhotoUpload from "./PhotoUpload";
 import { BUSINESS } from "@/lib/constants";
+import { LOAD_SIZES } from "@/lib/quote";
 
 const GOOGLE_SCRIPT_URL = BUSINESS.googleScriptUrl;
 
@@ -20,14 +23,14 @@ const fieldBase = `
   text-[var(--text-primary)]
   bg-base-secondary
   border border-[var(--border)]
-  rounded-none
+  rounded-[var(--radius-xl)]
   text-sm leading-[var(--leading-normal)]
   placeholder:text-[var(--text-muted)]
   transition-all duration-[var(--transition-fast)]
   focus:outline-none
-  focus:border-[var(--border-dark)]
-  focus:ring-1 focus:ring-[var(--color-black)]
-  hover:border-[var(--color-stone-400)]
+  focus:border-[var(--color-neutral-400)]
+  focus:ring-1 focus:ring-[var(--color-neutral-400)]
+  hover:border-[var(--border-light)]
 `;
 
 const labelBase = `
@@ -52,6 +55,7 @@ export default function PageContactForm() {
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       services: [],
+      size: "",
       preferredDate: "",
       preferredTime: "",
       location: "",
@@ -59,6 +63,7 @@ export default function PageContactForm() {
   });
 
   const services = watch("services", []);
+  const size = watch("size", "");
   const preferredDate = watch("preferredDate", "");
   const preferredTime = watch("preferredTime", "");
   const photos = watch("photos", []);
@@ -73,11 +78,16 @@ export default function PageContactForm() {
 
   const onSubmit = (data: ContactFormValues) => {
     setStatus("loading");
+    // Send the size as its readable label ("½ Truck"), not the internal id.
+    const payload = {
+      ...data,
+      size: LOAD_SIZES.find((l) => l.id === data.size)?.label ?? "",
+    };
     fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=UTF-8" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     setStatus("success");
     reset();
@@ -176,6 +186,24 @@ export default function PageContactForm() {
         {errors.services && (
           <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.services.message}</p>
         )}
+      </div>
+
+      {/* Load size (optional) + live estimate */}
+      <div>
+        <label className={labelBase}>
+          Estimated Volume
+        </label>
+        <SizePicker
+          value={size ?? ""}
+          onChange={(val) => setValue("size", val)}
+          disabled={status === "loading"}
+        />
+        <PriceEstimate
+          serviceName={services[0]?.id}
+          loadId={size}
+          variant="compact"
+          className="mt-2"
+        />
       </div>
 
       {/* Preferred Date + Preferred Time row */}

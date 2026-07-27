@@ -20,7 +20,7 @@ const fieldBase = `
   text-[var(--text-primary)]
   bg-base-secondary
   border border-[var(--border)]
-  rounded-none
+  rounded-[var(--radius-xl)]
   text-sm leading-[var(--leading-normal)]
   placeholder:text-[var(--text-muted)]
   transition-all duration-[var(--transition-fast)]

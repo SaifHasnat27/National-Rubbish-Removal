@@ -21,8 +21,8 @@ export const PAGE_BANNERS: Record<string, BannerData> = {
   contact: {
     heading: "Get a Free Quote",
     subheading: "Speak to our team today for an upfront, transparent quote with zero hidden fees. Same-day service across Sydney.",
-    desktopSrc: "/web images/rubbish removal Sydney banner.webp",
-    mobileSrc: "/web images/rubbish removal Sydney mobile banner.webp",
+    desktopSrc: "/web images/Banner/contact.webp",
+    mobileSrc: "/web images/Banner/contactMobile1.webp",
   },
   areasServed: {
     heading: "Areas We Serve",

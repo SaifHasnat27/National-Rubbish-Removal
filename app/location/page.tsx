@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { MapPin, Clock, Phone, CheckCircle, Home, Building, Truck } from 'lucide-react';
+import { MapPin, Clock, Phone, CheckCircle, Home, Building, Truck, ClipboardCheck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import QuickContact from '@/components/contact/QuickContact';
 import Button from '@/components/ui/Button';
-import { BUSINESS } from '@/lib/constants';
 
 // Shared scroll-reveal — fade + rise as the element enters the viewport.
 // Self-contained per element (no global measurement), so nothing can leave
@@ -82,8 +81,7 @@ export default function LocationPage() {
     <div className="bg-base-secondary">
 
       {/* Hero */}
-      <section className="bg-base-secondary pt-[calc(var(--nav-height)+0rem)] pb-12 md:pt-[calc(var(--nav-height)+3rem)] md:pb-20">
-        <div className="section-wrapper">
+      <SectionWrapper className="bg-base-secondary">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,7 +92,7 @@ export default function LocationPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
             Locations We Serve | Rubbish Removal Sydney
           </h1>
-          <p className="text-xl max-w-3xl mx-auto text-[var(--text-primary)]">
+          <p className="text-xl max-w-3xl mx-auto text-[var(--text-secondary)]">
             Fast, reliable rubbish removal across Sydney&apos;s metro areas. Same-day service available in most locations.
           </p>
 
@@ -106,13 +104,12 @@ export default function LocationPage() {
               <motion.div key={stat.title} {...staggerChild} className="card !p-6 text-center">
                 <stat.icon aria-hidden="true" className="mx-auto mb-3 text-[var(--color-accent)]" size={32} />
                 <h3 className="font-bold text-lg text-[var(--text-primary)]">{stat.title}</h3>
-                <p className="text-sm text-[var(--text-primary)]">{stat.subtitle}</p>
+                <p className="text-sm text-[var(--text-muted)]">{stat.subtitle}</p>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
-        </div>
-      </section>
+      </SectionWrapper>
 
       {/* Service Areas Grid */}
       <SectionWrapper className="bg-base-secondary" aria-labelledby="service-areas-heading">
@@ -120,7 +117,7 @@ export default function LocationPage() {
           <h2 id="service-areas-heading" className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
             Hard Rubbish Collection Areas in Sydney
           </h2>
-          <p className="text-xl text-[var(--text-primary)]">
+          <p className="text-xl text-[var(--text-secondary)]">
             Professional rubbish removal across Sydney&apos;s diverse neighbourhoods
           </p>
         </div>
@@ -141,7 +138,7 @@ export default function LocationPage() {
                 {region.suburbs.map((suburb) => (
                   <div key={suburb} className="flex items-center gap-2">
                     <CheckCircle aria-hidden="true" size={14} className="text-[var(--color-accent)] shrink-0" />
-                    <span className="text-sm text-[var(--text-primary)]" itemProp="containsPlace">
+                    <span className="text-sm text-[var(--text-secondary)]" itemProp="containsPlace">
                       {suburb}
                     </span>
                   </div>
@@ -167,31 +164,31 @@ export default function LocationPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2 text-[var(--text-primary)]">{item.title}</h3>
-                    <p className="text-[var(--text-primary)]">{item.desc}</p>
+                    <p className="text-[var(--text-secondary)]">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="card !p-8">
-            <h3 className="text-2xl font-bold mb-6 text-[var(--text-primary)]">Service Guarantee</h3>
+          <div className="card card-feature !p-8">
+            <h3 className="text-2xl font-bold mb-6 text-[var(--text-black)]">Service Guarantee</h3>
             <div className="space-y-4">
               {guarantees.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <CheckCircle aria-hidden="true" size={20} className="text-[var(--color-accent)] shrink-0" />
-                  <span className="text-[var(--text-primary)]">{item}</span>
+                  <CheckCircle aria-hidden="true" size={20} className="text-[var(--text-black)] shrink-0" />
+                  <span className="text-[var(--text-black)]">{item}</span>
                 </div>
               ))}
             </div>
             <a
-              href={`tel:${BUSINESS.phoneRaw}`}
+              href="/contact#quote-form"
               className="block mt-6"
-              aria-label="Call Us to Check Availability"
+              aria-label="Get Your Free Quote"
             >
-              <Button variant="primary" size="md" className="w-full">
-                <Phone aria-hidden="true" size={20} />
-                Call Us to Check Availability
+              <Button variant="secondary" size="md" className="w-full">
+                <ClipboardCheck aria-hidden="true" size={20} />
+                Get Your Free Quote
               </Button>
             </a>
           </div>

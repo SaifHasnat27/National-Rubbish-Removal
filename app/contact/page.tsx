@@ -1,31 +1,42 @@
 "use client";
 
 import React, { useRef } from 'react';
+import { getImageProps } from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { motion } from 'framer-motion';
 import { Clock, MapPin, Phone, ClipboardCheck } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
-import ContactForm from '@/components/forms/ContactForm';
+import PageContactForm from '@/components/forms/PageContactForm';
 import QuickContact from '@/components/contact/QuickContact';
 import FAQSection from '@/components/servicecards/faq';
 import Button from '@/components/ui/Button';
 import { BUSINESS } from '@/lib/constants';
 
-const operatingHours = [
-  { day: 'Monday - Friday', hours: '6:00 AM - 9:00 PM' },
-  { day: 'Saturday', hours: '7:00 AM - 9:00 PM' },
-  { day: 'Sunday', hours: '8:00 AM - 9:00 PM' },
-];
-
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
+// "06:00" -> "6:00 AM"
+const to12Hour = (time: string) => {
+  const [h, m] = time.split(':').map(Number);
+  return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`;
+};
+
 export default function ContactPage() {
   const container = useRef<HTMLDivElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
+
+  // Hero backdrop: ONE <picture> with a media-split source (same pattern as
+  // HeroBanner) so each device downloads only its own file.
+  const heroBgCommon = { alt: '', fill: true as const, sizes: '100vw', priority: true };
+  const {
+    props: { srcSet: heroBgDesktopSrcSet },
+  } = getImageProps({ ...heroBgCommon, src: '/web images/Banner/contact1.webp' });
+  const {
+    props: { srcSet: heroBgMobileSrcSet, ...heroBgImg },
+  } = getImageProps({ ...heroBgCommon, src: '/web images/Banner/contactMobile.webp' });
 
   // ---- Existing scroll-reveal for sections that still use the class ----
   useGSAP(() => {
@@ -123,36 +134,61 @@ export default function ContactPage() {
       className="w-full bg-base-secondary min-h-screen"
       ref={container}
     >
-      {/* Hero — top padding clears the fixed nav so content is evenly centred */}
-      <section className="bg-base-secondary pt-[calc(var(--nav-height)+3rem)] pb-12 md:pt-[calc(var(--nav-height)+5rem)] md:pb-20">
-        <div className="section-wrapper">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
-              Contact | Local Rubbish Removal Near Me &amp; Hard Waste Collection
-            </h1>
-            <p className="text-xl mb-8 max-w-3xl mx-auto text-[var(--text-primary)]">
-              Ready to clear your space? Contact us for instant quotes, same-day service, and professional rubbish removal across Sydney.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={`tel:${BUSINESS.phoneRaw}`} aria-label="Call Us Now">
-                <Button variant="primary" size="md" className="w-full sm:w-auto">
-                  <Phone aria-hidden="true" size={20} />
-                  Call Us Now
-                </Button>
-              </a>
-              <a href="#quote-form" aria-label="Get Free Quote">
-                <Button variant="primary" size="md" className="w-full sm:w-auto">
-                  Get Free Quote
-                  <ClipboardCheck aria-hidden="true" size={20} />
-                </Button>
-              </a>
-            </div>
-          </motion.div>
+      {/* Hero — full-width ratio box (2/3 mobile, 3/1 desktop), height follows
+          width. Split-source <picture> backdrop, content centred on top. */}
+      <section className="relative w-full aspect-[2/3] md:aspect-[3/1] overflow-hidden bg-base-secondary">
+        <div className="absolute inset-0 z-0">
+          <picture>
+            <source media="(min-width: 1024px)" srcSet={heroBgDesktopSrcSet} />
+            <img {...heroBgImg} srcSet={heroBgMobileSrcSet} alt="" className="object-cover" />
+          </picture>
+        </div>
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="section-wrapper w-full">
+            {/* Same card-dark treatment as HeroBanner's TextCard: /60 photo
+                bleed-through on mobile, /90 on desktop; all sizes min(vw, cap)
+                so the card shrinks with the box on narrow devices. */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="mx-auto sm:max-md:max-w-xl"
+            >
+              <div className="card card-dark !p-[min(5.5vw,1.5rem)] space-y-[min(5.5vw,1.5rem)] !bg-[var(--bg-nav)]/60 md:!p-[2.2vw] md:space-y-[1.6vw] md:!bg-[var(--bg-nav)]/90 text-center">
+                <div className="space-y-[min(2.8vw,0.75rem)] md:space-y-[0.9vw]">
+                  <h1 className="font-[family-name:var(--font-body)] text-[clamp(1.5rem,8.3vw,2.25rem)] md:text-[clamp(2.25rem,4vw,3rem)] font-bold leading-tight text-[var(--color-white)]">
+                    Contact | Local Rubbish Removal Near Me &amp; Hard Waste Collection
+                  </h1>
+                  <p className="text-[clamp(0.8rem,3.7vw,1rem)] sm:text-lg md:text-[clamp(0.9rem,1.3vw,1.35rem)] leading-relaxed max-w-3xl mx-auto text-[var(--color-white)]">
+                    Ready to clear your space? Contact us for instant quotes, same-day service, and professional rubbish removal across Sydney.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-[min(2.8vw,0.75rem)] md:gap-4 justify-center">
+                  <a href={`tel:${BUSINESS.phoneRaw}`} aria-label="Call Us Now" className="w-full sm:w-auto">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      className="w-full sm:w-auto !px-[min(5.5vw,1.5rem)] !text-[clamp(0.75rem,3.7vw,0.875rem)] md:!px-3 xl:!px-6 md:!gap-1.5 xl:!gap-2 md:!text-xs xl:!text-sm"
+                    >
+                      <Phone aria-hidden="true" size={20} className="shrink-0" />
+                      Call Us Now
+                    </Button>
+                  </a>
+                  <a href="#quote-form" aria-label="Get Free Quote" className="w-full sm:w-auto">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      className="w-full sm:w-auto !px-[min(5.5vw,1.5rem)] !text-[clamp(0.75rem,3.7vw,0.875rem)] md:!px-3 xl:!px-6 md:!gap-1.5 xl:!gap-2 md:!text-xs xl:!text-sm"
+                    >
+                      Get Free Quote
+                      <ClipboardCheck aria-hidden="true" size={20} className="shrink-0" />
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -163,7 +199,7 @@ export default function ContactPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
               Contact Our Hard Rubbish Collection Team
             </h2>
-            <p className="text-xl text-[var(--text-primary)]">Choose the method that works best for you</p>
+            <p className="text-xl text-[var(--text-secondary)]">Choose the method that works best for you</p>
           </div>
           <QuickContact />
         </div>
@@ -183,41 +219,46 @@ export default function ContactPage() {
             <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.02em] mb-8 text-[var(--text-primary)]">
               Get a Free Quote
             </h2>
-            <ContactForm />
+            <PageContactForm />
           </div>
 
           {/* Info Side */}
           <div className="lg:col-span-4 flex flex-col gap-5">
             <div className="card info-card hover:border-[var(--border-dark)] transition-colors duration-[var(--transition-fast)]">
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-[var(--text-primary)]">
-                <Clock aria-hidden="true" size={24} className="text-[var(--color-accent)] shrink-0" />
-                Hard Rubbish Collection Hours
-              </h2>
-              <div className="space-y-4">
-                {operatingHours.map((schedule) => (
-                  <div key={schedule.day} className="flex justify-between items-center py-2 border-b border-[var(--border-dark)]">
-                    <span className="font-medium text-[var(--text-primary)]">{schedule.day}</span>
-                    <span className="font-semibold text-[var(--text-accent)]">{schedule.hours}</span>
+              <div className="text-center mb-6">
+                <div className="p-4 rounded-[var(--radius-card)] w-fit mx-auto mb-4 bg-[var(--color-accent)]">
+                  <Clock aria-hidden="true" size={32} className="text-[var(--text-black)]" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-[var(--text-primary)]">Hard Rubbish Collection Hours</h3>
+              </div>
+              <div className="space-y-4 text-sm">
+                {BUSINESS.openingHours.rows.map((schedule) => (
+                  <div key={schedule.day} className="flex justify-between items-center py-2 border-b border-[var(--border-light)]">
+                    <span className="font-normal text-[var(--text-secondary)]">{schedule.day}</span>
+                    <span className="font-semibold text-[var(--text-accent)]">
+                      {to12Hour(schedule.opens)} - {to12Hour(schedule.closes)}
+                    </span>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 p-4 rounded-[var(--radius-btn)] bg-base-third">
-                <p className="text-sm text-[var(--text-primary)]">
-                  <strong>Emergency Service Available:</strong> Contact us for urgent rubbish removal needs outside regular hours.
+              {/* radius-xl (soft square), not radius-btn: this is a panel of
+                  wrapping text, and the pill radius rounded its corners into the
+                  copy. radius-btn is for pills and icon chips. */}
+              <div className="mt-4 p-4 rounded-[var(--radius-xl)] bg-base-third">
+                <p className="text-sm text-[var(--text-secondary)]">
+                  <strong className="font-semibold text-[var(--text-primary)]">Emergency Service Available:</strong> Contact us for urgent rubbish removal needs outside regular hours.
                 </p>
               </div>
             </div>
 
             <div className="card info-card hover:border-[var(--border-dark)] transition-colors duration-[var(--transition-fast)]">
-              <div className="flex items-center gap-3 mb-5">
-                <MapPin aria-hidden="true" className="w-4 h-4 text-[var(--text-muted)]" />
-                <p className="text-[0.6875rem] font-medium tracking-[0.15em] uppercase text-[var(--text-muted)]">
-                  Service Area
-                </p>
+              <div className="text-center">
+                <div className="p-4 rounded-[var(--radius-card)] w-fit mx-auto mb-4 bg-[var(--color-accent)]">
+                  <MapPin aria-hidden="true" size={32} className="text-[var(--text-black)]" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-[var(--text-primary)]">Service Area</h3>
+                <p className="text-[var(--text-secondary)]">{BUSINESS.serviceArea}</p>
               </div>
-              <p className="font-[family-name:var(--font-display)] text-xl text-[var(--text-primary)] leading-snug">
-                {BUSINESS.serviceArea}
-              </p>
             </div>
           </div>
         </div>

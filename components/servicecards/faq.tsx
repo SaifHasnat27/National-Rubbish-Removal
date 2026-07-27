@@ -33,7 +33,7 @@ export default function FAQSection({
                                     className="w-full flex justify-between items-center text-left gap-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--text-primary)] group"
                                     aria-expanded={isOpen}
                                 >
-                                    <span className="text-sm font-medium text-[var(--text-primary)] leading-snug group-hover:text-[var(--text-secondary)] transition-colors duration-[var(--transition-fast)]">
+                                    <span className="text-sm font-medium text-[var(--text-primary)] leading-snug group-hover:text-[var(--text-accent)] transition-colors duration-[var(--transition-fast)]">
                                         {faq.q}
                                     </span>
                                     <span className="shrink-0">

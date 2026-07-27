@@ -14,6 +14,7 @@ export const ContactFormSchema = z.object({
   services: z
     .array(ServiceSelectionSchema)
     .min(1, { message: "Select at least one service." }),
+  size: z.string().optional(),
   preferredDate: z.string().min(1, { message: "Please select a date." }),
   preferredTime: z.string().min(1, { message: "Please select a time." }),
   location: z.string().min(1, { message: "Location is required." }),

@@ -73,20 +73,20 @@ export function TabsList({
         <button
           type="button"
           onClick={() => setIsOpen(prev => !prev)}
-          className="flex items-center justify-between w-full px-5 py-3 bg-base border border-[var(--border)] rounded-[var(--radius-btn)] cursor-pointer"
+          className="flex items-center justify-between w-full px-5 py-3 bg-[var(--bg-nav)] border-[length:var(--border-width)] border-[color:var(--border)] rounded-[var(--radius-btn)] shadow-[var(--shadow-dark)] cursor-pointer"
         >
-          <span className="text-[0.6875rem] font-medium tracking-[0.12em] uppercase text-[var(--text-primary)]">
+          <span className="text-[0.6875rem] font-medium tracking-[0.12em] uppercase text-[var(--text-on-dark)]">
             {activeLabel}
           </span>
           <ChevronDown
-            className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-4 h-4 text-[var(--text-on-dark-muted)] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
             aria-hidden="true"
           />
         </button>
 
         {/* Open state — styled to match ServicePicker */}
         {isOpen && (
-          <div className="absolute z-50 mt-2 w-full bg-base border border-[var(--border)] shadow-lg">
+          <div className="absolute z-50 mt-2 w-full bg-[var(--bg-primary)] border-[length:var(--border-width)] border-[color:var(--border)] rounded-[var(--radius-card)] shadow-[var(--shadow-modal)] overflow-hidden">
             {options.map(o => {
               const isSelected = o.value === activeTab;
               return (
@@ -97,11 +97,11 @@ export function TabsList({
                   className={`
                     w-full text-left px-4 py-3
                     text-[0.6875rem] font-medium tracking-[0.12em] uppercase
-                    border-b border-[var(--border)] last:border-b-0
+                    border-b border-[color:var(--border-light)] last:border-b-0
                     transition-colors duration-[var(--transition-fast)]
                     ${isSelected
-                      ? 'bg-bg-fifth text-[var(--text-primary)]'
-                      : 'bg-bg-third text-[var(--text-secondary)] hover:bg-bg-fifth hover:text-[var(--text-primary)]'
+                      ? 'bg-[var(--bg-social-icons)] text-[var(--text-on-dark)]'
+                      : 'bg-[var(--bg-third)] text-[var(--text-secondary)] hover:bg-[var(--bg-fifth)] hover:text-[var(--text-primary)]'
                     }
                   `}
                 >
@@ -116,7 +116,7 @@ export function TabsList({
       {/* ── Desktop: original tab buttons ────────────── */}
       <div
         className={`
-          hidden md:flex flex-wrap items-center justify-start
+          hidden md:flex flex-wrap items-center
           gap-2 md:gap-3
           mb-14
           ${className}
@@ -147,15 +147,21 @@ export function TabsTrigger({
       onClick={() => context.setActiveTab(value)}
       aria-selected={isActive}
       role="tab"
+      /* Shape mirrors Button.tsx (border-2, px-6 py-3, min-h-44, pill radius) so the
+         tabs and the CTAs above them read as one family. Not <Button> — that owns its
+         own hover/variants and lacks the tab's two-state + role/aria needs.
+         Shadow alphas are hardcoded: solid hex tokens carry no alpha (GOTCHA #16). */
       className={`
-        px-6 py-2.5
-        rounded-[var(--radius-btn)]
+        inline-flex items-center justify-center
+        px-6 py-3 min-h-[44px]
+        rounded-[var(--radius-btn)] border-2
         text-[0.6875rem] font-medium tracking-[0.12em] uppercase
         transition-all duration-[var(--transition-base)]
-        focus-visible:outline-2 focus-visible:outline-[var(--color-black)] focus-visible:outline-offset-2
+        cursor-pointer active:scale-[0.98]
+        focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-[3px]
         ${isActive
-          ? 'bg-[var(--bg-dark)] text-[var(--text-inverse)]'
-          : 'bg-base text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]'
+          ? 'bg-[var(--bg-nav)] border-[var(--bg-nav)] text-[var(--text-on-dark)] shadow-[var(--shadow-dark)]'
+          : 'bg-[var(--bg-primary)] border-[var(--bg-primary)] text-[var(--text-secondary)] shadow-[var(--shadow-card)] hover:bg-[var(--bg-social-icons)] hover:border-[var(--bg-social-icons)] hover:text-[var(--text-on-dark)] hover:shadow-[var(--shadow-dark)]'
         }
         ${className}
       `}

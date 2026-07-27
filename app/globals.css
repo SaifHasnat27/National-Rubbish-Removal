@@ -2,63 +2,87 @@
 
 /* ====================================================================
    NATIONAL RUBBISH REMOVAL — Design Token System
-   Theme: "Yellow Accent & Dark Editorial"
-   Philosophy: Refined greyscale ladder with pure yellow brand accents.
+   Theme: "Light Neumorphic — Charcoal & Orange"
+   Locked hexes: #FFFFFF canvas · #F0F0F0 cards · #242426 nav · #F47A20 accent
+   Rules: one accent · no borders at rest · orange never a surface · one black
+   Shadows and the card layer are SIGNED OFF. Do not retune them.
    ==================================================================== */
 
 :root {
 
-  /* ------------------------------------------------------------------
-     PRIMITIVES — Raw scale, never used directly in components
-     ------------------------------------------------------------------ */
+  /* ---- PRIMITIVES — raw scale, never used directly in components ---- */
 
-  /* Neutrals — A deliberate tonal staircase with the faintest cool
-     undertone. Not flat. Each step is intentional. Off-white at the
-     top (never harsh pure white), true near-black at the bottom.
-     The depth of a premium dark theme lives in THIS ladder.           */
-  --color-white:        #FFFFFF;
-  --color-black:        #000000;
-  --color-neutral-50:   #F4F4F5;   /* Soft off-white — primary text       */
-  --color-neutral-100:  #E4E4E7;   /* Bright supporting text              */
-  --color-neutral-200:  #C4C4C9;   /* Light grey                          */
-  --color-neutral-300:  #9A9AA1;   /* Secondary body copy                 */
-  --color-neutral-400:  #6B6B72;   /* Muted labels / captions             */
-  --color-neutral-600:  #3F3F45;   /* Dim UI / disabled                   */
-  --color-neutral-700:  #27272B;   /* Elevated UI / dropdowns             */
-  --color-neutral-800:  #1A1A1D;   /* Hover surfaces                      */
-  --color-neutral-850:  #151517;   /* Selected / active                   */
-  --color-neutral-900:  #101012;   /* Deep panel                          */
-  --color-neutral-950:  #0A0A0B;   /* Pure deep near-black                */
+  /* Neutral ladder. Numbered by lightness (0 = white, 1000 = black). */
+  /* Every step carries the charcoal nav's faint cool cast, so none clash. */
+  /* Light end (0-100) is finely stepped — where surfaces separate. */
+  /* Text end (400-900) is stepped by contrast, verified on white AND cards. */
 
-  /* Accent — NRR Yellow. Same-day rubbish removal accent.
-     Primary CTA + key elements.                                        */
-  --color-accent:       #FFFF00;        /* NRR yellow — brand accent        */
-  --color-accent-dim:   #e6e600;        /* yellow hover / pressed           */
-  --color-accent-glow:  rgba(255, 255, 0, 0.16);
+  --color-white:        #FFFFFF;  /* true white — the canvas anchor */
+  --color-black:        #242426;  /* charcoal — darkest ink AND nav. Not #000 on purpose. */
 
-  /* Slate — cool blue-grey chips behind footer icons (matches Vite)    */
-  --color-slate-800:    #1E293B;        /* icon chip background             */
+  /* — Light end: surfaces. Fine steps; this is where cards separate. — */
+  --color-neutral-20:   #F7F7F8;   /* whisper — a lift off white you feel, not see */
+  --color-neutral-30:   #F0F0F0;   /* THE CARD SURFACE (locked anchor)             */
+  --color-neutral-50:   #E9E9EB;   /* one step under cards — nested/recessed wells */
+  --color-neutral-70:   #E1E1E4;   /* section band that reads deeper than a card   */
+  --color-neutral-100:  #D6D6DA;   /* strongest light surface before it turns grey */
 
-  /* ------------------------------------------------------------------
-     SEMANTIC TOKENS — What components actually consume
-     ------------------------------------------------------------------ */
+  /* — Mid: double-duty. Too light for text on white, but body copy ON CHARCOAL. — */
+  --color-neutral-200:  #C2C2C8;   /* rules on white / 8.0:1 on charcoal — on-dark secondary */
+  --color-neutral-300:  #A6A6AE;   /* disabled fills / 5.6:1 on charcoal — on-dark muted     */
+  --color-neutral-400:  #8A8A94;   /* 3.4:1 white — AA-LARGE ONLY. Hairlines, placeholder.   */
 
-  /* · · · Backgrounds · · ·
-     A quiet two-step lift. Canvas is near-black; cards rise just enough
-     to register as a distinct surface. Subtlety is the point — the
-     separation should be felt more than seen.                          */
+  /* — Text end: stepped by contrast, verified on white AND #F0F0F0. — */
+  --color-neutral-500:  #6E6E78;   /* 5.1:1 white / 4.5:1 card — the muted rung    */
+  --color-neutral-700:  #4A4A52;   /* 8.7:1 / 7.7:1 — supporting copy              */
+  --color-neutral-900:  var(--color-black);  /* 14.7:1 / 13.0:1 — primary ink      */
 
-  --bg-secondary:   linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);  /* Page base canvas */
-  --bg-primary:     linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);  /* Cards / panels   */
+  /* — Dark end: the mirror of the light surfaces. Steps are tight because — */
+  /* — there are only ~36 levels between the charcoal anchor and black.    — */
+  --color-neutral-860:  #2E2E31;   /* LIFTED card ON a dark canvas — the dark .card */
+  --color-neutral-940:  #1A1A1C;   /* chips/wells ON the charcoal nav + footer    */
+  --color-neutral-970:  #111113;   /* deepest surface — rare, near-black          */
 
+  /* — LEGACY ALIASES — dark-era names kept alive for their last few consumers. — */
+  --color-neutral-600:  var(--color-neutral-400);   /* was #3F3F45 — scrollbar thumb hover */
+  --color-neutral-800:  var(--color-neutral-940);   /* was #1A1A1D — .btn-light:hover      */
+  --color-neutral-850:  var(--color-neutral-940);   /* was #151517 — DEAD, safe to delete  */
+  --color-neutral-950:  var(--color-neutral-970);   /* was #0A0A0B — DEAD, safe to delete  */
 
-  --bg-third:           var(--color-neutral-700);    /* #27272B — Dropdowns / elevated UI   */
-  --bg-fourth:          var(--color-neutral-800);    /* #1A1A1D — Hover backgrounds         */
-  --bg-fifth:           var(--color-neutral-850);    /* #151517 — Selected / active states  */
-  --bg-pure-black:      var(--color-neutral-950);    /* #0A0A0B — Pure deep black           */
-  --bg-solid-white:     var(--color-white);          /* #FFFFFF — White surfaces            */
-  --bg-dark:            var(--color-neutral-50);     /* #F4F4F5 — Reverse / light cards     */
-  --bg-nav:             linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+  /* Accent — NRR Orange. The site's ONLY brand colour. Never a page surface. */
+  --color-accent:       #F47A20;        /* NRR orange — brand accent        */
+  --color-accent-dim:   #3A3A3D;        /* charcoal hover / pressed         */
+
+  /* — ORANGE GLOW — emitted light, NOT shadow. Alphas can't point at rungs. — */
+  --color-accent-glow:      rgba(244, 122, 32, 0.55);  /* CORE — tight inner ring, bright */
+  --color-accent-glow-halo: rgba(244, 122, 32, 0.28);  /* HALO — wide outer falloff, dim  */
+  --color-accent-tint:      rgba(244, 122, 32, 0.10);  /* FILL — selected/active bg       */
+
+  /* Slate — the one off-ladder colour. Vite leftover, part of the footer sign-off. */
+  --color-slate-800:    #1E293B;        /* footer icon chip background      */
+
+  /* ---- SEMANTIC TOKENS — what components actually consume ---- */
+
+  /* · · · Backgrounds · · · */
+  /* A light surface stack, one shade deeper each step. No hex lives here. */
+  /* third/fourth/fifth are a rest -> hover -> selected trio (adjacent rungs). */
+
+  --bg-secondary:       var(--color-white);          /* #FFFFFF — page canvas   (LOCKED) */
+  --bg-primary:         var(--color-neutral-30);     /* #F0F0F0 — cards/panels  (LOCKED) */
+  --bg-third:           var(--color-neutral-50);     /* #E9E9EB — well inside a card     */
+  --bg-fourth:          var(--color-neutral-70);     /* #E1E1E4 — hover state            */
+  --bg-fifth:           var(--color-neutral-100);    /* #D6D6DA — selected / active      */
+  --bg-solid-white:     var(--color-white);          /* #FFFFFF — explicit white surfaces */
+  --bg-dark:            var(--color-neutral-20);     /* #F7F7F8 — lightest lifted surface. Name is a dark-era leftover. */
+  --bg-pure-black:      var(--color-neutral-970);    /* #111113 — deepest surface. Only .btn-light reads it. */
+  --bg-nav:             var(--color-black);          /* #242426 — nav + footer  (LOCKED) */
+
+  /* Reverse stack — the dark mirror. Same naming: secondary = canvas, primary = card. */
+  /* Built for dark sections/cards. Not yet consumed; nav + footer keep --bg-nav. */
+  --bg-reverse-secondary: var(--color-black);         /* #242426 — dark canvas            */
+  --bg-reverse-primary:   var(--color-neutral-860);   /* #2E2E31 — card on a dark canvas  */
+  --bg-reverse-third:     var(--color-neutral-940);   /* #1A1A1C — well inside a dark card */
+  --bg-reverse-fourth:    var(--color-neutral-970);   /* #111113 — hover / deepest         */
 
   /* design2 — Warm Charcoal variant */
   --bg-design2p: linear-gradient(135deg, #1C1A17 0%, #141210 50%, #1E1B18 100%);
@@ -71,52 +95,86 @@
   /* NRR Dark Gradient Background */
   --bg-gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
 
-  /* Footer icon chips — social row + Get In Touch contact icons        */
+  /* Footer icon chips. Two names, one value — so the rows can diverge later. */
   --bg-social-icons:    var(--color-slate-800);
   --bg-footer-icons:    var(--color-slate-800);
 
 
-  /* · · · Text · · ·
-     Three deliberate tiers with real contrast steps between them.
-     Primary is SOFT off-white (#F4F4F5) — never harsh pure white,
-     so headlines feel refined, not glaring. Secondary clearly dims.
-     Muted is a quiet grey for labels. This hierarchy = sophistication. */
+  /* · · · Text · · · */
+  /* Three rungs, one job each. The step between tiers must be FELT. */
+  /* Contrast verified on BOTH white canvas AND the #F0F0F0 card surface. */
 
-  --text-primary:       var(--color-white);                    /* Pure white — headlines, key body     */
-  --text-secondary:     var(--color-white);    /* #9A9AA1 — Supporting body copy       */
-  --text-muted:         var(--color-neutral-400);    /* #6B6B72 — Labels, captions           */
-  --text-inverse:       var(--color-neutral-950);    /* #0A0A0B — Dark text on light surface */
-  --text-accent:        var(--color-accent);        /* NRR yellow — key accent text only    */
-  --text-black:         var(--color-black);         /* Pure black — text on light/yellow surfaces */
+  --text-primary:       var(--color-neutral-900);   /* #242426 · 14.7:1 / 13.0:1 — headlines, key copy */
+  --text-secondary:     var(--color-neutral-700);   /* #4A4A52 · 8.7:1 / 7.7:1 — THE BODY-COPY DEFAULT */
+  --text-muted:         var(--color-neutral-500);   /* #6E6E78 · 5.1:1 / 4.5:1 — labels, captions, meta */
+  --text-inverse:       var(--color-neutral-900);   /* Ink on the lightest surfaces. Not an inverse — name is a leftover. */
+  --text-accent:        var(--color-accent);        /* Orange — the one interactive/brand signal */
+  --text-black:         var(--color-white);         /* WHITE — text ON a filled surface. Name lies; frozen, ~30 call sites. */
 
-  /* · · · Borders · · ·
-     Near-invisible neutral hairlines — the quiet luxury detail.
-     Yellow is reserved for --border-accent (special moments only).     */
+  /* · · · Text ON DARK · · · */
+  /* Mirror of the ladder above, for nav/footer/.card-dark/.card-feature. */
+  /* Solid rungs, not white-at-alpha — alpha is unpredictable over orange/photos. */
+  /* ⚠ NOT YET CONSUMED. Nav and Footer hardcode --color-white; both are signed off. */
 
-  --border-width:       4px;                         /* Global border thickness — change here to update everywhere */
-  --border:             var(--color-accent);          /* NRR yellow — brand border            */
-  --border-light:       rgba(255, 255, 255, 0.04);   /* Subtle section divider               */
-  --border-dark:        rgba(255, 255, 255, 0.16);   /* Hover / focus border — gently warms  */
-  --border-accent:      var(--color-accent);         /* Yellow — special elements only       */
+  --text-on-dark:            var(--color-white);        /* #FFFFFF · 15.5:1 on charcoal — headings, key copy */
+  --text-on-dark-secondary:  var(--color-neutral-30);   /* #F0F0F0 — body copy, nav links, list items */
+  --text-on-dark-muted:      var(--color-neutral-50);   /* #E9E9EB — legal rows, captions, meta, ABN  */
 
-  /* · · · Shadows · · ·
-     Soft, deep, diffuse. Premium shadows are felt, not seen — a gentle
-     pool of dark beneath a surface, never a harsh hard edge.           */
+  /* · · · Borders · · · */
+  /* THE SYSTEM REFUSES BORDERS AT REST — width is 0px, separation comes from shadow. */
+  /* Most hover:border-* in the codebase is therefore INERT (0 width shows no colour). */
+  /* Only elements setting their own width render these: form fields, footer legal row. */
 
-  --shadow-card:        0 1px 2px  rgba(0, 0, 0, 0.40),
-                        0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-card-hover:  0 2px 4px  rgba(0, 0, 0, 0.40),
-                        0 16px 48px rgba(0, 0, 0, 0.55),
-                        0 0 0 1px  rgba(255, 255, 255, 0.04);
-  --shadow-modal:       0 24px 80px rgba(0, 0, 0, 0.75);
-  --shadow-btn:         0 1px 3px  rgba(0, 0, 0, 0.35);
-  --shadow-btn-hover:   0 4px 16px rgba(0, 0, 0, 0.45);
+  --border-width:       0px;                         /* LOCKED. Borderless — depth from shadow. */
+  --border:             transparent;                 /* borderless at rest */
 
-  /* · · · Typography · · ·
-     Syne = geometric display character, used BIG and sparing.
-     Inter = clean, neutral body. The contrast between a large confident
-     headline and small wide-tracked uppercase labels is what reads as
-     editorial sophistication.                                          */
+  --border-light:       rgba(36, 36, 38, 0.10);      /* Divider on LIGHT surfaces. Translucent on purpose — rungs carry no alpha. */
+
+  --border-on-dark:     var(--color-neutral-400);    /* #8A8A94 — divider for DARK surfaces. NOT YET CONSUMED. */
+
+  /* ⚠ ONE TOKEN, TWO JOBS: footer legal divider (on charcoal) AND form focus border (on white). */
+  /* Those want opposite values. Weak as a focus ring on white — an a11y call, not a cleanup. */
+  --border-dark:        #3F3F45;
+
+  --border-accent:      var(--color-accent);         /* Orange — special elements only        */
+
+  /* · · · Shadows · · · */
+  /* Soft, deep, diffuse. Felt, not seen — never a harsh hard edge. */
+
+  /* CARD bucket — neumorphic diagonal depth: light inset top-left, shade bottom-right. */
+  --shadow-card:        inset 8px 8px 20px rgba(255, 255, 255, 0.85),
+                        inset -10px -10px 24px rgba(0, 0, 0, 0.10);
+  /* Hover: brighter/deeper insets + an outer pool under the lifting card */
+  --shadow-card-hover:  inset 8px 8px 20px rgba(255, 255, 255, 0.95),
+                        inset -10px -10px 28px rgba(0, 0, 0, 0.13),
+                        0 16px 32px rgba(0, 0, 0, 0.12);
+
+  /* MID bucket — saturated surfaces (orange). Highlight drops, shade rises. */
+  --shadow-mid:         inset 8px 8px 20px rgba(255, 255, 255, 0.30),
+                        inset -10px -10px 24px rgba(0, 0, 0, 0.18);
+  /* Hover: same insets + a heavier floor pool so the cast reads on colour */
+  --shadow-mid-hover:   inset 8px 8px 20px rgba(255, 255, 255, 0.30),
+                        inset -10px -10px 24px rgba(0, 0, 0, 0.18),
+                        0 20px 40px rgba(0, 0, 0, 0.28);
+
+  /* DARK bucket — charcoal surfaces. NO light inset on purpose: on #242426 a */
+  /* white inset reads as a drawn line, not light. Shade alone, three depths. */
+  /* ⚠ Hand-tuned over many passes — do NOT retune without a reason. */
+  --shadow-dark:        inset -3px -4px 8px rgba(0, 0, 0, 0.16),
+                        inset -6px -9px 18px 0px rgba(0, 0, 0, 0.20),
+                        inset -9px -15px 15px 0px rgba(0, 0, 0, 0.22);
+  /* Hover: same insets + a heavier pool (0.38) to fight the darker surface. */
+  --shadow-dark-hover:  inset -3px -4px 8px rgba(0, 0, 0, 0.16),
+                        inset -6px -9px 18px 0px rgba(0, 0, 0, 0.20),
+                        inset -9px -15px 15px 0px rgba(0, 0, 0, 0.22),
+                        0 20px 40px rgba(0, 0, 0, 0.38);
+
+  --shadow-modal:       0 24px 80px rgba(0, 0, 0, 0.25);  /* retuned lighter for light theme */
+  --shadow-btn:         none;   /* buttons stay FLAT (design1) */
+  --shadow-btn-hover:   none;   /* buttons stay FLAT (design1) */
+
+  /* · · · Typography · · · */
+  /* Both faces are Inter. Contrast comes from size + tracking, not family. */
 
   --font-display:       'Inter', system-ui, sans-serif;
   --font-body:          'Inter', system-ui, sans-serif;
@@ -157,9 +215,11 @@
   /* · · · Shape · · ·
      Rounded corners matching NRR Vite (cards = 16px, btns = 12px, inputs = 8px) */
 
-  --radius-card:        16px;
-  --radius-btn:         12px;
+  --radius-card:        20px;
+  --radius-btn:         9999px;   /* pills — design1 signature (also drives icon chips) */
   --radius-input:       8px;
+  --radius-lg:          9999px;   /* Buttons (rounded-lg) → full pill */
+  --radius-xl:          16px;     /* mobile menu items — soft square */
 
   /* · · · Transitions · · ·
      Calm and eased. Premium motion moves slowly and confidently.
@@ -184,19 +244,30 @@
   /* Primitive colors */
   --color-white:          var(--color-white);
   --color-black:          var(--color-black);
+  /* Mirrors the ladder in :root, rung for rung. Kept in sync by hand —
+     a rung with no line here has no Tailwind utility class. */
+  --color-neutral-20:     var(--color-neutral-20);
+  --color-neutral-30:     var(--color-neutral-30);
   --color-neutral-50:     var(--color-neutral-50);
+  --color-neutral-70:     var(--color-neutral-70);
   --color-neutral-100:    var(--color-neutral-100);
   --color-neutral-200:    var(--color-neutral-200);
   --color-neutral-300:    var(--color-neutral-300);
   --color-neutral-400:    var(--color-neutral-400);
-  --color-neutral-600:    var(--color-neutral-600);
+  --color-neutral-500:    var(--color-neutral-500);
   --color-neutral-700:    var(--color-neutral-700);
+  --color-neutral-860:    var(--color-neutral-860);
+  --color-neutral-900:    var(--color-neutral-900);
+  --color-neutral-940:    var(--color-neutral-940);
+  --color-neutral-970:    var(--color-neutral-970);
+  /* legacy rungs — retired in steps 3/4, see :root */
+  --color-neutral-600:    var(--color-neutral-600);
   --color-neutral-800:    var(--color-neutral-800);
   --color-neutral-850:    var(--color-neutral-850);
-  --color-neutral-900:    var(--color-neutral-900);
   --color-neutral-950:    var(--color-neutral-950);
   --color-accent:         var(--color-accent);
   --color-accent-dim:     var(--color-accent-dim);
+  --color-accent-tint:    var(--color-accent-tint);
 
   /* Semantic background colors */
   --color-bg-primary:     var(--bg-primary);
@@ -206,6 +277,12 @@
   --color-bg-fifth:       var(--bg-fifth);
   --color-bg-pure-black:  var(--bg-pure-black);
   --color-bg-dark:        var(--bg-dark);
+
+  /* Reverse (dark) surfaces */
+  --color-bg-reverse-primary:   var(--bg-reverse-primary);
+  --color-bg-reverse-secondary: var(--bg-reverse-secondary);
+  --color-bg-reverse-third:     var(--bg-reverse-third);
+  --color-bg-reverse-fourth:    var(--bg-reverse-fourth);
 
   --color-bg-design2p:    var(--bg-design2p);
   --color-bg-design2b:    var(--bg-design2b);
@@ -221,10 +298,15 @@
   --color-text-accent:    var(--text-accent);
   --color-text-black:     var(--text-black);
 
+  /* Text on dark surfaces — nav, footer, mobile menu, .card-dark */
+  --color-text-on-dark:           var(--text-on-dark);
+  --color-text-on-dark-secondary: var(--text-on-dark-secondary);
+  --color-text-on-dark-muted:     var(--text-on-dark-muted);
 
   /* Semantic border colors */
   --color-border:         var(--border);
   --color-border-light:   var(--border-light);
+  --color-border-on-dark: var(--border-on-dark);
   --color-border-dark:    var(--border-dark);
   --color-border-accent:  var(--border-accent);
 
@@ -266,11 +348,13 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Selection — teal brand tint, restrained */
-::selection {
-  background: var(--color-accent-glow);
-  color: var(--text-primary);
-}
+/* Text selection is deliberately UNSTYLED — the browser default (blue wash,
+   auto-inverted text) is used site-wide. It adapts to any surface for free,
+   which is why the nav and footer need no rule of their own.
+   Do not re-add ::selection without a reason: the old rule pointed at
+   --color-accent-glow back when that token held a near-black value, so
+   selected text was painted black-on-black. (That token is an orange glow
+   now, but the lesson stands — a glow colour is not a selection colour.) */
 
 /* Scrollbar — minimal, on theme */
 ::-webkit-scrollbar        { width: 6px; }
@@ -287,7 +371,8 @@ h1, h2, h3, h4, h5, h6 {
   /* ---- Cards ---- */
 
   .card {
-    background: var(--bg-primary);
+    background-color: var(--bg-primary);
+    background-clip: padding-box;  /* keep the transparent border strip from showing the card bg */
     border: var(--border-width) solid var(--border);
     border-radius: var(--radius-card);
     padding: 2.5rem;
@@ -304,6 +389,47 @@ h1, h2, h3, h4, h5, h6 {
     transform:    translateY(-3px);
     box-shadow:   var(--shadow-card-hover);
     border-color: var(--border-dark);
+  }
+
+  /* Card keeps its rest neumorphic depth, but the hover (lift + floor shadow)
+     is driven by the Card3DHover wrapper instead — so cancel .card's own hover
+     transform/shadow to stop the two fighting. */
+  .card-lift-managed:hover {
+    transform:  none;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Feature card — orange accent surface. ADD-ON: use with .card
+     (className="card card-feature"). Inherits shape/padding/radius/transition
+     from .card; only overrides what differs on a coloured surface — the fill,
+     the MID tonal shadow (rest + hover), and a single blanket white text colour
+     that all children inherit. No per-element or button rules (kept a pure,
+     fork-reusable surface primitive). */
+  .card-feature {
+    background-color: var(--color-accent);
+    color:            var(--text-black);   /* white — children inherit */
+    box-shadow:       var(--shadow-mid);
+  }
+  .card-feature:hover {
+    box-shadow:       var(--shadow-mid-hover);
+  }
+
+  /* Dark card — charcoal surface. ADD-ON: use with .card
+     (className="card card-dark"). Same shape as .card-feature: inherits
+     shape/padding/radius/transition from .card and only overrides the fill,
+     the DARK tonal shadow (rest + hover), and one blanket white text colour
+     that all children inherit. */
+  .card-dark {
+    background-color: var(--bg-nav);
+    /* --text-black is WHITE (#FFFFFF). Misleading name, kept anyway: it is the
+       token .card-feature uses for text on a coloured surface, so both cards
+       stay on the same one. Renaming it means touching every call site — not
+       worth it. */
+    color:            var(--text-black);
+    box-shadow:       var(--shadow-dark);
+  }
+  .card-dark:hover {
+    box-shadow:       var(--shadow-dark-hover);
   }
 
   /* Light reverse card — for contrast sections */
@@ -525,10 +651,30 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-/* Yellow glow — for the rare accent element that earns a soft pulse */
+/* ORANGE GLOW — for the rare accent element that earns a soft pulse of
+   brand light: an active icon chip, a selected card, a "Same Day" badge,
+   a focus moment on a dark surface.
+
+   Two stacked rings, tight-bright over wide-dim, so it reads as EMITTED
+   light rather than a coloured blur. No offset (0 0) on purpose — a glow
+   comes from the element itself and has no direction; the moment it gains
+   an offset it becomes a cast shadow, which is a different language and
+   one this site deliberately avoids on small elements (GOTCHA #16).
+
+   Pairs with --color-accent-tint as the fill when the element also needs
+   a background. Works on white AND on the charcoal nav/footer.
+
+   UNUSED so far — built for the final polish pass. */
 .accent-glow {
-  box-shadow: 0 0 20px var(--color-accent-glow),
-              0 0 40px rgba(255, 255, 0, 0.06);
+  box-shadow: 0 0 12px var(--color-accent-glow),
+              0 0 32px var(--color-accent-glow-halo);
+}
+
+/* Hover variant — the glow blooms. Same two rings, pushed wider and
+   brighter. Use where the glow should respond rather than sit static. */
+.accent-glow-hover:hover {
+  box-shadow: 0 0 16px var(--color-accent-glow),
+              0 0 44px var(--color-accent-glow-halo);
 }
 
 .bg-base {
@@ -548,6 +694,7 @@ h1, h2, h3, h4, h5, h6 {
 .bg-base-fifth {
   background: var(--bg-fifth);
 }
+
 .bg-design2p {
   background: var(--bg-design2p);
 }
@@ -562,7 +709,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bg-nav {
-  background: var(--bg-nav);
+  background-color: var(--bg-nav);
+  /* Neumorphic depth tuned for the dark charcoal surface (design1):
+     faint light inset top-left, deep shade inset bottom-right. */
+  box-shadow: inset 8px 8px 20px rgba(255, 255, 255, 0.06),
+              inset -10px -10px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hover\:bg-base:hover {

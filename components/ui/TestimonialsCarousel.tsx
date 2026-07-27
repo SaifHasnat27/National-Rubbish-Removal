@@ -120,12 +120,12 @@ export default function TestimonialsCarousel({ className = 'bg-base-secondary', 
       <div className="section-wrapper max-w-4xl mx-auto">
         <div className="scroll-reveal">
           <div className="mb-14">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] text-center">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] text-center text-[var(--text-primary)]">
               Customer Reviews for Hard Rubbish Collection
             </h2>
           </div>
 
-          <div className={`${cardClassName} border-[length:var(--border-width)] border-[color:var(--border)] rounded-[var(--radius-card)] p-8 md:p-12`}>
+          <div className={`card ${cardClassName} !p-8 md:!p-12`}>
             <div
               ref={textRef}
               className="flex flex-col items-center text-center"
@@ -186,8 +186,8 @@ export default function TestimonialsCarousel({ className = 'bg-base-secondary', 
                   className={`
                     h-1 rounded-full transition-all duration-500
                     ${i === currentIndex
-                      ? "bg-[var(--testimonial-dot-active,var(--text-primary))] w-10"
-                      : "bg-[var(--testimonial-dot-bg,var(--color-stone-400))] w-3 hover:w-5 hover:bg-[var(--testimonial-dot-hover-bg,var(--color-stone-600))]"
+                      ? "bg-[var(--color-accent)] w-10"
+                      : "bg-[var(--text-muted)] w-3 hover:w-5 hover:bg-[var(--color-accent)]"
                     }
                   `}
                   aria-label={`View testimonial from ${testimonials[i].name}`}

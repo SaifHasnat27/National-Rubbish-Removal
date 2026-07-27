@@ -1,68 +1,89 @@
 "use client";
 
-import React from "react";
+import type { ReactNode } from "react";
 
-/** Card3DHover – for cards in a grid or full‑width container (e.g. service cards). Block level, takes full width. */
-export const Card3DHover = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-  return (
-    <div className={`card-3d-hover-block ${className}`}>
-      {children}
-      <style jsx>{`
-        .card-3d-hover-block {
-          height: 100%;
-          transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2),
-                      box-shadow 0.4s ease;
-          transform-style: preserve-3d;
-          will-change: transform;
-        }
-        .card-3d-hover-block:hover {
-          transform: translateY(-12px) scale(1.02);
-          box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.35),
-                      0 0 0 1px rgba(0, 0, 0, 0.05);
-        }
-        @media (hover: hover) {
-          .card-3d-hover-block:hover {
-            transform: translateY(-12px) rotateY(8deg) scale(1.03);
-          }
-        }
-        .card-3d-hover-block:hover :global(.icon-wrapper) {
-          transform: translateZ(18px) scale(1.12);
-          transition: transform 0.25s ease-out;
-        }
-      `}</style>
-    </div>
-  );
+/**
+ * CardLift — hover interaction shared by the site's "special" cards.
+ *
+ * On a real pointer device the card rises and casts a soft, layered floor
+ * shadow. It moves with `translate` only — no `scale`, `rotate`, `will-change`,
+ * or 3D context — so text stays perfectly crisp (those were what caused the
+ * blur and the stray hard edge on the old version). Touch devices get no
+ * sticky hover state, and reduced-motion users get no movement.
+ *
+ * GPU cost is nil at rest: nothing is promoted to its own layer until the
+ * pointer is actually over the card, which keeps the page fast on mobile.
+ */
+type CardLiftProps = {
+  children: ReactNode;
+  className?: string;
+  /** Shrink-wrap to content width instead of filling the container. */
+  fit?: boolean;
 };
 
-/** Card3DHoverFit – for standalone cards that should only be as wide as their content (e.g. specialty card). */
-export const Card3DHoverFit = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+function CardLift({ children, className = "", fit = false }: CardLiftProps) {
   return (
-    <div className={`card-3d-hover-fit ${className}`}>
+    <div className={`card-lift${fit ? " card-lift--fit" : ""} ${className}`}>
       {children}
       <style jsx>{`
-        .card-3d-hover-fit {
+        .card-lift {
+          height: 100%;
+          /* Match the child card's rounding so the wrapper box (and its floor
+             shadow) share the card's rounded corners — otherwise a square
+             rectangle shows around the rounded card on hover. */
+          border-radius: var(--radius-card);
+          transition:
+            transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .card-lift--fit {
           display: inline-block;
           width: fit-content;
-          transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2),
-                      box-shadow 0.4s ease;
-          transform-style: preserve-3d;
-          will-change: transform;
+          height: auto;
         }
-        .card-3d-hover-fit:hover {
-          transform: translateY(-12px) scale(1.02);
-          box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.35),
-                      0 0 0 1px rgba(0, 0, 0, 0.05);
-        }
-        @media (hover: hover) {
-          .card-3d-hover-fit:hover {
-            transform: translateY(-12px) rotateY(8deg) scale(1.03);
+
+        /* Lift only where a precise pointer can hover — never on touch. */
+        @media (hover: hover) and (pointer: fine) {
+          .card-lift:hover {
+            transform: translateY(-10px);
+            box-shadow:
+              0 10px 20px -12px rgba(0, 0, 0, 0.18),
+              0 26px 46px -22px rgba(0, 0, 0, 0.28);
           }
         }
-        .card-3d-hover-fit:hover :global(.icon-wrapper) {
-          transform: translateZ(18px) scale(1.12);
-          transition: transform 0.25s ease-out;
+
+        @media (prefers-reduced-motion: reduce) {
+          .card-lift {
+            transition: box-shadow 200ms ease;
+          }
+          .card-lift:hover {
+            transform: none;
+          }
         }
       `}</style>
     </div>
   );
-};
+}
+
+/** For cards that fill their grid cell / container (service + contact cards). */
+export const Card3DHover = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => <CardLift className={className}>{children}</CardLift>;
+
+/** For standalone cards sized to their content (e.g. the specialty card). */
+export const Card3DHoverFit = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => (
+  <CardLift className={className} fit>
+    {children}
+  </CardLift>
+);

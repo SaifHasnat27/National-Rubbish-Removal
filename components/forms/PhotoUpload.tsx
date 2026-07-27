@@ -127,11 +127,11 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
             text-[var(--text-primary)]
             bg-base-secondary
             border border-[var(--border)]
-            rounded-none text-sm leading-[var(--leading-normal)]
+            rounded-[var(--radius-xl)] text-sm leading-[var(--leading-normal)]
             transition-all duration-[var(--transition-fast)]
-            focus:outline-none focus:border-[var(--border-dark)]
-            focus:ring-1 focus:ring-[var(--color-black)]
-            hover:border-[var(--color-stone-400)]
+            focus:outline-none focus:border-[var(--color-neutral-400)]
+            focus:ring-1 focus:ring-[var(--color-neutral-400)]
+            hover:border-[var(--border-light)]
             flex justify-between items-center gap-2 cursor-pointer
             ${disabled || uploading ? "opacity-50 cursor-not-allowed" : ""}
           `}
@@ -164,7 +164,7 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
             >
               {/* Inner layer clips the media to a rounded square; outer stays
                   overflow-visible so the remove button can straddle the corner. */}
-              <div className="relative h-full w-full overflow-hidden rounded-lg border border-white/10 bg-base">
+              <div className="relative h-full w-full overflow-hidden rounded-[var(--radius-xl)] border border-white/10 bg-base">
                 {photo.type === "video" ? (
                   <video
                     src={photo.url}
@@ -231,14 +231,20 @@ export default function PhotoUpload({ value, onChange, disabled }: PhotoUploadPr
               onClick={openPicker}
               disabled={uploading}
               aria-label="Add more photos or videos"
-              style={{ width: 96, height: 96 }}
+              style={{
+                width: 96,
+                height: 96,
+                // Recessed well — tight insets (small element, GOTCHA #16), no drawn border.
+                boxShadow:
+                  "inset 2px 2px 6px rgba(0, 0, 0, 0.10), inset -2px -2px 6px rgba(255, 255, 255, 0.85)",
+              }}
               className={`
                 flex flex-shrink-0 items-center justify-center
-                rounded-lg
-                border border-dashed border-white/20
-                text-white/40
+                rounded-[var(--radius-xl)]
+                bg-[var(--bg-third)]
+                text-[var(--text-muted)]
                 transition-colors duration-[var(--transition-fast)]
-                hover:border-white/40 hover:text-white/70
+                hover:bg-[var(--bg-fourth)] hover:text-[var(--text-primary)]
                 focus:outline-none
                 ${uploading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
               `}

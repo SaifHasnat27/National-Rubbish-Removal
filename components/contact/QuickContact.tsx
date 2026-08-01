@@ -66,7 +66,13 @@ export default function QuickContact({ cardClassName = 'bg-base' }: { cardClassN
                 {contact.name}
               </h3>
 
-              <span className="text-base md:text-lg font-semibold mb-3 text-[var(--text-accent)] [overflow-wrap:anywhere]">
+              {/* Fluid size so the 34-char email fits ONE line on a phone. clamp()
+                  shrinks it only while the screen is narrow, then caps at 1rem —
+                  the phone number and WhatsApp label never grow past today's size.
+                  overflow-wrap stays as the escape hatch: if a string is ever too
+                  long even at the 13px floor, it wraps rather than spilling out.
+                  TUNE HERE: the middle value (3.7vw) is the shrink rate. */}
+              <span className="text-[clamp(0.8125rem,3.7vw,1rem)] md:text-lg font-semibold mb-3 text-[var(--text-accent)] [overflow-wrap:anywhere]">
                 {contact.detail}
               </span>
 

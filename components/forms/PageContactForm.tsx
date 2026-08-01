@@ -10,6 +10,7 @@ import DatePicker from "./DatePicker";
 import TimePicker from "./TimePicker";
 import ServicePicker from "./ServicePicker";
 import SizePicker from "./SizePicker";
+import AddressPicker from "./AddressPicker";
 import PriceEstimate from "./PriceEstimate";
 import PhotoUpload from "./PhotoUpload";
 import { BUSINESS } from "@/lib/constants";
@@ -66,6 +67,7 @@ export default function PageContactForm() {
   const size = watch("size", "");
   const preferredDate = watch("preferredDate", "");
   const preferredTime = watch("preferredTime", "");
+  const location = watch("location", "");
   const photos = watch("photos", []);
 
   useEffect(() => {
@@ -242,12 +244,11 @@ export default function PageContactForm() {
         <label htmlFor="location" className={labelBase}>
           Location <span className="text-[var(--text-primary)]" aria-hidden="true">*</span>
         </label>
-        <input
-          {...register("location")}
-          id="location"
-          autoComplete="street-address"
-          className={fieldBase}
-          placeholder="Your suburb or address"
+        <AddressPicker
+          value={location}
+          onChange={(val) => setValue("location", val, { shouldValidate: true })}
+          disabled={status === "loading"}
+          error={!!errors.location}
         />
         {errors.location && (
           <p role="alert" className="mt-2 text-xs text-red-600 tracking-wide">{errors.location.message}</p>

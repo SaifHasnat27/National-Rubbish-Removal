@@ -27,7 +27,7 @@ export default function Home() {
       {/* 1. Hero */}
       <HeroBanner />
 
-      {/* 2. Our Services */}
+      {/* 2. Our Service */}
       <SectionWrapper className="bg-base-secondary" id="services-preview">
         <div className="scroll-reveal">
           <div className="text-center mb-16">

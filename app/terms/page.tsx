@@ -2,10 +2,17 @@ import { BUSINESS } from "@/lib/constants";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Mail, Phone } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
+import { services } from "@/lib/servicesData";
 
 export const metadata = buildMetadata("terms");
 
 export default function TermsPage() {
+  const serviceNames = services.map((s) => s.name);
+  const serviceNamesList =
+    serviceNames.length > 1
+      ? `${serviceNames.slice(0, -1).join(", ")} and ${serviceNames[serviceNames.length - 1]}`
+      : serviceNames.join("");
+
   return (
     <div className="bg-base-secondary min-h-screen">
       <SectionWrapper className="py-20 md:py-28">
@@ -39,7 +46,7 @@ export default function TermsPage() {
                 2. Our Services
               </h2>
               <p className="text-[var(--text-secondary)] text-sm leading-[var(--leading-relaxed)]">
-                {BUSINESS.name} provides asset compliance and management, 24/7 reactive maintenance, and integrated trade services across {BUSINESS.serviceArea}.
+                {BUSINESS.name} provides {serviceNamesList} services across {BUSINESS.serviceArea}.
               </p>
             </div>
 
@@ -59,7 +66,7 @@ export default function TermsPage() {
                 4. Project Terms
               </h2>
               <p className="text-[var(--text-secondary)] text-sm leading-[var(--leading-relaxed)]">
-                All work is subject to a separate written quote and agreement. A detailed, job specific contract with full terms and conditions will be provided before any work commences. These website Terms do not govern any maintenance, compliance, or trade work performed by {BUSINESS.name}.
+                All jobs are subject to a quote agreed before work begins. Final pricing is based on the volume of rubbish removed and may be adjusted on-site if the job differs from what was described when booking. These website Terms do not govern the collection and removal work itself, which is agreed separately between you and our team.
               </p>
             </div>
 

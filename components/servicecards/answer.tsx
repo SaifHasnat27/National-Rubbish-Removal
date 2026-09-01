@@ -25,6 +25,10 @@ export const faqs: FAQItem[] = [
         a: "Skip bins block your driveway or street, require expensive council permits, and require you to load them yourself. Neighbors also frequently throw their own junk in your hired bin. With National Rubbish Removal, we do all the heavy lifting, load the waste immediately, sweep up the area, and drive away in one go—often costing less than a skip bin.",
     },
     {
+        q: "Do you remove absolutely everything?",
+        a: "We remove almost everything. The short list of items excluded from our removal service include asbestos or fibro cement sheeting, food or liquid waste, hazardous or contaminated materials, chemicals, gas, oils, polystyrene or foam insulation, e-waste, medical waste, wet concrete, hot ash, silica, and noxious weeds.",
+    },
+    {
         q: "What happens to the waste you collect? Is it recycled?",
         a: "We are committed to eco-friendly disposal practices. We take all collected waste to licensed Sydney sorting and transfer facilities where items are separated. Up to 95% of the metals, timber, cardboard, green waste, and appliances we collect are diverted from landfills and recycled.",
     },

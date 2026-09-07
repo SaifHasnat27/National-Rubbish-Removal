@@ -1,4 +1,4 @@
-# Fortis Services Group Website
+# National Rubbish Removal Website
 
 ## Technology Stack
 - Next.js 16 (App Router) & React 19
@@ -23,7 +23,7 @@
 
 ## Key Files
 - `app/globals.css`: Theme tokens and Tailwind config.
-- `lib/constants.ts`: Business information (currently Just Frameless constants, transitioning).
+- `lib/constants.ts`: Business information (BUSINESS object — National Rubbish Removal).
 - `lib/pricingData.ts`: Pricing/rates source of truth.
 - `components/forms/ContactForm.tsx`: Shared contact form.
 

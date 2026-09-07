@@ -34,6 +34,7 @@
 
   /* — Text end: stepped by contrast, verified on white AND #F0F0F0. — */
   --color-neutral-500:  #6E6E78;   /* 5.1:1 white / 4.5:1 card — the muted rung    */
+  --color-neutral-550:  #5A5A63;   /* darker muted rung, unused — kept in reserve in case --text-muted needs it again (a11y contrast experiment, reverted 2026-09-07) */
   --color-neutral-700:  #4A4A52;   /* 8.7:1 / 7.7:1 — supporting copy              */
   --color-neutral-900:  var(--color-black);  /* 14.7:1 / 13.0:1 — primary ink      */
 

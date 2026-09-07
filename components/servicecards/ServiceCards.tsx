@@ -82,7 +82,7 @@ export default function ServiceCards({ cardClassName = 'bg-base' }: { cardClassN
                                 href={`/services?tab=${service.id}`}
                                 className="mt-auto inline-flex items-center self-start text-[0.6875rem] font-medium tracking-[0.12em] uppercase text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors duration-[var(--transition-fast)] border-b md:border-b-2 border-current pb-0.5"
                             >
-                                Learn more
+                                Learn more<span className="sr-only"> about {service.name}</span>
                             </Link>
                             </div>
                         </motion.div>

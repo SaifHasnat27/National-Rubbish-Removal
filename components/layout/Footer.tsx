@@ -78,7 +78,7 @@ const socialLinks = [
    --text-black is WHITE (misleading name, left alone — renaming means touching
    every call site). */
 const socialChip =
-  'p-2 rounded-lg bg-[var(--bg-social-icons)] group-hover:text-[var(--color-accent)] transition-colors cursor-pointer';
+  'p-2 rounded-lg bg-[var(--bg-social-icons)]';
 const contactChip =
   'p-2 rounded-lg bg-[var(--bg-footer-icons)] text-[var(--text-accent)] group-hover:text-[var(--text-black)] transition-colors cursor-pointer';
 
@@ -148,18 +148,18 @@ export default function Footer() {
               eco-friendly waste disposal solutions for residential, commercial, and construction
               needs.
             </p>
-            <div className="flex space-x-3 justify-center" role="list" aria-label="Social media links">
-              {socialLinks.map(({ href, label, Icon }) => (
-                <a key={label} href={href} className={`group ${socialChip}`} aria-label={label}>
+            <div className="flex space-x-3 justify-center">
+              {socialLinks.map(({ label, Icon }) => (
+                <span key={label} title={label} className={socialChip}>
                   <Icon />
-                </a>
+                </span>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4 text-center">
-            <h4 className="text-lg font-semibold text-[var(--color-accent)]">Quick Links</h4>
+            <h3 className="text-lg font-semibold text-[var(--color-accent)]">Quick Links</h3>
             <div className="space-y-3">
               {quickLinks.map((link) => (
                 <Link
@@ -223,16 +223,16 @@ export default function Footer() {
                 </span>
               </a>
               <div className="flex items-center gap-3 justify-center">
-                <div className={contactChipStatic} aria-label="Location">
-                  <MapPin size={14} />
+                <div className={contactChipStatic}>
+                  <MapPin size={14} aria-hidden="true" />
                 </div>
                 <p itemProp="addressLocality">{BUSINESS.serviceArea}</p>
                 <meta itemProp="addressCountry" content="AU" />
               </div>
               {BUSINESS.openingHours.rows.map((schedule) => (
                 <div key={schedule.day} className="flex items-center gap-3 justify-center">
-                  <div className={contactChipStatic} aria-label="Hours">
-                    <Clock size={14} />
+                  <div className={contactChipStatic}>
+                    <Clock size={14} aria-hidden="true" />
                   </div>
                   <p>
                     {schedule.day}: {to12Hour(schedule.opens)} - {to12Hour(schedule.closes)}
@@ -294,7 +294,7 @@ export default function Footer() {
                 href="https://integrateai.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 underline hover:text-blue-400 transition-colors"
+                className="text-cyan-400 underline hover:text-cyan-300 transition-colors"
               >
                 Integrate AI
               </a>
@@ -341,7 +341,7 @@ export default function Footer() {
                 href="https://integrateai.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 underline hover:text-blue-400 transition-colors"
+                className="text-cyan-400 underline hover:text-cyan-300 transition-colors"
               >
                 Integrate AI
               </a>

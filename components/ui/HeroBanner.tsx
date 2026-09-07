@@ -194,6 +194,7 @@ export default function HeroBanner() {
     alt: '',
     fill: true,
     priority: true,
+    fetchPriority: 'high',
     sizes: '100vw',
     src: '/web images/Home/home-hero-desktop4.webp',
   });
@@ -203,6 +204,7 @@ export default function HeroBanner() {
     alt: '',
     fill: true,
     priority: true,
+    fetchPriority: 'high',
     sizes: '100vw',
     src: '/web images/Home/home-hero-mobile.webp',
   });

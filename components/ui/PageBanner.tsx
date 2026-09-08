@@ -20,6 +20,7 @@ export default function PageBanner({
     fill: true,
     sizes: "100vw",
     priority: true,
+    fetchPriority: "high" as const,
   };
 
   const {
@@ -72,6 +73,7 @@ export default function PageBanner({
             <img
               {...desktopHeroRest}
               decoding="sync"
+              fetchPriority="high"
               className="object-cover object-top"
             />
           </picture>

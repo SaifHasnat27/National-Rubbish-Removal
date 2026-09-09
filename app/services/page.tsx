@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import {
   Clock, AlertTriangle, Recycle, Truck, Shield, Star,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent, useTabs } from '@/components/ui/Tabs';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import Button from '@/components/ui/Button';
 import { services } from '@/lib/servicesData';
@@ -68,11 +68,31 @@ const staggerChild = {
 };
 
 // ─── Tabs section (unchanged) ────────────────────────────────────────────────
-function ServicesContent() {
+/**
+ * Applies ?tab=<id> to the surrounding <Tabs>. Renders nothing.
+ *
+ * This must stay the ONLY component here calling useSearchParams(). That hook
+ * bails everything up to the nearest <Suspense> out of prerendering, so keeping
+ * it isolated means the tab section — image, headings, copy, bullets — still
+ * ships in the static HTML. With the hook up in ServicesContent the whole
+ * section bailed: static HTML held a zero-height placeholder and hydration
+ * pushed the page down — CLS 0.898.
+ *
+ * Do not move useSearchParams back up.
+ */
+function TabFromQuery() {
   const searchParams = useSearchParams();
-  const tabParam = searchParams.get('tab');
-  const activeTab = tabParam && VALID_TABS.includes(tabParam) ? tabParam : services[0].id;
+  const tab = searchParams.get('tab');
+  const { setActiveTab } = useTabs();
 
+  useEffect(() => {
+    if (tab && VALID_TABS.includes(tab)) setActiveTab(tab);
+  }, [tab, setActiveTab]);
+
+  return null;
+}
+
+function ServicesContent() {
   return (
     <SectionWrapper>
       <div className="text-center mb-12">
@@ -84,7 +104,10 @@ function ServicesContent() {
         </p>
       </div>
 
-      <Tabs key={activeTab} defaultValue={activeTab}>
+      <Tabs defaultValue={services[0].id}>
+        <Suspense fallback={null}>
+          <TabFromQuery />
+        </Suspense>
         <TabsList className="flex justify-center">
           {services.map(s => (
             <TabsTrigger key={s.id} value={s.id}>{s.name}</TabsTrigger>
@@ -106,7 +129,7 @@ function ServicesContent() {
                   alt={s.name}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  priority={s.id === activeTab}
+                  priority={s.id === services[0].id}
                   className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
                 <div
@@ -172,9 +195,7 @@ export default function ServicesPage() {
     <div className="w-full bg-base-secondary">
 
       {/* Service Tabs — now carries the page h1 + intro */}
-       <Suspense fallback={null}>
-        <ServicesContent />
-      </Suspense>
+      <ServicesContent />
 
       {/* Additional Services */}
       <SectionWrapper className="bg-base-secondary">

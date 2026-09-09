@@ -12,6 +12,12 @@ type TabsContextType = {
 
 const TabsContext = createContext<TabsContextType | undefined>(undefined);
 
+export function useTabs() {
+  const ctx = useContext(TabsContext);
+  if (!ctx) throw new Error('useTabs must be used within Tabs');
+  return ctx;
+}
+
 export function Tabs({
   defaultValue,
   children,

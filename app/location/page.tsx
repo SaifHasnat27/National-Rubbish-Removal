@@ -1,10 +1,38 @@
 "use client";
 
+import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, CheckCircle, Home, Building, Truck, ClipboardCheck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import QuickContact from '@/components/contact/QuickContact';
 import Button from '@/components/ui/Button';
+
+// Shared scroll-reveal — fade + rise as the element enters the viewport.
+// Self-contained per element (no global measurement), so nothing can leave
+// the layout in a stale/shifted state.
+const reveal = {
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const },
+};
+
+// Stagger container + child — for grids where cards reveal one after another.
+const staggerParent = {
+  initial: 'hidden',
+  whileInView: 'visible',
+  viewport: { once: true, margin: '-60px' },
+  variants: { visible: { transition: { staggerChildren: 0.12 } } },
+};
+const staggerChild = {
+  variants: {
+    hidden: { opacity: 0, y: 32 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+  },
+  // framer-motion owns the transform after reveal, which overrides the CSS
+  // .card:hover lift — so drive the lift here to match (shadow/border come from .card).
+  whileHover: { y: -3, transition: { duration: 0.18 } },
+};
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const serviceAreas = [
@@ -54,7 +82,12 @@ export default function LocationPage() {
 
       {/* Hero */}
       <SectionWrapper className="bg-base-secondary">
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center"
+        >
           <MapPin aria-hidden="true" className="mx-auto mb-4 text-[var(--color-accent)]" size={48} />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
             Locations We Serve | Rubbish Removal Sydney
@@ -63,16 +96,19 @@ export default function LocationPage() {
             Fast, reliable rubbish removal across Sydney&apos;s metro areas. Same-day service available in most locations.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+          <motion.div
+            {...staggerParent}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12"
+          >
             {responseTimeStats.map((stat) => (
-              <div key={stat.title} className="card !p-6 text-center">
+              <motion.div key={stat.title} {...staggerChild} className="card !p-6 text-center">
                 <stat.icon aria-hidden="true" className="mx-auto mb-3 text-[var(--color-accent)]" size={32} />
                 <h3 className="font-bold text-lg text-[var(--text-primary)]">{stat.title}</h3>
                 <p className="text-sm text-[var(--text-muted)]">{stat.subtitle}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </SectionWrapper>
 
       {/* Service Areas Grid */}
@@ -86,10 +122,11 @@ export default function LocationPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div {...staggerParent} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceAreas.map((region) => (
-            <article
+            <motion.article
               key={region.area}
+              {...staggerChild}
               className="card !p-6"
               itemScope
               itemType="https://schema.org/Place"
@@ -107,14 +144,14 @@ export default function LocationPage() {
                   </div>
                 ))}
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </SectionWrapper>
 
       {/* Coverage Details */}
       <SectionWrapper className="bg-base-secondary">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <motion.div {...reveal} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--text-primary)]">
               Complete Sydney Hard Waste Collection Coverage
@@ -155,7 +192,7 @@ export default function LocationPage() {
               </Button>
             </a>
           </div>
-        </div>
+        </motion.div>
       </SectionWrapper>
 
       {/* Quick Contact */}

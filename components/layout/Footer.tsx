@@ -62,6 +62,11 @@ const quickLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+/* PREFETCH IS OFF on every internal <Link> below — see the long note in
+   Navbar.tsx for the reasoning and the measurements. Both files have to stay in
+   step: the footer links to the same routes as the nav, so leaving prefetch on
+   here would pull exactly the same bundles the nav change was meant to stop. */
+
 const socialLinks = [
   { href: '#', label: 'Follow us on Facebook', Icon: Facebook },
   { href: '#', label: 'Follow us on Instagram', Icon: Instagram },
@@ -127,6 +132,7 @@ export default function Footer() {
           <div className="space-y-4 text-center">
             <Link
               href="/"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/')}
               className="w-full flex items-center justify-center gap-2 cursor-pointer"
               aria-label={`${BUSINESS.name} home`}
@@ -165,6 +171,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={false}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="block w-full text-center text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors duration-300 cursor-pointer"
                   aria-label={link.label}
@@ -256,6 +263,7 @@ export default function Footer() {
           <div className="hidden md:grid md:grid-cols-3 items-center mb-4">
             <Link
               href="/policy"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/policy')}
               className="justify-self-start text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Privacy Policy"
@@ -264,6 +272,7 @@ export default function Footer() {
             </Link>
             <Link
               href="/terms"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/terms')}
               className="justify-self-center text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Terms of Service"
@@ -305,6 +314,7 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-4 md:hidden">
             <Link
               href="/policy"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/policy')}
               className="text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Privacy Policy"
@@ -313,6 +323,7 @@ export default function Footer() {
             </Link>
             <Link
               href="/terms"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/terms')}
               className="text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Terms of Service"

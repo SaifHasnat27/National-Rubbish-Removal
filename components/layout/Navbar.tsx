@@ -30,6 +30,24 @@ const navItems = [
   { href: '/contact', label: 'Contact' },
 ];
 
+/* PREFETCH IS OFF on every internal <Link> in this file (and in Footer.tsx).
+   By default next/link downloads a route's whole client bundle as soon as the
+   link scrolls into view. The nav is in view immediately on every page, so
+   every page was quietly pulling the JS for Home, About, Services, Contact,
+   Policy and Terms in the background — measured at ~325 KB gzipped of code the
+   visitor usually never runs. It is what PageSpeed reports as "unused
+   JavaScript", identically on all nine pages, and it competes for bandwidth
+   with the page actually being loaded.
+
+   Two things worth knowing before changing this back:
+   - `prefetch={false}` also disables the hover/touch prefetch, not just the
+     in-viewport one (next/dist/client/app-dir/link.js gates both on the same
+     flag). So a nav click now waits on the route's chunks. Pages are static and
+     edge-cached, so that is a short delay, not a spinner.
+   - It also stops the duplicate downloads: Turbopack emits two byte-identical
+     copies of framer-motion and of react-hook-form+zod, and prefetching both
+     Home and Contact from every page pulled BOTH copies of each. */
+
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -173,6 +191,7 @@ export default function Navbar() {
           {/* Logo + Wordmark */}
           <Link
             href="/"
+            prefetch={false}
             onClick={(e) => handleNavClick(e, '/')}
             className={`
               flex items-center gap-2 flex-1 xl:flex-none cursor-pointer text-left
@@ -201,6 +220,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className="relative group font-medium text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors duration-300 cursor-pointer"
                 aria-label={`Navigate to ${item.label}`}
@@ -215,7 +235,7 @@ export default function Navbar() {
                 />
               </Link>
             ))}
-            <Link href="/contact#quote-form" onClick={(e) => handleNavClick(e, '/contact#quote-form')} aria-label="Get Quote">
+            <Link href="/contact#quote-form" prefetch={false} onClick={(e) => handleNavClick(e, '/contact#quote-form')} aria-label="Get Quote">
               <Button
                 variant="primary"
                 size="md"
@@ -280,6 +300,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`
                   block w-fit text-left py-3 font-medium cursor-pointer
@@ -311,6 +332,7 @@ export default function Navbar() {
           <div className="py-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">
             <Link
               href="/contact#quote-form"
+              prefetch={false}
               onClick={(e) => handleNavClick(e, '/contact#quote-form')}
               className="block"
               aria-label="Get Free Quote"

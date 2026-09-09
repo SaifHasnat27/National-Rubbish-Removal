@@ -106,6 +106,7 @@ function ServicesContent() {
                   alt={s.name}
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
+                  priority={s.id === activeTab}
                   className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
                 <div

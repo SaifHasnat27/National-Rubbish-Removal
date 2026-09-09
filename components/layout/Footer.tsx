@@ -62,10 +62,8 @@ const quickLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-/* PREFETCH IS OFF on every internal <Link> below — see the long note in
-   Navbar.tsx for the reasoning and the measurements. Both files have to stay in
-   step: the footer links to the same routes as the nav, so leaving prefetch on
-   here would pull exactly the same bundles the nav change was meant to stop. */
+// prefetch={false} on all <Link> below — PageSpeed fix, 2026-09-10.
+// Must stay in step with Navbar.tsx (same routes). See Notes/recentChanges.txt.
 
 const socialLinks = [
   { href: '#', label: 'Follow us on Facebook', Icon: Facebook },

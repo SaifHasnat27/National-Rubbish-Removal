@@ -140,7 +140,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 z-0">
           <picture>
             <source media="(min-width: 1024px)" srcSet={heroBgDesktopSrcSet} />
-            <img {...heroBgImg} srcSet={heroBgMobileSrcSet} alt="" className="object-cover" />
+            <img {...heroBgImg} srcSet={heroBgMobileSrcSet} fetchPriority="high" alt="" className="object-cover" />
           </picture>
         </div>
         <div className="absolute inset-0 z-20 flex items-center">

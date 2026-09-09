@@ -169,6 +169,7 @@ export default function HeroBanner() {
               alt="National Rubbish Removal professional rubbish removal work across Sydney"
               fill
               sizes="(max-width: 1023px) 100vw, 50vw"
+              quality={60}
               priority={imageIndex === 0}
               className="object-cover transition-transform duration-500 group-hover/image:scale-110"
             />

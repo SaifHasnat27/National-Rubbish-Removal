@@ -43,6 +43,7 @@ export default function ServiceCards({ cardClassName = 'bg-base' }: { cardClassN
                                     width={600}
                                     height={400}
                                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                    quality={60}
                                     className="w-full h-48 object-cover group-hover/image:scale-110 transition-transform duration-500"
                                 />
                                 <div

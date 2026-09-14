@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useRef } from 'react';
-import { getImageProps } from 'next/image';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { motion } from 'framer-motion';
-import { Clock, MapPin, Phone, ClipboardCheck } from 'lucide-react';
+import { Clock, MapPin } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
+import PageBanner from '@/components/layout/PageBanner';
 import PageContactForm from '@/components/forms/PageContactForm';
 import QuickContact from '@/components/contact/QuickContact';
 import FAQSection from '@/components/servicecards/faq';
-import Button from '@/components/ui/Button';
 import { BUSINESS } from '@/lib/constants';
+import { PAGE_BANNERS } from '@/lib/pageBannerData';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -27,16 +26,6 @@ const to12Hour = (time: string) => {
 export default function ContactPage() {
   const container = useRef<HTMLDivElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
-
-  // Hero backdrop: ONE <picture> with a media-split source (same pattern as
-  // HeroBanner) so each device downloads only its own file.
-  const heroBgCommon = { alt: '', fill: true as const, sizes: '100vw', priority: true };
-  const {
-    props: { srcSet: heroBgDesktopSrcSet },
-  } = getImageProps({ ...heroBgCommon, src: '/web images/Banner/contact1.webp' });
-  const {
-    props: { srcSet: heroBgMobileSrcSet, ...heroBgImg },
-  } = getImageProps({ ...heroBgCommon, src: '/web images/Banner/contactMobile.webp' });
 
   // ---- Existing scroll-reveal for sections that still use the class ----
   useGSAP(() => {
@@ -53,148 +42,73 @@ export default function ContactPage() {
     });
   }, { scope: container });
 
-  // ---- GSAP timeline for the form + info cards (the "wow" moment) ----
+  // ---- GSAP: form card slides in from the left, info cards from the right ----
   useGSAP(
     () => {
       if (!formSectionRef.current) return;
+      const formCard = formSectionRef.current.querySelector('.form-card');
+      const infoCards = formSectionRef.current.querySelectorAll('.info-card');
+      if (!formCard) return;
 
-      // Respect reduced motion: if user prefers reduced motion, just set elements visible immediately
       const mm = gsap.matchMedia();
+
+      mm.add('(prefers-reduced-motion: reduce)', () => {
+        gsap.set([formCard, ...infoCards], { opacity: 1, x: 0 });
+      });
+
+      // Offset scales down on mobile: a full-width stacked card sliding 60px
+      // reads as a layout jump, not motion. Desktop's wide columns have room.
       mm.add(
         {
-          reduceMotion: '(prefers-reduced-motion: reduce)',
+          reduceMotion: '(prefers-reduced-motion: no-preference)',
           isDesktop: `(min-width: ${BUSINESS.mobileBreakpoint + 1}px)`,
         },
         (ctx) => {
-          const { reduceMotion } = ctx.conditions!;
-          const formCard = (formSectionRef.current as HTMLElement).querySelector('.form-card');
-          const infoCards = (formSectionRef.current as HTMLElement).querySelectorAll('.info-card');
+          const { isDesktop } = ctx.conditions!;
+          const offset = isDesktop ? 60 : 24;
 
-          if (!formCard) return;
+          // Set the hidden state immediately so there's no flash-then-jump
+          // before each card's own trigger fires.
+          gsap.set(formCard, { x: -offset, opacity: 0 });
+          gsap.set(infoCards, { x: offset, opacity: 0 });
 
-          if (reduceMotion) {
-            // Zero duration – elements appear instantly
-            gsap.set([formCard, ...infoCards], { opacity: 1, x: 0, rotationY: 0 });
-            return;
-          }
-
-          // Build the timeline
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: formSectionRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
-            },
+          // Stacked on mobile, the form card and info cards sit far apart in
+          // scroll position — one shared trigger on the container fired all
+          // three at once, so the info cards animated off-screen before the
+          // user ever scrolled to them. batch() gives each card its own
+          // trigger (still transform/opacity only, so still compositor-only)
+          // and coalesces near-simultaneous entries, which is what makes
+          // desktop's side-by-side cards still animate together.
+          ScrollTrigger.batch(formCard, {
+            start: 'top 85%',
+            once: true,
+            onEnter: (elements) =>
+              gsap.to(elements, { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out', overwrite: true }),
           });
 
-          // Form card glides in from the left
-          tl.fromTo(
-            formCard,
-            { x: -60, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' },
-            0
-          );
-
-          // Info cards swoop in from the right with a subtle 3D twist, staggered
           if (infoCards.length) {
-            tl.fromTo(
-              infoCards,
-              { x: 60, opacity: 0, rotationY: 15 },
-              {
-                x: 0,
-                opacity: 1,
-                rotationY: 0,
-                duration: 0.75,
-                ease: 'back.out(1.2)',
-                stagger: 0.12,
-                clearProps: 'transform', // clean up inline styles after animation
-              },
-              '-=0.3' // overlap slightly for fluidity
-            );
+            ScrollTrigger.batch(infoCards, {
+              start: 'top 85%',
+              once: true,
+              onEnter: (elements) =>
+                gsap.to(elements, { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.12, overwrite: true }),
+            });
           }
-
-          // Add will-change during animation, then remove it
-          tl.set([formCard, ...infoCards], { willChange: 'transform' }, 0);
-          tl.set([formCard, ...infoCards], { willChange: 'auto' });
-        },
-        formSectionRef.current // scope so selectors are local (optional but good practice)
+        }
       );
 
-      return () => mm.revert(); // clean up matchMedia on unmount
+      return () => mm.revert();
     },
     { scope: formSectionRef }
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-      className="w-full bg-base-secondary min-h-screen"
-      ref={container}
-    >
-      {/* Hero — full-width ratio box (2/3 mobile, 3/1 desktop), height follows
-          width. Split-source <picture> backdrop, content centred on top. */}
-      <section className="relative w-full aspect-[2/3] md:aspect-[3/1] overflow-hidden bg-base-secondary">
-        <div className="absolute inset-0 z-0">
-          <picture>
-            <source media="(min-width: 1024px)" srcSet={heroBgDesktopSrcSet} />
-            <img {...heroBgImg} srcSet={heroBgMobileSrcSet} fetchPriority="high" alt="" className="object-cover" />
-          </picture>
-        </div>
-        <div className="absolute inset-0 z-20 flex items-center">
-          <div className="section-wrapper w-full">
-            {/* Same card-dark treatment as HeroBanner's TextCard: /60 photo
-                bleed-through on mobile, /90 on desktop; all sizes min(vw, cap)
-                so the card shrinks with the box on narrow devices. */}
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="mx-auto sm:max-md:max-w-xl"
-            >
-              <div className="card card-dark !p-[min(5.5vw,1.5rem)] space-y-[min(5.5vw,1.5rem)] !bg-[var(--bg-nav)]/60 md:!p-[2.2vw] md:space-y-[1.6vw] md:!bg-[var(--bg-nav)]/90 text-center">
-                <div className="space-y-[min(2.8vw,0.75rem)] md:space-y-[0.9vw]">
-                  <h1 className="font-[family-name:var(--font-body)] text-[clamp(1.5rem,8.3vw,2.25rem)] md:text-[clamp(2.25rem,4vw,3rem)] font-bold leading-tight text-[var(--color-white)]">
-                    Contact | Local Rubbish Removal Near Me &amp; Hard Waste Collection
-                  </h1>
-                  <p className="text-[clamp(0.8rem,3.7vw,1rem)] sm:text-lg md:text-[clamp(0.9rem,1.3vw,1.35rem)] leading-relaxed max-w-3xl mx-auto text-[var(--color-white)]">
-                    Ready to clear your space? Contact us for instant quotes, same-day service, and professional rubbish removal across Sydney.
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-[min(2.8vw,0.75rem)] md:gap-4 justify-center">
-                  <a href={`tel:${BUSINESS.phoneRaw}`} aria-label="Call Us Now" className="w-full sm:w-auto">
-                    <Button
-                      variant="primary"
-                      size="md"
-                      className="w-full sm:w-auto !px-[min(5.5vw,1.5rem)] !text-[clamp(0.75rem,3.7vw,0.875rem)] md:!px-3 xl:!px-6 md:!gap-1.5 xl:!gap-2 md:!text-xs xl:!text-sm"
-                    >
-                      <Phone aria-hidden="true" size={20} className="shrink-0" />
-                      Call Us Now
-                    </Button>
-                  </a>
-                  <a href="#quote-form" aria-label="Get Free Quote" className="w-full sm:w-auto">
-                    <Button
-                      variant="primary"
-                      size="md"
-                      className="w-full sm:w-auto !px-[min(5.5vw,1.5rem)] !text-[clamp(0.75rem,3.7vw,0.875rem)] md:!px-3 xl:!px-6 md:!gap-1.5 xl:!gap-2 md:!text-xs xl:!text-sm"
-                    >
-                      Get Free Quote
-                      <ClipboardCheck aria-hidden="true" size={20} className="shrink-0" />
-                    </Button>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+    <div className="w-full bg-base-secondary min-h-screen" ref={container}>
+      <PageBanner {...PAGE_BANNERS.contact} />
 
       {/* Quick Contact */}
       <SectionWrapper className="bg-base-secondary">
-        <div className="scroll-reveal">
+        <div>
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
               Contact Our Hard Rubbish Collection Team
@@ -264,12 +178,10 @@ export default function ContactPage() {
         </div>
       </SectionWrapper>
 
-      {/* FAQ – untouched, still using scroll-reveal */}
+      {/* FAQ */}
       <SectionWrapper className="bg-base-secondary">
-        <div className="scroll-reveal">
-          <FAQSection />
-        </div>
+        <FAQSection />
       </SectionWrapper>
-    </motion.div>
+    </div>
   );
 }

@@ -3,7 +3,7 @@
 import { Phone, ClipboardCheck } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import TestimonialsCarousel from '@/components/ui/TestimonialsCarousel';
-import HeroBanner from '@/components/ui/HeroBanner';
+import HeroBanner from '@/components/homehero/HeroBanner';
 import Button from '@/components/ui/Button';
 import { BUSINESS } from '@/lib/constants';
 import ServiceCards from '@/components/servicecards/ServiceCards';

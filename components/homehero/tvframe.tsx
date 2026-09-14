@@ -100,9 +100,8 @@ export default function TvFrame() {
                   fill
                   sizes="(max-width: 1023px) 100vw, 38vw"
                   quality={60}
-                  priority={i === 0}
-                  fetchPriority={i === 0 ? "high" : "low"}
-                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchPriority="low"
+                  loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
               </div>

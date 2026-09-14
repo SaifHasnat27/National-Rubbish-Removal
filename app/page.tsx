@@ -29,15 +29,13 @@ export default function Home() {
 
       {/* 2. Our Services */}
       <SectionWrapper className="bg-base-secondary" id="services-preview">
-        <div className="scroll-reveal">
-          <div className="text-center mb-16">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
-              Professional Rubbish Removal Services
-            </h2>
-            <p className="text-xl text-[var(--text-secondary)]">Residential, commercial & construction rubbish removal in Sydney</p>
-          </div>
-          <ServiceCards />
+        <div className="text-center mb-16">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
+            Professional Rubbish Removal Services
+          </h2>
+          <p className="text-xl text-[var(--text-secondary)]">Residential, commercial & construction rubbish removal in Sydney</p>
         </div>
+        <ServiceCards />
       </SectionWrapper>
 
       {/* 2b. Specialty (full-bleed GSAP zoom-out banner) */}
@@ -64,25 +62,23 @@ export default function Home() {
 
       {/* 5c. Our Process */}
       <SectionWrapper className="bg-base-secondary" id="process">
-        <div className="scroll-reveal">
-          <div className="text-center mb-16">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
-              Same Day Hard Rubbish Collection Process
-            </h2>
-            <p className="text-xl text-[var(--text-secondary)]">Simple, fast, and hassle-free rubbish removal</p>
-          </div>
+        <div className="text-center mb-16">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
+            Same Day Hard Rubbish Collection Process
+          </h2>
+          <p className="text-xl text-[var(--text-secondary)]">Simple, fast, and hassle-free rubbish removal</p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {processSteps.map((process) => (
-              <div key={process.step} className="card text-center space-y-4">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto bg-[var(--color-accent)] text-[var(--text-black)]">
-                  {process.step}
-                </div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)]">{process.title}</h3>
-                <p className="text-[var(--text-secondary)]">{process.description}</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {processSteps.map((process) => (
+            <div key={process.step} className="card text-center space-y-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto bg-[var(--color-accent)] text-[var(--text-black)]">
+                {process.step}
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold text-[var(--text-primary)]">{process.title}</h3>
+              <p className="text-[var(--text-secondary)]">{process.description}</p>
+            </div>
+          ))}
         </div>
       </SectionWrapper>
 
@@ -91,7 +87,7 @@ export default function Home() {
 
                   {/* 5d. Book CTA */}
       <SectionWrapper className="bg-base-secondary" id="book-cta">
-        <div className="scroll-reveal card card-feature !p-8 w-full md:w-3/4 mx-auto text-center space-y-8">
+        <div className="card card-feature !p-8 w-full md:w-3/4 mx-auto text-center space-y-8">
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em]">
             Book Your Hard Rubbish Collection Today
           </h2>
@@ -119,22 +115,18 @@ export default function Home() {
 
       {/* 6. Quick Contact */}
       <SectionWrapper className="bg-base-secondary" id="contact-options">
-        <div className="scroll-reveal">
-          <div className="text-center">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
-              Get In Touch
-            </h2>
-            <p className="text-xl text-[var(--text-secondary)]">Reach out now for a fast quote or same day booking.</p>
-          </div>
-          <QuickContact />
+        <div className="text-center">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
+            Get In Touch
+          </h2>
+          <p className="text-xl text-[var(--text-secondary)]">Reach out now for a fast quote or same day booking.</p>
         </div>
+        <QuickContact />
       </SectionWrapper> 
 
       {/* 7. FAQ */}
       <SectionWrapper className="bg-base-secondary" id="faq">
-        <div className="scroll-reveal">
-          <FAQSection />
-        </div>
+        <FAQSection />
       </SectionWrapper>
 
     </div>

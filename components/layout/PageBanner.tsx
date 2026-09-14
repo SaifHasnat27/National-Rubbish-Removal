@@ -31,7 +31,7 @@ export default function PageBanner({
           to   { transform: none; }
         }
         .banner-card {
-          animation: bannerSlideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation: bannerSlideUp 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         }
         @media (prefers-reduced-motion: reduce) {
           .banner-card { animation: none; }

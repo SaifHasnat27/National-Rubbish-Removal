@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Clock, Shield, Recycle, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { BUSINESS } from "@/lib/constants";
 
 type Stat = { icon: LucideIcon; text: string; subtext: string };
 
@@ -98,7 +99,7 @@ export default function TvFrame() {
                   src={src}
                   alt="National Rubbish Removal professional rubbish removal work across Sydney"
                   fill
-                  sizes="(max-width: 1023px) 100vw, 38vw"
+                  sizes={`(max-width: ${BUSINESS.mobileBreakpoint}px) 100vw, 38vw`}
                   quality={60}
                   fetchPriority="low"
                   loading="lazy"

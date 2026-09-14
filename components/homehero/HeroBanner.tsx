@@ -27,7 +27,7 @@ export default function HeroBanner() {
         .hero-rise {
           animation: heroSlideUp 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         }
-        @media (min-width: 1024px) {
+        @media (min-width: ${BUSINESS.mobileBreakpoint + 1}px) {
           .hero-rise-md { animation: heroSlideUp 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) both; }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -39,7 +39,7 @@ export default function HeroBanner() {
           the top, so the canvas shows through beneath it. */}
       <div className="absolute inset-x-0 top-0 aspect-[2/3] md:aspect-[5/2] overflow-hidden">
         <picture>
-          <source media="(min-width: 1024px)" srcSet={desktopSrcSet} />
+          <source media={`(min-width: ${BUSINESS.mobileBreakpoint + 1}px)`} srcSet={desktopSrcSet} />
           <img
             {...bgImg}
             srcSet={mobileSrcSet}
@@ -53,7 +53,7 @@ export default function HeroBanner() {
           Desktop max-width leaves room for the frame pinned at the right. */}
       <div className="relative z-20 aspect-[2/3] md:aspect-[5/2] flex items-center">
         <div className="section-wrapper w-full">
-          <div className="hero-rise sm:max-md:max-w-xl sm:max-md:mx-auto md:max-w-[calc(100%_-_3vw_-_28vw)] xl:max-w-[calc(100%_-_3vw_-_min(38vw,620px))]">
+          <div className="hero-rise sm:max-md:max-w-xl sm:max-md:mx-auto md:max-w-[calc(100%_-_3vw_-_min(38vw,620px))]">
             <div className="card card-dark !p-[min(5.5vw,1.5rem)] space-y-[min(5.5vw,1.5rem)] !bg-[var(--bg-nav)]/60 md:!p-[2.2vw] md:space-y-[1.6vw] md:!bg-[var(--bg-nav)]/90">
               <div className="space-y-[min(2.8vw,0.75rem)] md:space-y-[0.9vw]">
                 <h1
@@ -89,7 +89,7 @@ export default function HeroBanner() {
       {/* TV FRAME — one instance. Mobile: flows below the photo. Desktop:
           pinned right, vertically centred, within the same wrapper bounds. */}
       <div className="relative z-10 section-wrapper pt-8 pb-12 md:absolute md:inset-0 md:py-0 md:flex md:items-center md:justify-end">
-        <div className="hero-rise-md md:w-[28vw] xl:w-[38vw] md:max-w-[620px]">
+        <div className="hero-rise-md md:w-[38vw] md:max-w-[620px]">
           <TvFrame />
         </div>
       </div>

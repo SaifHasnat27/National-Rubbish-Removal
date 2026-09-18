@@ -7,10 +7,9 @@ import Button from '@/components/ui/Button';
 import ScrollParallax from '@/components/ui/ScrollParallax';
 
 const estimatorPoints = [
-  'Instant price in under a minute',
   'Pick your service and load size',
-  'Transparent pricing, no hidden fees',
-  'No obligation, no sign-up needed',
+  'Get an instant estimated price',
+  'No obligation, no sign up needed',
 ];
 
 export default function HomeSpecialty() {
@@ -24,7 +23,7 @@ export default function HomeSpecialty() {
       {/* Instant price estimator card, aligned to the site container over the image */}
       <div className="section-wrapper w-full flex justify-center">
         <div className="card card-dark !p-8 w-full lg:w-1/2">
-          <h3 className="text-2xl font-bold mb-6 text-center">Know the Price Before You Book</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">View Your Rubbish Removal Cost</h3>
           <div className="space-y-4">
             {estimatorPoints.map((item) => (
               <div key={item} className="flex items-center gap-3">

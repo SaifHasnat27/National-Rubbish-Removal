@@ -14,10 +14,10 @@ import PageContactForm from '@/components/forms/PageContactForm';
 import FAQSection from '@/components/servicecards/faq';
 
 const processSteps = [
-  { step: '1', title: 'Call or Book Online', description: 'Get an instant quote by phone or through our online form' },
-  { step: '2', title: 'Schedule Pickup', description: 'Choose a convenient time - same day service available' },
-  { step: '3', title: 'We Load Everything', description: 'Our team handles all the heavy lifting and loading' },
-  { step: '4', title: 'Eco-Friendly Disposal', description: '95% of your waste is recycled or donated responsibly' },
+  { step: '1', title: 'Call or Book Online', description: 'Get a quote by phone or through our online form.' },
+  { step: '2', title: 'Schedule Pickup', description: 'Choose a convenient time. Same day rubbish removal available.' },
+  { step: '3', title: 'We Load Everything', description: 'Our team handles all the heavy lifting and loading.' },
+  { step: '4', title: 'Eco-Friendly Disposal', description: '95% of your waste is recycled or donated responsibly.' },
 ];
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
             Professional Rubbish Removal Services
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">Residential, commercial & construction rubbish removal in Sydney</p>
+          <p className="text-xl text-[var(--text-secondary)]">Hard rubbish collection for residential, commercial, and construction properties across Sydney.</p>
         </div>
         <ServiceCards />
       </SectionWrapper>
@@ -64,9 +64,9 @@ export default function Home() {
       <SectionWrapper className="bg-base-secondary" id="process">
         <div className="text-center mb-16">
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
-            Same Day Hard Rubbish Collection Process
+            Hard Rubbish Collection Process
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">Simple, fast, and hassle-free rubbish removal</p>
+          <p className="text-xl text-[var(--text-secondary)]">Rubbish removal in four easy steps.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -89,10 +89,10 @@ export default function Home() {
       <SectionWrapper className="bg-base-secondary" id="book-cta">
         <div className="card card-feature !p-8 w-full md:w-3/4 mx-auto text-center space-y-8">
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em]">
-            Book Your Hard Rubbish Collection Today
+            Book Your Rubbish Removal in Sydney
           </h2>
           <p className="text-xl">
-            Get an instant quote and book your rubbish removal service today
+            Call or book online to secure your hard rubbish collection today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={`tel:${BUSINESS.phoneRaw}`} aria-label="Call Us Now">
@@ -119,7 +119,7 @@ export default function Home() {
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
             Get In Touch
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">Reach out now for a fast quote or same day booking.</p>
+          <p className="text-xl text-[var(--text-secondary)]">Reach out now for a fast quote or same day rubbish removal.</p>
         </div>
         <QuickContact />
       </SectionWrapper> 

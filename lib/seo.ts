@@ -31,55 +31,55 @@ interface PageSeo {
 
 export const PAGE_SEO: Record<PageKey, PageSeo> = {
   home: {
-    title: "Hard Rubbish Collection & Rubbish Removal Sydney",
-    description: `Fast, Cheap, Same Day Rubbish Removal and Hard Garbage Collection in Sydney. | FREE QUOTE | CALL NOW | ${BUSINESS.phone}`,
+    title: "Rubbish Removal Sydney",
+    description: `We provide rubbish removal services in Sydney for homes and businesses. Same day pick up available. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "rubbish removal near me, rubbish removal Sydney, hard rubbish collection",
     canonical: "/",
   },
   about: {
-    title: "About Us | Sydney Rubbish Removal Experts",
+    title: "About Us | National Rubbish Removal Sydney",
     description:
-      "Meet Sydney's local rubbish removal experts. We specialize in hard rubbish collection, hard garbage removal, and hard waste collection.",
+      "We're a local rubbish removal team serving Sydney homes and businesses, fully licensed and insured with flexible same day availability.",
     keywords: "rubbish removal Sydney, hard rubbish collection, rubbish removalists",
     canonical: "/about",
   },
   services: {
-    title: "Hard Waste Collection & Rubbish Removal Services",
-    description: `Affordable Rubbish Removalists Sydney | Same Day Service Available | FREE QUOTE | BOOK NOW | ${BUSINESS.phone}`,
+    title: "Rubbish Removal Services Sydney",
+    description: `Professional rubbish removal services in Sydney with transparent pricing and same day service. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "hard rubbish collection, hard garbage collection, rubbish removal Sydney",
     canonical: "/services",
   },
   contact: {
-    title: "Contact | Hard Rubbish Collection | Rubbish Removal Sydney",
-    description: `Need rubbish removal near me? CALL US | ${BUSINESS.phone} | GET FREE QUOTE | Same Day Service Available`,
+    title: "Contact Us | National Rubbish Removal Sydney",
+    description: `Get in touch for rubbish removal services across Sydney. Same day service available. Call ${BUSINESS.phone} or request a free quote online.`,
     keywords: "rubbish removal near me, hard rubbish collection, hard waste collection",
     canonical: "/contact",
   },
   location: {
-    title: "Hard Rubbish Collection | Sydney Service Areas",
+    title: "Rubbish Removal Service Areas across Sydney Metro",
     description:
-      "Serving Sydney suburbs for hard rubbish collection. We provide hard waste collection to residential and commercial clients",
+      `Rubbish removal service areas across Sydney metro. Fast response times with same day service available. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "rubbish removal Sydney, hard waste collection, rubbish removal near me",
     canonical: "/location",
   },
   policy: {
-    title: "Privacy Policy | Rubbish Removal Sydney",
+    title: "Privacy Policy | National Rubbish Removal",
     description:
-      "Our privacy policy explains how your data is protected during rubbish removal bookings. Trusted hard waste collection in Sydney.",
+      "Our privacy policy explains how we collect, use and protect your personal data when you book our rubbish removal service in Sydney.",
     keywords: "hard waste collection, hard rubbish collection, privacy policy",
     canonical: "/policy",
   },
   terms: {
-    title: "Terms of Service | Hard Rubbish Collection Sydney",
+    title: "Terms of Service | National Rubbish Removal",
     description:
-      "Our terms and conditions for hard waste collection in Sydney. Transparent rubbish removal policies you can trust.",
+      "These terms and conditions outline the rules for booking, pricing and cancellations for our rubbish removal service across Sydney metro.",
     keywords: "hard waste collection, hard rubbish collection, terms of service",
     canonical: "/terms",
   },
   quoteEstimator: {
-    title: "Sydney Rubbish Removal Quote | Hard Rubbish Collection Price Estimator",
+    title: "Rubbish Removal Cost Calculator",
     description:
-      "Get an instant rubbish removal price. Pick your service and load size to see a live estimate for hard rubbish collection in Sydney. No details needed.",
+      "Get an instant rubbish removal price for Sydney. Pick your service and load size to see a live estimate, no personal details needed.",
     keywords: "rubbish removal quote, rubbish removal cost Sydney, hard rubbish collection price",
     canonical: "/quote-estimator",
   },

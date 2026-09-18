@@ -4,6 +4,7 @@ import SectionWrapper from '@/components/ui/SectionWrapper';
 import { motion } from 'framer-motion';
 import { Clock, BadgeDollarSign, UserCheck, Recycle, ThumbsUp, Sparkles } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { BUSINESS } from '@/lib/constants';
 
 // ─── Why Us Data ──────────────────────────────────────────────────────────────
 const WHY_US: {
@@ -14,25 +15,25 @@ const WHY_US: {
 }[] = [
   {
     id: 1,
-    sector: "Same-Day Service",
-    detail: "We collect your rubbish on the same day you contact us. Fast, responsive waste disposal across all Sydney suburbs.",
+    sector: "Same Day Ruubish Removal",
+    detail: "We collect your rubbish on the same day you contact us. Same day rubbish removal available across all Sydney suburbs.",
     icon: Clock,
   },
   {
     id: 2,
     sector: "Upfront Volume Pricing",
-    detail: "You only pay for the exact volume your items occupy in our truck. Zero hidden fees, labor costs, or surprise charges.",
+    detail: "You only pay for the exact volume your items occupy in our truck. Cheap rubbish removal with zero hidden fees, labor costs, or surprise charges.",
     icon: BadgeDollarSign,
   },
   {
     id: 3,
     sector: "We Do the Loading",
-    detail: "No heavy lifting or back pain. Our friendly two-man crew handles all the packing, carrying, loading, and sweeps up afterwards.",
+    detail: "No heavy lifting required. Our friendly team handles all the packing, carrying, loading, and sweeps up afterwards.",
     icon: UserCheck,
   },
   {
     id: 4,
-    sector: "Eco-Friendly Recycling",
+    sector: "Eco Friendly Recycling",
     detail: "We sort through everything we collect, recycling and diverting up to 95% of materials away from Sydney landfills.",
     icon: Recycle,
   },
@@ -65,10 +66,10 @@ export default function WhyUs() {
         className="text-center mb-16"
       >
         <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
-          Why Choose Us
+          Why Choose {BUSINESS.name}
         </h2>
         <p className="text-xl text-[var(--text-secondary)]">
-          Fast, transparent, and reliable rubbish removal across Sydney
+          Fast, transparent, and cheap rubbish removal across Sydney.
         </p>
       </motion.div>
 

@@ -64,10 +64,13 @@ export default function TestimonialsCarousel({
       aria-label="Client testimonials"
     >
       <div className="section-wrapper max-w-4xl mx-auto">
-        <div className="mb-14">
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] text-center text-[var(--text-primary)]">
+        <div className="text-center mb-16">
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.25rem,4vw,3rem)] leading-[1.1] tracking-[-0.02em] mb-4 text-[var(--text-primary)]">
             Customer Reviews for Hard Rubbish Collection
           </h2>
+          <p className="text-xl text-[var(--text-secondary)]">
+            What clients say about our rubbish removal services.
+          </p>
         </div>
 
         <div className={`card ${cardClassName} !p-8 md:!p-12`}>

@@ -20,27 +20,35 @@ export const services: Service[] = [
   {
     id: "residential-rubbish-removal",
     name: "Residential Rubbish Removal",
-    shortDesc: "Complete household waste, garden refuse, furniture disposal, and general home cleanouts for Sydney residents.",
+    shortDesc: "Household rubbish removal, including furniture, mattresses, green waste, and garage clean outs.",
     longDesc: [
       "We provide fast, reliable, and eco-friendly household waste disposal solutions across all Sydney Metro suburbs. From single item furniture collections to complete multi-room house cleanouts, our professional crew handles the heavy lifting, packing, loading, and disposal so you don't have to lift a finger.",
       "We prioritize recycling and responsible waste diversion. Rather than letting your old items end up in landfills, we sort through all collections to ensure up to 95% of household junk, garden green waste, appliances, and materials are recycled at licensed Sydney facilities.",
     ],
     bullets: [
       {
-        text: "Household Junk Removal",
-        desc: "We clear out old general rubbish, cardboard, clothes, toys, and general domestic clutter from any part of your house, apartment, or garden.",
+        text: "Household Rubbish Removal",
+        desc: "Removal of general household junk, unwanted items, and clutter from any room, garage, or outdoor area.",
       },
       {
-        text: "Furniture & Appliance Disposal",
-        desc: "Eco-friendly disposal of bulky mattresses, sofas, whitegoods, and old electrical appliances, ensuring they are sent to dedicated recycling centers.",
+        text: "Green Waste Removal",
+        desc: "Collection of garden clippings, branches, leaves, and lawn waste from residential properties.",
       },
       {
-        text: "Garden Waste Clearance",
-        desc: "Fast removal of green waste, branches, hedge clippings, soil, lawn waste, and garden debris following landscaping or storm cleanups.",
+        text: "Deceased Estate Clearance",
+        desc: "Full clearance of furniture, belongings, and household items following a deceased estate, handled with care and discretion.",
       },
       {
-        text: "Garage & Shed Cleanouts",
-        desc: "Reclaim your storage space with full cleanouts of cluttered garages, attics, storage units, and backyard sheds.",
+        text: "Furniture Removal",
+        desc: "Collection and disposal of sofas, wardrobes, tables, and other bulky furniture no longer needed.",
+      },
+      {
+        text: "Garage Clean Out",
+        desc: "Clearing garages, sheds, and storage areas of accumulated tools, boxes, and unused equipment.",
+      },
+      {
+        text: "Mattress Removal",
+        desc: "Collection and disposal of old or damaged mattresses and bed bases.",
       },
     ],
     image: "/web images/Services/residential1.webp",
@@ -50,27 +58,35 @@ export const services: Service[] = [
   {
     id: "commercial-rubbish-removal",
     name: "Commercial Rubbish Removal",
-    shortDesc: "Reliable, scheduled or one-off commercial rubbish disposal, office strip-outs, and retail waste management.",
+    shortDesc: "Scheduled or one off commercial rubbish removal for offices, warehouses, retail stores, and strata buildings.",
     longDesc: [
       "Keep your business clean, compliant, and running smoothly with our commercial waste management solutions. We work with offices, retailers, restaurants, and corporate facilities throughout Sydney to manage daily waste, office relocations, shop strip-outs, and commercial packaging.",
       "We offer flexible after-hours and weekend booking options so our cleanups never disrupt your business operations. Our licensed rubbish removalists work quickly and quietly to ensure minimal downtime for your team and clients.",
     ],
     bullets: [
       {
-        text: "Office Clearances",
-        desc: "Swift removal of redundant office desks, chairs, filing cabinets, partition walls, carpets, and corporate office equipment.",
+        text: "Strata Rubbish Removal",
+        desc: "Scheduled or one off rubbish collection for strata-managed apartment blocks and common areas.",
       },
       {
-        text: "Retail & Shop Strip-Outs",
-        desc: "Clearing out retail fittings, point-of-sale displays, display cases, cardboard packaging, and general store waste.",
+        text: "Office Rubbish Removal",
+        desc: "Removal of general office waste, old paperwork, and everyday business rubbish.",
       },
       {
-        text: "Restaurant & Cafe Cleanups",
-        desc: "Disposal of old commercial kitchen machinery, stainless steel fittings, broken appliances, and dry food packaging.",
+        text: "Office Cubicle Removal",
+        desc: "Dismantling and removal of office cubicles, partitions, and workstation furniture during fit-outs or relocations.",
       },
       {
-        text: "Document Destruction & E-Waste",
-        desc: "Secure recycling of electronic waste (computers, monitors, cabling) and destruction of confidential business documents.",
+        text: "Retail Strip Out Removal",
+        desc: "Clearing shop fittings, displays, and fixtures during a retail strip out or store closure.",
+      },
+      {
+        text: "Warehouse Rubbish Removal",
+        desc: "Collection of pallets, packaging, and general waste from warehouses and storage facilities.",
+      },
+      {
+        text: "End of Lease Rubbish Removal",
+        desc: "Clearing furniture, fittings, and rubbish left behind at the end of a commercial lease.",
       },
     ],
     image: "/web images/Services/office1.webp",
@@ -80,7 +96,7 @@ export const services: Service[] = [
   {
     id: "construction-rubbish-removal",
     name: "Construction Rubbish Removal",
-    shortDesc: "Heavy-duty site cleanups, building materials disposal, and renovation debris removal for builders and homeowners.",
+    shortDesc: "Site cleanups, skip bin alternatives, and other construction rubbish removal services for builders and homeowners.",
     longDesc: [
       "Managing builder's waste requires speed, heavy loading capacity, and strict safety compliance. We provide professional construction rubbish removal services for renovation sites, residential builders, and commercial developers across Sydney.",
       "Skip bins block driveways, require costly council permits, and invite neighbors to dump their rubbish in them. Our truck-and-crew alternative is faster, requires no council permits, and includes full loading and sweeping of the site when finished.",
@@ -88,19 +104,27 @@ export const services: Service[] = [
     bullets: [
       {
         text: "Building Materials Disposal",
-        desc: "Fast removal of heavy builder waste including timber offcuts, plasterboard, tiles, insulation, and scrap metal.",
+        desc: "Disposal of offcuts, packaging, and leftover building materials from renovation or construction sites.",
       },
       {
-        text: "Renovation Debris Removal",
-        desc: "We clear out debris from kitchen, bathroom, and home extension projects, leaving your site clean for the next trade.",
+        text: "Construction Site Clean Up",
+        desc: "General site clean up during and after construction, clearing debris to keep the site safe and accessible.",
       },
       {
-        text: "Concrete, Brick & Rubble Loading",
-        desc: "Heavy loading of masonry waste, concrete blocks, broken bricks, roof tiles, and soil from excavation sites.",
+        text: "Metal and Steel Scrap Removal",
+        desc: "Collection of scrap metal, steel offcuts, and other metal waste from building sites.",
+      },
+      {
+        text: "Brick and Concrete Removal",
+        desc: "Removal of broken bricks, concrete rubble, and masonry waste from demolition or renovation work.",
+      },
+      {
+        text: "Timber Removal",
+        desc: "Collection of timber offcuts, old framing, and wood waste from construction and renovation projects.",
       },
       {
         text: "Skip Bin Alternatives",
-        desc: "No street permits needed. We pull up, load the waste immediately, clean up the area, and cart it away in one go.",
+        desc: "A faster alternative to skip bin hire, with no council permits needed and full loading included.",
       },
     ],
     image: "/web images/Services/construction1.webp",

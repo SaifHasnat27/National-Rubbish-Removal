@@ -113,7 +113,7 @@ export default function ContactPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
               Contact Our Hard Rubbish Collection Team
             </h2>
-            <p className="text-xl text-[var(--text-secondary)]">Choose the method that works best for you</p>
+            <p className="text-xl text-[var(--text-secondary)]">Choose the method that works best for you.</p>
           </div>
           <QuickContact />
         </div>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                 <div className="p-4 rounded-[var(--radius-card)] w-fit mx-auto mb-4 bg-[var(--color-accent)]">
                   <Clock aria-hidden="true" size={32} className="text-[var(--text-black)]" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-[var(--text-primary)]">Hard Rubbish Collection Hours</h3>
+                <h3 className="text-xl font-bold mb-3 text-[var(--text-primary)]">Our Opening Hours</h3>
               </div>
               <div className="space-y-4 text-sm">
                 {BUSINESS.openingHours.rows.map((schedule) => (

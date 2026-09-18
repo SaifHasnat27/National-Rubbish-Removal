@@ -21,21 +21,21 @@ const VALID_TABS = services.map(s => s.id);
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const additionalServices: { icon: LucideIcon; title: string; description: string }[] = [
-  { icon: Clock, title: 'Same Day Service', description: 'Urgent removals available 24/7' },
-  { icon: AlertTriangle, title: 'Hazardous Waste Disposal', description: 'Available upon request' },
-  { icon: Recycle, title: 'Eco-Friendly Disposal', description: '95% of waste recycled responsibly' },
+  { icon: Clock, title: 'Same Day Service', description: 'Urgent removals available 24/7.' },
+  { icon: AlertTriangle, title: 'Hazardous Waste Disposal', description: 'Available upon request.' },
+  { icon: Recycle, title: 'Eco-Friendly Disposal', description: '95% of waste recycled responsibly.' },
 ];
 
 const pricingFactors: { icon: LucideIcon; title: string; description: string }[] = [
-  { icon: Truck, title: 'Volume of Waste', description: 'Pricing based on how much space your items take up in our truck' },
-  { icon: Clock, title: 'Location & Access', description: 'Distance and accessibility can affect pricing - no hidden fees' },
-  { icon: Shield, title: 'Type of Waste', description: 'Standard household items included, special items may incur additional costs' },
+  { icon: Truck, title: 'Volume of Waste', description: 'You only pay for the space your items take up in our truck.' },
+  { icon: Clock, title: 'Location & Access', description: 'Distance and access can affect your price, but you\'ll never pay a hidden fee.' },
+  { icon: Shield, title: 'Type of Waste', description: 'Most hard rubbish is priced the same. Heavier or unusual items may add to the cost.' },
 ];
 
 const rateBenefits: { title: string; desc: string }[] = [
-  { title: 'No Hidden Fees', desc: 'The price we quote includes everything - labour, disposal, and environmental fees.' },
+  { title: 'No Hidden Fees', desc: 'Our quote covers everything including labour, disposal, and environmental fees.' },
   { title: 'Competitive Rates', desc: 'Up to 30% less than traditional skip bin hire when you factor in permits and collection.' },
-  { title: 'Volume-Based Pricing', desc: 'You only pay for the space your items take up - fair and transparent.' },
+  { title: 'Volume Based Pricing', desc: 'You only pay for the space your items take up.' },
 ];
 
 const priceMatchPoints = [
@@ -97,10 +97,10 @@ function ServicesContent() {
     <SectionWrapper>
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
-          Hard Waste Collection &amp; Rubbish Removal Services
+          Professional Rubbish Removal Services Sydney
         </h1>
         <p className="text-xl max-w-3xl mx-auto text-[var(--text-secondary)]">
-          From residential cleanouts to commercial waste management and construction debris removal - we handle it all with professionalism and care.
+          From residential cleanouts to commercial waste management and construction debris removal, our rubbish removal services handle it all with professionalism and care.
         </p>
       </div>
 
@@ -201,9 +201,9 @@ export default function ServicesPage() {
       <SectionWrapper className="bg-base-secondary">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
-            Additional Hard Waste Collection Options
+            Additional Rubbish Removal Services
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">Extra convenience for your peace of mind</p>
+          <p className="text-xl text-[var(--text-secondary)]">Extra convenience for your peace of mind.</p>
         </div>
 
         <motion.div {...staggerParent} className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -225,7 +225,7 @@ export default function ServicesPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
             Transparent Pricing for Hard Rubbish Collection
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">Transparent pricing based on these key factors</p>
+          <p className="text-xl text-[var(--text-secondary)]">What determines your rubbish removal cost.</p>
         </div>
 
         <motion.div {...staggerParent} className="grid grid-cols-1 md:grid-cols-3 gap-8">

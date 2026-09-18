@@ -60,10 +60,10 @@ export default function HeroBanner() {
                   className="font-[family-name:var(--font-body)] text-[clamp(1.5rem,8.3vw,2.25rem)] md:text-[clamp(2.25rem,4vw,3rem)] font-bold leading-tight text-[var(--color-white)]"
                   itemProp="headline"
                 >
-                  Hard Rubbish Collection &amp; Rubbish Removal Sydney
+                  Rubbish Removal Sydney
                 </h1>
                 <p className="text-[clamp(0.8rem,3.7vw,1rem)] sm:text-lg md:text-[clamp(0.9rem,1.3vw,1.35rem)] leading-relaxed text-[var(--color-white)]">
-                  Fast, reliable, and eco-friendly waste disposal. Same-day service available across all Sydney metro areas.
+                  The rubbish removal Sydney homes and businesses trust for easy cleanups, transparent quotes and same day availability.
                 </p>
               </div>
 

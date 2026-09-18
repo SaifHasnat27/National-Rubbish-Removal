@@ -8,9 +8,9 @@ import SectionWrapper from '@/components/ui/SectionWrapper';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const heroPoints = [
-  'Founded by industry veterans with a disruptive vision to transform Sydney’s waste removal through technology and exceptional service',
-  'Rapidly expanding across Sydney metro with our signature same-day service that’s setting new industry standards',
-  'Fully licensed, comprehensively insured, and pioneering sustainable waste solutions that competitors are now copying',
+  'We’ve spent years serving the Sydney community, and now bring that same care to rubbish removal.',
+  'Expanding across Sydney metro, with same day rubbish removal available when you need it.',
+  'Fully licensed and insured, with a strong focus on recycling and responsible disposal.',
 ];
 
 const stats = [
@@ -79,10 +79,10 @@ export default function AboutPage() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--text-primary)]">
-                Meet Your Local Rubbish Removalists | Hard Garbage Collection
+                Meet National Rubbish Removal | Your Local Rubbish Removalists in Sydney
               </h1>
               <p className="text-xl leading-relaxed text-[var(--text-secondary)]">
-                The innovative startup revolutionizing Sydney&apos;s waste removal industry with cutting-edge efficiency, unmatched reliability, and environmental leadership.
+                Your local team providing fast, reliable rubbish removal across Sydney, with 95% of collected waste recycled or donated.
               </p>
             </div>
 
@@ -147,9 +147,9 @@ export default function AboutPage() {
       <SectionWrapper className="bg-base-secondary" aria-labelledby="mission-heading">
         <div className="text-center mb-16">
           <h2 id="mission-heading" className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
-            Our Rubbish Collection Mission
+            Our Hard Rubbish Collection Mission
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">What drives every job we do across Sydney.</p>
+          <p className="text-xl text-[var(--text-secondary)]">What drives every rubbish removal job we do across Sydney.</p>
         </div>
 
         <motion.div {...staggerParent} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -171,7 +171,7 @@ export default function AboutPage() {
           <h2 id="values-heading" className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
             Why Choose Our Rubbish Removalists
           </h2>
-          <p className="text-xl text-[var(--text-secondary)]">How we make your cleanup completely effortless.</p>
+          <p className="text-xl text-[var(--text-secondary)]">How we make your rubbish removal completely effortless.</p>
         </div>
 
         <motion.div {...staggerParent} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

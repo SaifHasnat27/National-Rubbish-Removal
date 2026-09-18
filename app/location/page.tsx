@@ -69,7 +69,7 @@ const coverageItems: { icon: LucideIcon; title: string; desc: string }[] = [
 ];
 
 const guarantees = [
-  'Same-day service in most areas',
+  'Same day rubbish removal in most areas',
   '2-4 hour response time',
   'No hidden travel fees',
   'Fully insured & licensed',
@@ -90,10 +90,10 @@ export default function LocationPage() {
         >
           <MapPin aria-hidden="true" className="mx-auto mb-4 text-[var(--color-accent)]" size={48} />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">
-            Locations We Serve | Rubbish Removal Sydney
+            Rubbish Removal Sydney Service Areas
           </h1>
           <p className="text-xl max-w-3xl mx-auto text-[var(--text-secondary)]">
-            Fast, reliable rubbish removal across Sydney&apos;s metro areas. Same-day service available in most locations.
+            Fast, reliable rubbish removal across Sydney&apos;s metro areas.
           </p>
 
           <motion.div
@@ -118,7 +118,7 @@ export default function LocationPage() {
             Hard Rubbish Collection Areas in Sydney
           </h2>
           <p className="text-xl text-[var(--text-secondary)]">
-            Professional rubbish removal across Sydney&apos;s diverse neighbourhoods
+            Professional rubbish removal across Sydney&apos;s diverse neighbourhoods.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export default function LocationPage() {
         <motion.div {...reveal} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--text-primary)]">
-              Complete Sydney Hard Waste Collection Coverage
+              Complete Coverage for Rubbish Removal across Sydney Metro
             </h2>
             <div className="space-y-6">
               {coverageItems.map((item) => (

@@ -39,7 +39,7 @@ export const services: Service[] = [
         desc: "Full clearance of furniture, belongings, and household items following a deceased estate, handled with care and discretion.",
       },
       {
-        text: "Furniture Removal",
+        text: "Unwanted Furniture Removal",
         desc: "Collection and disposal of sofas, wardrobes, tables, and other bulky furniture no longer needed.",
       },
       {

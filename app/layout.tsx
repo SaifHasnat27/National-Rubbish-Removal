@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Syne, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { localBusinessSchema } from "@/lib/schema";
 import { BUSINESS } from "@/lib/constants";
 import { PAGE_SEO } from "@/lib/seo";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-display",
-  display: "swap",
-});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${inter.variable}`}
+      className={inter.variable}
     >
       <head>
         <script

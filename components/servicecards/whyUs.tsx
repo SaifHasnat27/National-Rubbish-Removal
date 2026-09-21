@@ -15,7 +15,7 @@ const WHY_US: {
 }[] = [
   {
     id: 1,
-    sector: "Same Day Ruubish Removal",
+    sector: "Same Day Rubbish Removal",
     detail: "We collect your rubbish on the same day you contact us. Same day rubbish removal available across all Sydney suburbs.",
     icon: Clock,
   },

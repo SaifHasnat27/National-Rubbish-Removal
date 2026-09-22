@@ -17,7 +17,7 @@ export default function Page() {
           heading: 'Unwanted Furniture Removal Made Simple',
           subheading:
             'Our unwanted furniture removal service makes it simple to clear bulky items from homes, offices and other properties. We handle all lifting and rubbish removal, so you won’t need to hire a skip or arrange transport.',
-          imageSrc: '/web images/Services/residential1.webp',
+          imageSrc: '/web images/residential rubbish removal near me.webp',
           imageAlt: 'Furniture removal in Sydney — sofa and bulky furniture carried from a home',
         },
         priceHeading: 'Estimate Unwanted Furniture Removal Cost',

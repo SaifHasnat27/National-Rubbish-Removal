@@ -17,7 +17,7 @@ export default function Page() {
           heading: 'Mattress Removal Made Simple',
           subheading:
             'Our mattress removal service provides a quick and convenient way to clear unwanted mattresses from your property. We handle the lifting, loading and rubbish removal, with responsible disposal wherever possible.',
-          imageSrc: '/web images/Services/residential1.webp',
+          imageSrc: '/web images/residential rubbish removal near me.webp',
           imageAlt: 'Mattress removal in Sydney — mattress and bed base loaded from a home',
         },
         priceHeading: 'Estimate Mattress Removal Cost',

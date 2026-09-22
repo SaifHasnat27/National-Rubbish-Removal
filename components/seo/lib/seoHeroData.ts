@@ -36,4 +36,34 @@ export const SEO_HERO: Record<string, SeoHeroData> = {
     subheading:
       "Professional deceased estate clearance in Sydney, carried out with care, discretion and respect.",
   },
+  "strata-rubbish-removal": {
+    heading: "Strata Rubbish Removal Sydney",
+    subheading:
+      "Professional strata rubbish removal across Sydney for apartments, common areas and managed properties.",
+  },
+  "office-rubbish-removal": {
+    heading: "Office Rubbish Removal Sydney",
+    subheading:
+      "Professional office rubbish removal across Sydney with flexible scheduling to minimise business disruption.",
+  },
+  "office-cubicle-removal": {
+    heading: "Office Cubicle Removal Sydney",
+    subheading:
+      "Professional office cubicle removal across Sydney for workplace changes, relocations and commercial cleanouts.",
+  },
+  "retail-strip-out-removal": {
+    heading: "Retail Strip Out Removal Sydney",
+    subheading:
+      "Our Sydney retail strip out removal team clears unwanted fixtures, displays and fittings from commercial premises.",
+  },
+  "warehouse-rubbish-removal": {
+    heading: "Warehouse Rubbish Removal Sydney",
+    subheading:
+      "Professional warehouse rubbish removal across Sydney for clearer, safer and more organised commercial spaces.",
+  },
+  "end-of-lease-rubbish-removal": {
+    heading: "End of Lease Rubbish Removal Sydney",
+    subheading:
+      "Our Sydney end of lease rubbish removal service helps businesses clear their premises before handover.",
+  },
 };

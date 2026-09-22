@@ -17,7 +17,7 @@ export default function Page() {
           heading: 'Green Waste Removal Made Simple',
           subheading:
             'Our green waste removal team collects garden waste directly from homes and properties across Sydney. As part of our rubbish removal service, we load everything and prioritise responsible recycling.',
-          imageSrc: '/web images/Services/residential1.webp',
+          imageSrc: '/web images/residential rubbish removal near me.webp',
           imageAlt: 'Green waste removal in Sydney — garden clippings and branches loaded from a yard',
         },
         priceHeading: 'Estimate Green Waste Removal Cost',

@@ -17,7 +17,7 @@ export default function Page() {
           heading: 'Garage Clean Out Made Simple',
           subheading:
             'Whether you need a few items removed or a complete garage clean out, our team is ready to help. Our rubbish removal service includes all labour, collection and responsible disposal.',
-          imageSrc: '/web images/Services/residential1.webp',
+          imageSrc: '/web images/residential rubbish removal near me.webp',
           imageAlt: 'Garage clean out in Sydney — cluttered garage cleared and swept',
         },
         priceHeading: 'Estimate Garage Clean Out Cost',

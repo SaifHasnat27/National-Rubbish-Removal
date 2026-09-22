@@ -17,7 +17,7 @@ export default function Page() {
           heading: 'Deceased Estate Clearance Made Simple',
           subheading:
             'A deceased estate clearance can feel overwhelming, so our team handles each property with patience and sensitivity. We take care of hard rubbish removal, loading and clean-up while following your requirements throughout.',
-          imageSrc: '/web images/Services/residential1.webp',
+          imageSrc: '/web images/residential rubbish removal near me.webp',
           imageAlt: 'Deceased estate clearance in Sydney — household contents cleared from a property',
         },
         priceHeading: 'Estimate Deceased Estate Clearance Cost',

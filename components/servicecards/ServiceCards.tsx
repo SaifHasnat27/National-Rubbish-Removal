@@ -65,15 +65,22 @@ export default function ServiceCards({ cardClassName = 'bg-base' }: { cardClassN
                             </p>
 
                             <ul className="space-y-2.5 mb-7">
-                                {service.bullets.map((bullet, idx) => (
-                                    <li key={idx} className="flex items-center gap-2.5">
-                                        <CheckCircle2
-                                            className="w-4 h-4 text-[var(--color-accent)] shrink-0"
-                                            aria-hidden="true"
-                                        />
-                                        <span className="text-[var(--text-secondary)] text-xs leading-snug">
-                                            {bullet.text}
-                                        </span>
+                                {service.bullets.map((bullet) => (
+                                    <li key={bullet.slug}>
+                                        {/* Deliberately unstyled as a link (no hover, default cursor) — crawl path to the SEO pages.
+                                            inline-flex keeps the click area to the icon + text only. */}
+                                        <Link
+                                            href={`/${bullet.slug}`}
+                                            className="inline-flex items-center gap-2.5 text-[var(--text-secondary)] cursor-default"
+                                        >
+                                            <CheckCircle2
+                                                className="w-4 h-4 text-[var(--color-accent)] shrink-0"
+                                                aria-hidden="true"
+                                            />
+                                            <span className="text-xs leading-snug">
+                                                {bullet.text}
+                                            </span>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

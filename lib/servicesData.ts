@@ -1,6 +1,9 @@
+import type { SEO_META } from '@/components/seo/lib/SeoMetas';
+
 // ─── Types ───────────────────────────────────────────────
 export interface ServiceBullet {
   text: string;            // Short feature title (as shown on /services checklist)
+  slug: keyof typeof SEO_META; // Its own page (/slug). Must match a real page or the build fails.
   desc: string;            // Rich description of the feature
 }
 
@@ -28,26 +31,38 @@ export const services: Service[] = [
     bullets: [
       {
         text: "Household Rubbish Removal",
+
+        slug: "household-rubbish-removal",
         desc: "Removal of general household junk, unwanted items, and clutter from any room, garage, or outdoor area.",
       },
       {
         text: "Green Waste Removal",
+
+        slug: "green-waste-removal",
         desc: "Collection of garden clippings, branches, leaves, and lawn waste from residential properties.",
       },
       {
         text: "Deceased Estate Clearance",
+
+        slug: "deceased-estate-clearance",
         desc: "Full clearance of furniture, belongings, and household items following a deceased estate, handled with care and discretion.",
       },
       {
         text: "Unwanted Furniture Removal",
+
+        slug: "unwanted-furniture-removal",
         desc: "Collection and disposal of sofas, wardrobes, tables, and other bulky furniture no longer needed.",
       },
       {
         text: "Garage Clean Out",
+
+        slug: "garage-clean-out",
         desc: "Clearing garages, sheds, and storage areas of accumulated tools, boxes, and unused equipment.",
       },
       {
         text: "Mattress Removal",
+
+        slug: "mattress-removal",
         desc: "Collection and disposal of old or damaged mattresses and bed bases.",
       },
     ],
@@ -66,26 +81,38 @@ export const services: Service[] = [
     bullets: [
       {
         text: "Strata Rubbish Removal",
+
+        slug: "strata-rubbish-removal",
         desc: "Scheduled or one off rubbish collection for strata-managed apartment blocks and common areas.",
       },
       {
         text: "Office Rubbish Removal",
+
+        slug: "office-rubbish-removal",
         desc: "Removal of general office waste, old paperwork, and everyday business rubbish.",
       },
       {
         text: "Office Cubicle Removal",
+
+        slug: "office-cubicle-removal",
         desc: "Dismantling and removal of office cubicles, partitions, and workstation furniture during fit-outs or relocations.",
       },
       {
         text: "Retail Strip Out Removal",
+
+        slug: "retail-strip-out-removal",
         desc: "Clearing shop fittings, displays, and fixtures during a retail strip out or store closure.",
       },
       {
         text: "Warehouse Rubbish Removal",
+
+        slug: "warehouse-rubbish-removal",
         desc: "Collection of pallets, packaging, and general waste from warehouses and storage facilities.",
       },
       {
         text: "End of Lease Rubbish Removal",
+
+        slug: "end-of-lease-rubbish-removal",
         desc: "Clearing furniture, fittings, and rubbish left behind at the end of a commercial lease.",
       },
     ],
@@ -104,26 +131,38 @@ export const services: Service[] = [
     bullets: [
       {
         text: "Building Materials Disposal",
+
+        slug: "building-materials-disposal",
         desc: "Disposal of offcuts, packaging, and leftover building materials from renovation or construction sites.",
       },
       {
         text: "Construction Site Clean Up",
+
+        slug: "construction-site-clean-up",
         desc: "General site clean up during and after construction, clearing debris to keep the site safe and accessible.",
       },
       {
         text: "Scrap Metal Removal",
+
+        slug: "scrap-metal-removal",
         desc: "Collection of scrap metal, steel offcuts, and other metal waste from building sites.",
       },
       {
         text: "Brick and Concrete Removal",
+
+        slug: "brick-and-concrete-removal",
         desc: "Removal of broken bricks, concrete rubble, and masonry waste from demolition or renovation work.",
       },
       {
         text: "Timber Removal",
+
+        slug: "timber-removal",
         desc: "Collection of timber offcuts, old framing, and wood waste from construction and renovation projects.",
       },
       {
         text: "Skip Bin Alternatives",
+
+        slug: "skip-bin-alternatives",
         desc: "A faster alternative to skip bin hire, with no council permits needed and full loading included.",
       },
     ],

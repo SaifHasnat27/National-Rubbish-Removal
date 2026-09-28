@@ -159,15 +159,20 @@ function ServicesContent() {
                 {/* 2×2 grid — four described features read as a wall when stacked
                     in one column; paired up they scan in half the vertical space. */}
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7 mb-10">
-                  {s.bullets.map((bullet, idx) => (
-                    <li key={idx}>
+                  {s.bullets.map((bullet) => (
+                    <li key={bullet.slug}>
                       <div className="flex items-center gap-2.5 mb-2">
                         <CheckCircle2
                           className="w-5 h-5 text-[var(--color-accent)] shrink-0"
                           aria-hidden="true"
                         />
                         <p className="text-[var(--text-primary)] text-sm font-bold leading-[var(--leading-snug)]">
-                          {bullet.text}
+                          <Link
+                            href={`/${bullet.slug}`}
+                            className="hover:text-[var(--text-accent)] transition-colors duration-[var(--transition-fast)]"
+                          >
+                            {bullet.text}
+                          </Link>
                         </p>
                       </div>
                       <p className="text-[var(--text-secondary)] text-sm leading-[var(--leading-relaxed)]">

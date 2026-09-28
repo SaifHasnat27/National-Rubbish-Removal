@@ -1,6 +1,27 @@
 import { MetadataRoute } from "next";
 import { BUSINESS } from "@/lib/constants";
 
+const servicePaths = [
+  "/household-rubbish-removal",
+  "/green-waste-removal",
+  "/deceased-estate-clearance",
+  "/unwanted-furniture-removal",
+  "/garage-clean-out",
+  "/mattress-removal",
+  "/strata-rubbish-removal",
+  "/office-rubbish-removal",
+  "/office-cubicle-removal",
+  "/retail-strip-out-removal",
+  "/warehouse-rubbish-removal",
+  "/end-of-lease-rubbish-removal",
+  "/building-materials-disposal",
+  "/construction-site-clean-up",
+  "/scrap-metal-removal",
+  "/brick-and-concrete-removal",
+  "/timber-removal",
+  "/skip-bin-alternatives",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = BUSINESS.url;
 
@@ -42,6 +63,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/sitemap`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
       url: `${baseUrl}/policy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
@@ -53,5 +80,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...servicePaths.map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }

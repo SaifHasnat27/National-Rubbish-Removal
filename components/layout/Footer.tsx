@@ -277,13 +277,15 @@ export default function Footer() {
             >
               Terms of Service
             </Link>
-            <a
-              href="/sitemap.xml"
+            <Link
+              href="/sitemap"
+              prefetch={false}
+              onClick={(e) => handleNavClick(e, '/sitemap')}
               className="justify-self-end text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Sitemap"
             >
               Sitemap
-            </a>
+            </Link>
           </div>
 
           {/* Desktop row 2 — copyright, centred on its own line */}
@@ -328,13 +330,15 @@ export default function Footer() {
             >
               Terms of Service
             </Link>
-            <a
-              href="/sitemap.xml"
+            <Link
+              href="/sitemap"
+              prefetch={false}
+              onClick={(e) => handleNavClick(e, '/sitemap')}
               className="text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
               aria-label="Sitemap"
             >
               Sitemap
-            </a>
+            </Link>
             {/* text-center, not just the parent's items-center: items-center
                 centres the BLOCK, but this string wraps to two lines on narrow
                 phones and those lines align left inside it. */}

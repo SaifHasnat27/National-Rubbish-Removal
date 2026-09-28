@@ -55,6 +55,8 @@ ${faqBlock}
 - [About](${BUSINESS.url}/about): Company background, mission, and eco-friendly recycling approach.
 - [Location](${BUSINESS.url}/location): Suburbs and areas served across Sydney Metro.
 - [Contact](${BUSINESS.url}/contact): Get a free quote or book a same-day collection.
+- [Quote Estimator](${BUSINESS.url}/quote-estimator): Estimate the cost of a rubbish removal job.
+- [Sitemap](${BUSINESS.url}/sitemap): Every page on this site.
 - [Privacy Policy](${BUSINESS.url}/policy): How customer data is collected and used.
 - [Terms of Service](${BUSINESS.url}/terms): Terms governing use of our services.
 `;

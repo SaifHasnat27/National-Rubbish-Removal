@@ -19,7 +19,8 @@ type PageKey =
   | "location"
   | "policy"
   | "terms"
-  | "quoteEstimator";
+  | "quoteEstimator"
+  | "sitemap";
 
 interface PageSeo {
   title: string;
@@ -82,6 +83,13 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
       "Get an instant rubbish removal price for Sydney. Pick your service and load size to see a live estimate, no personal details needed.",
     keywords: "rubbish removal quote, rubbish removal cost Sydney, hard rubbish collection price",
     canonical: "/quote-estimator",
+  },
+  sitemap: {
+    title: "Sitemap | National Rubbish Removal",
+    description:
+      "Browse all pages on the National Rubbish Removal website.",
+    keywords: "rubbish removal Sydney, sitemap",
+    canonical: "/sitemap",
   },
 };
 

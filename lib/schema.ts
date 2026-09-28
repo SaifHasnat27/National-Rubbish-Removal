@@ -48,11 +48,11 @@ const serviceCatalog = {
 
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "LocalBusiness",
   "@id": `${BUSINESS.url}/#business`,
   "name": BUSINESS.name,
   "image": `${BUSINESS.url}/og-image.jpg`,
-  "telephone": BUSINESS.phone,
+  "telephone": BUSINESS.phoneRaw,
   "email": BUSINESS.email,
   "url": BUSINESS.url,
   "sameAs": [BUSINESS.googleBusinessProfile],

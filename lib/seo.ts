@@ -87,8 +87,7 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
 
 /**
  * Build a Next.js Metadata object for a page from its central SEO entry.
- * Title suffix (`| National Rubbish Removal`) is applied by the root
- * layout's title template, so titles here stay clean.
+ * Titles are used as written. The root layout does not append a site name.
  */
 export function buildMetadata(key: PageKey): Metadata {
   const seo = PAGE_SEO[key];

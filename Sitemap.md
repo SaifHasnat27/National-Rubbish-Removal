@@ -46,7 +46,7 @@ National Rubbish Removal provides same-day rubbish removal and hard garbage coll
 - `lib/servicesData.ts` - Array of core services defining titles, descriptions, bullets, default image paths, and Lucide icons.
 - `lib/pageBannerData.ts` - Heading/subheading configurations consumed by subpage headers.
 - `components/servicecards/answer.tsx` - Array of FAQ items specific to National Rubbish Removal.
-- `lib/schema.ts` - Local business structured data (`ProfessionalService`) parsed site-wide inside layout.tsx.
+- `lib/schema.ts` - Local business structured data (`LocalBusiness`) parsed site-wide inside layout.tsx.
 
 ## 6. Tech Stack
 - **Framework & Core**: Next.js 16 (App Router), React 19, TypeScript

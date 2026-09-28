@@ -111,7 +111,7 @@ export const services: Service[] = [
         desc: "General site clean up during and after construction, clearing debris to keep the site safe and accessible.",
       },
       {
-        text: "Metal and Steel Scrap Removal",
+        text: "Scrap Metal Removal",
         desc: "Collection of scrap metal, steel offcuts, and other metal waste from building sites.",
       },
       {

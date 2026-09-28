@@ -14,18 +14,17 @@ const inter = Inter({
   display: "swap",
 });
 
-// Home page SEO copy lives centrally in lib/seo.ts; the root layout also
-// owns the site-wide title template + metadataBase that child pages inherit.
+// Home page SEO copy lives centrally in lib/seo.ts. Titles are used as written.
+// There is no site-wide "| Business name" suffix.
 export const metadata: Metadata = {
   metadataBase: new URL(BUSINESS.url),
   title: {
-    template: `%s | ${BUSINESS.name}`,
-    default: `${PAGE_SEO.home.title} | ${BUSINESS.name}`,
+    default: PAGE_SEO.home.title,
   },
   description: PAGE_SEO.home.description,
   keywords: PAGE_SEO.home.keywords,
   openGraph: {
-    title: `${PAGE_SEO.home.title} | ${BUSINESS.name}`,
+    title: PAGE_SEO.home.title,
     description: PAGE_SEO.home.description,
     url: BUSINESS.url,
     siteName: BUSINESS.name,

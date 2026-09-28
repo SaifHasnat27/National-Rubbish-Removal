@@ -66,4 +66,34 @@ export const SEO_HERO: Record<string, SeoHeroData> = {
     subheading:
       "Our Sydney end of lease rubbish removal service helps businesses clear their premises before handover.",
   },
+  "building-materials-disposal": {
+    heading: "Building Materials Disposal Sydney",
+    subheading:
+      "Professional building materials disposal across Sydney for renovation and construction sites.",
+  },
+  "construction-site-clean-up": {
+    heading: "Construction Site Clean Up Sydney",
+    subheading:
+      "Professional construction site clean up across Sydney during and after construction.",
+  },
+  "scrap-metal-removal": {
+    heading: "Scrap Metal Removal Sydney",
+    subheading:
+      "Professional scrap metal removal across Sydney for renovation, workplace and project site.",
+  },
+  "brick-and-concrete-removal": {
+    heading: "Brick and Concrete Removal Sydney",
+    subheading:
+      "Professional brick and concrete removal across Sydney for loose rubble left after property projects.",
+  },
+  "timber-removal": {
+    heading: "Timber Removal Sydney",
+    subheading:
+      "Professional timber removal across Sydney for leftover building materials and unwanted wood.",
+  },
+  "skip-bin-alternatives": {
+    heading: "Skip Bin Alternatives Sydney",
+    subheading:
+      "Our Sydney skip bin alternatives include loading on site, with no council permit required.",
+  },
 };

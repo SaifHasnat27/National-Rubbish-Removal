@@ -24,7 +24,7 @@ export const BUSINESS = {
     emergency: "",
   },
   googlePlaceId: "ChIJG8AWv4ByiqwRCeR-j96DKlc",
-  googleBusinessProfile: "https://www.google.com/maps/place/?q=place_id:ChIJG8AWv4ByiqwRCeR-j96DKlc",
+  googleBusinessProfile: "https://maps.google.com/maps?cid=6280977622235014153",
   googleReviewLink: "",
   googleReviewsAll: "",
   googleScriptUrl: "https://script.google.com/macros/s/AKfycby8JvAaP204NeE44FiQzOlyKlWssbYDMnv3mLs9k9X2LBH529Ngse5nKYiyuIBmebCB0g/exec",

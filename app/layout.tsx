@@ -18,9 +18,7 @@ const inter = Inter({
 // There is no site-wide "| Business name" suffix.
 export const metadata: Metadata = {
   metadataBase: new URL(BUSINESS.url),
-  title: {
-    default: PAGE_SEO.home.title,
-  },
+  title: PAGE_SEO.home.title,
   description: PAGE_SEO.home.description,
   keywords: PAGE_SEO.home.keywords,
   openGraph: {

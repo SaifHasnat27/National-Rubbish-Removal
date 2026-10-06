@@ -32,7 +32,7 @@ interface PageSeo {
 
 export const PAGE_SEO: Record<PageKey, PageSeo> = {
   home: {
-    title: "Rubbish Removal Sydney",
+    title: "Rubbish Removal Sydney | National Rubbish Removal",
     description: `We provide rubbish removal services in Sydney for homes and businesses. Same day pick up available. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "rubbish removal near me, rubbish removal Sydney, hard rubbish collection",
     canonical: "/",
@@ -45,7 +45,7 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
     canonical: "/about",
   },
   services: {
-    title: "Rubbish Removal Services Sydney",
+    title: "Rubbish Removal Services Sydney | National Rubbish Removal",
     description: `Professional rubbish removal services in Sydney with transparent pricing and same day service. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "hard rubbish collection, hard garbage collection, rubbish removal Sydney",
     canonical: "/services",
@@ -57,7 +57,7 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
     canonical: "/contact",
   },
   location: {
-    title: "Rubbish Removal Service Areas across Sydney Metro",
+    title: "Sydney Rubbish Removal Service Areas | National Rubbish Removal",
     description:
       `Rubbish removal service areas across Sydney metro. Fast response times with same day service available. Call ${BUSINESS.phone} for a FREE QUOTE.`,
     keywords: "rubbish removal Sydney, hard waste collection, rubbish removal near me",
@@ -78,7 +78,7 @@ export const PAGE_SEO: Record<PageKey, PageSeo> = {
     canonical: "/terms",
   },
   quoteEstimator: {
-    title: "Rubbish Removal Cost Calculator",
+    title: "Rubbish Removal Cost Calculator Sydney",
     description:
       "Get an instant rubbish removal price for Sydney. Pick your service and load size to see a live estimate, no personal details needed.",
     keywords: "rubbish removal quote, rubbish removal cost Sydney, hard rubbish collection price",

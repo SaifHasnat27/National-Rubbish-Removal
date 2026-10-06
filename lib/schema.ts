@@ -71,3 +71,14 @@ export const localBusinessSchema = {
   "currenciesAccepted": "AUD",
   "paymentAccepted": "Cash, Credit Card, Bank Transfer",
 };
+
+// Tells Google the site's name shown above search results. Google reads it from the homepage.
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${BUSINESS.url}/#website`,
+  "name": BUSINESS.name,
+  "alternateName": BUSINESS.shortName,
+  "url": BUSINESS.url,
+  "publisher": { "@id": `${BUSINESS.url}/#business` },
+};

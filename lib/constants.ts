@@ -6,8 +6,9 @@ export const to12Hour = (time: string) => {
 
 export const BUSINESS = {
   name: "National Rubbish Removal",
-  phone: "0418 665 429",
-  phoneRaw: "+61418665429",
+  shortName: "NRR",
+  phone: "02 9000 6666",
+  phoneRaw: "+61290006666",
   whatsapp: "0418 665 429",
   whatsappRaw: "+61418665429",
   whatsappLink: "https://wa.me/61418665429",
@@ -26,7 +27,7 @@ export const BUSINESS = {
   googlePlaceId: "ChIJG8AWv4ByiqwRCeR-j96DKlc",
   googleBusinessProfile: "https://maps.google.com/maps?cid=6280977622235014153",
   googleReviewLink: "",
-  googleReviewsAll: "",
+  googleReviewsAll: "https://search.google.com/local/reviews?placeid=ChIJG8AWv4ByiqwRCeR-j96DKlc",
   googleScriptUrl: "https://script.google.com/macros/s/AKfycby8JvAaP204NeE44FiQzOlyKlWssbYDMnv3mLs9k9X2LBH529Ngse5nKYiyuIBmebCB0g/exec",
   serviceArea: "Sydney Metro Area",
   mobileBreakpoint: 1023,

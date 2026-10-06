@@ -6,6 +6,8 @@ import Intro from '@/components/seo/sections/intro';
 import PriceCalculator from '@/components/seo/sections/PriceCalculator';
 import SeoProcess from '@/components/seo/sections/process';
 import Cta from '@/components/seo/sections/Cta';
+import TestimonialsSeo from '@/components/seo/sections/TestimonialsSeo';
+import RelatedServices from '@/components/seo/sections/relatedService';
 import QuickContactsSeo from '@/components/seo/sections/QuickContactsSeo';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import FAQSection from '@/components/servicecards/faq';
@@ -52,11 +54,18 @@ export default function ServicePage({ copy, children }: ServicePageProps) {
 
       <SeoProcess heading={copy.process.heading} subheading={copy.process.subheading} />
 
+      <TestimonialsSeo
+        heading="Google Reviews of Our Rubbish Removal Services"
+        subheading="Feedback from customers who booked our junk removal team."
+      />
+
       <Cta heading={copy.cta.heading} subheading={copy.cta.subheading} />
 
       <SectionWrapper className="bg-base-secondary" id={copy.articleId}>
         {children}
       </SectionWrapper>
+
+      <RelatedServices slug={copy.slug} />
 
       <SectionWrapper className="bg-base-secondary" id="faq">
         <FAQSection />

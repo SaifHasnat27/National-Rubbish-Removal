@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import { ExternalLink } from "lucide-react";
+import Button from "@/components/ui/Button";
+import { BUSINESS } from "@/lib/constants";
 
 export interface Testimonial {
   name: string;
@@ -8,13 +11,12 @@ export interface Testimonial {
 }
 
 export const testimonials: Testimonial[] = [
-  { name: "Sarah",  review: "Outstanding service they arrived on time worked quickly and left our property spotless highly recommend" },
-  { name: "David",  review: "Professional team fair pricing and eco friendly disposal everything you want in a rubbish removal service" },
-  { name: "Emma",   review: "Same day service was exactly what we needed the team was courteous and efficient. Will use again" },
-  { name: "John",   review: "Needed an old couch and fridge gone before moving out. They showed up within three hours of calling, loaded it all instantly. Cheap and reliable." },
-  { name: "Marcus", review: "These guys loaded up my renovation rubbish in half an hour. So much easier and cheaper than hiring a bin." },
-  { name: "Olivia", review: "Very friendly team. They cleared out my garage full of years of clutter. they sort out the recycling too which makes me feel a lot better. Highly recommend." },
-  { name: "Liam",   review: "Prompt service, clear pricing, no hidden. The boys worked fast and got the job done. Can't recommend highly enough." },
+  { name: "Ali Hijazi",        review: "The team at National Rubbish Removal were beyond amazing. I had built up alot of junk over the years and I called them this morning. My garage was spotless by midday. Their service and professionalism was outstanding. I highly recommend them 🙌" },
+  { name: "Jollibee Macabare", review: "Really happy with the service from National Rubbish Removal. They came out to our home in Parramatta and removed some old furniture, boxes, and general rubbish from the garage. The guys were friendly, on time, and got everything cleared out quickly without any hassle." },
+  { name: "Mika N.",           review: "Fast and reliable team! Called National Rubbish Removal to get rid of old appliances and rubbish from our shop in North Sydney. They arrived right on schedule, worked quickly, and charged a fair price. Very happy with the job!" },
+  { name: "JBS JBS",           review: "The Guys come in and cleaned up all my rubbish that i needed taken away in my garage, They where in and out in no time and now have made so much more room for me to work on bike .Great job boys.Thankyou" },
+  { name: "Nathan Nicolas",    review: "Great experience with National Rubbish Removal. The team were punctual, efficient and professional, made the whole process easy and left the area clean afterwards. Would definitely recommend NRR to anyone looking for reliable rubbish removal." },
+  { name: "24 Hour Power",     review: "Great service from National Rubbish Removal. The team helped clear out rubbish from our property and made the whole process quick and easy. They turned up on time, were friendly, professional and left everything clean and tidy. Would definitely recommend NRR to anyone needing rubbish removal." },
 ];
 
 // GSAP power2.in → cubic-bezier(0.55, 0.085, 0.68, 0.53)
@@ -90,7 +92,7 @@ export default function TestimonialsCarousel({
                 {testimonials.map((testimonial) => (
                   <p
                     key={testimonial.name}
-                    className="col-start-1 row-start-1 invisible w-full font-[family-name:var(--font-display)] text-xl md:text-2xl lg:text-3xl leading-[var(--leading-snug)] italic font-light text-center"
+                    className="col-start-1 row-start-1 invisible w-full font-[family-name:var(--font-display)] text-xl md:text-2xl leading-[var(--leading-snug)] italic font-light text-center"
                   >
                     {testimonial.review}
                   </p>
@@ -106,7 +108,7 @@ export default function TestimonialsCarousel({
                   return (
                     <p
                       key={testimonial.name}
-                      className="absolute inset-0 flex items-center justify-center w-full font-[family-name:var(--font-display)] text-xl md:text-2xl lg:text-3xl leading-[var(--leading-snug)] text-[var(--text-primary)] italic font-light text-center"
+                      className="absolute inset-0 flex items-center justify-center w-full font-[family-name:var(--font-display)] text-xl md:text-2xl leading-[var(--leading-snug)] text-[var(--text-primary)] italic font-light text-center"
                       aria-hidden={!active}
                       style={{
                         opacity: active ? 1 : 0,
@@ -126,7 +128,7 @@ export default function TestimonialsCarousel({
 
           {/* Name — fixed position below the box */}
           <div className="flex flex-col items-center gap-1.5 mt-6">
-            <span className="text-sm font-medium tracking-[0.18em] uppercase text-[var(--text-primary)]">
+            <span className="text-sm font-medium tracking-[0.18em] text-[var(--text-secondary)]">
               {t.name}
             </span>
           </div>
@@ -148,6 +150,20 @@ export default function TestimonialsCarousel({
               />
             ))}
           </div>
+        </div>
+
+        <div className="flex justify-center mt-10 md:mt-12">
+          <a
+            href={BUSINESS.googleReviewsAll}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View All Google Reviews (opens in a new tab)"
+          >
+            <Button variant="primary" size="md">
+              View All Google Reviews
+              <ExternalLink aria-hidden="true" size={18} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

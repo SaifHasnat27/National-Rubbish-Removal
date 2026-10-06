@@ -6,6 +6,7 @@ import type { LucideIcon } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import QuickContact from '@/components/contact/QuickContact';
 import Button from '@/components/ui/Button';
+import { serviceAreas } from '@/lib/locations';
 
 // Shared scroll-reveal — fade + rise as the element enters the viewport.
 // Self-contained per element (no global measurement), so nothing can leave
@@ -35,15 +36,6 @@ const staggerChild = {
 };
 
 // ─── Data ────────────────────────────────────────────────────────────────────
-const serviceAreas = [
-  { area: 'Eastern Suburbs', suburbs: ['Bondi', 'Coogee', 'Double Bay', 'Paddington', 'Randwick', 'Rose Bay'] },
-  { area: 'Northern Beaches', suburbs: ['Manly', 'Dee Why', 'Mona Vale', 'Palm Beach', 'Avalon', 'Freshwater'] },
-  { area: 'North Shore', suburbs: ['Chatswood', 'Hornsby', 'Lane Cove', 'Mosman', 'North Sydney', 'Ryde'] },
-  { area: 'Inner West', suburbs: ['Leichhardt', 'Newtown', 'Glebe', 'Balmain', 'Marrickville', 'Rozelle'] },
-  { area: 'Western Sydney', suburbs: ['Parramatta', 'Penrith', 'Blacktown', 'Liverpool', 'Campbelltown', 'Mount Druitt'] },
-  { area: 'Southern Sydney', suburbs: ['Cronulla', 'Bankstown', 'Sutherland', 'Hurstville', 'Kogarah', 'Miranda'] },
-];
-
 const responseTimeStats: { icon: LucideIcon; title: string; subtitle: string }[] = [
   { icon: Truck, title: 'Same Day Service', subtitle: 'Available in most areas' },
   { icon: Clock, title: 'Average Response', subtitle: '2-4 hours' },

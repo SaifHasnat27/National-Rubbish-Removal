@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { buildMetadata } from "@/lib/seo";
 import { SEO_META } from "@/components/seo/lib/SeoMetas";
+import { LOCATION_META } from "@/components/seo/lib/locationSeoMetas";
 
 export const metadata = buildMetadata("sitemap");
 
@@ -49,6 +50,13 @@ const serviceGroups = [
       "timber-removal",
       "skip-bin-alternatives",
     ],
+  },
+] as const;
+
+const locationGroups = [
+  {
+    heading: "Southern Sydney",
+    slugs: ["kogarah", "miranda", "cronulla", "rockdale", "hurstville", "sutherland", "brighton-le-sands"],
   },
 ] as const;
 
@@ -105,6 +113,27 @@ export default function SitemapPage() {
                   <li key={slug}>
                     <Link href={SEO_META[slug].canonical} className={linkClass}>
                       {pageName(SEO_META[slug].title)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+
+          {locationGroups.map((group) => (
+            <nav
+              key={group.heading}
+              aria-labelledby={`sitemap-${group.heading}`}
+              className="card text-center"
+            >
+              <h2 id={`sitemap-${group.heading}`} className={cardHeadingClass}>
+                {group.heading}
+              </h2>
+              <ul>
+                {group.slugs.map((slug) => (
+                  <li key={slug}>
+                    <Link href={LOCATION_META[slug].canonical} className={linkClass}>
+                      {LOCATION_META[slug].title}
                     </Link>
                   </li>
                 ))}

@@ -6,7 +6,7 @@ export interface FAQItem {
 export const faqs: FAQItem[] = [
     {
         q: "How does your rubbish removal service work?",
-        a: "It's simple. You call us or fill out our online quote form to get a free estimate. Once you agree to the price, our two-man crew arrives, loads the rubbish directly into our truck, sweeps up, and takes it away. You only pay for the volume your rubbish occupies in the truck, with zero heavy lifting required on your part.",
+        a: "It's simple. You call us or fill out our online quote form to get a free estimate. Once you agree to the price, our two-man crew arrives, loads the rubbish directly into our truck, sweeps up, and takes it away. You simply pay the quote you accepted, with zero heavy lifting required on your part.",
     },
     {
         q: "Do you provide same day rubbish removal in Sydney?",
@@ -18,7 +18,7 @@ export const faqs: FAQItem[] = [
     },
     {
         q: "How do you calculate your rubbish removal prices?",
-        a: "Our rubbish removal prices are volume based and transparent. Standard residential removals start from $89, commercial collections from $120, and heavy construction waste from $150. The quote we give you includes all labor, loading, cleanup, and environmental disposal fees, meaning there are never any hidden costs.",
+        a: "Our rates are $90 per hour for residential, $120 per hour for commercial, and $150 per hour for construction rubbish removal, with a minimum charge of $250 per job. The quote we give you includes all labor, loading, cleanup, and environmental disposal fees, meaning there are never any hidden costs.",
     },
     {
         q: "How is rubbish removal different or better than hiring a skip bin?",

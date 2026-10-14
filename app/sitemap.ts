@@ -1,5 +1,9 @@
 import { MetadataRoute } from "next";
 import { BUSINESS } from "@/lib/constants";
+import { LOCATION_META } from "@/components/seo/lib/locationSeoMetas";
+
+// Pulled from LOCATION_META so new suburb pages are added automatically.
+const locationPaths = Object.values(LOCATION_META).map((meta) => meta.canonical);
 
 const servicePaths = [
   "/household-rubbish-removal",
@@ -85,6 +89,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...locationPaths.map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
     })),
   ];
 }

@@ -6,7 +6,9 @@ import type { LucideIcon } from 'lucide-react';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import QuickContact from '@/components/contact/QuickContact';
 import Button from '@/components/ui/Button';
-import { serviceAreas } from '@/lib/locations';
+import Link from 'next/link';
+import { serviceAreas, suburbSlug } from '@/lib/locations';
+import { LOCATION_META } from '@/components/seo/lib/locationSeoMetas';
 
 // Shared scroll-reveal — fade + rise as the element enters the viewport.
 // Self-contained per element (no global measurement), so nothing can leave
@@ -127,14 +129,29 @@ export default function LocationPage() {
                 {region.area}
               </h3>
               <div className="space-y-2">
-                {region.suburbs.map((suburb) => (
-                  <div key={suburb} className="flex items-center gap-2">
-                    <CheckCircle aria-hidden="true" size={14} className="text-[var(--color-accent)] shrink-0" />
-                    <span className="text-sm text-[var(--text-secondary)]" itemProp="containsPlace">
-                      {suburb}
-                    </span>
-                  </div>
-                ))}
+                {region.suburbs.map((suburb) => {
+                  const slug = suburbSlug(suburb);
+                  // Link only when the suburb has its own page in LOCATION_META.
+                  const href = slug in LOCATION_META ? `/${slug}` : null;
+                  return (
+                    <div key={suburb} className="flex items-center gap-2">
+                      <CheckCircle aria-hidden="true" size={14} className="text-[var(--color-accent)] shrink-0" />
+                      {href ? (
+                        <Link
+                          href={href}
+                          className="text-sm text-[var(--text-secondary)] transition-colors duration-[var(--transition-fast)] hover:text-[var(--text-accent)]"
+                          itemProp="containsPlace"
+                        >
+                          {suburb}
+                        </Link>
+                      ) : (
+                        <span className="text-sm text-[var(--text-secondary)]" itemProp="containsPlace">
+                          {suburb}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </motion.article>
           ))}

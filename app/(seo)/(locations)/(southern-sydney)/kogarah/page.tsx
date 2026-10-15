@@ -2,6 +2,7 @@ import { buildLocationMetadata } from '@/components/seo/lib/locationSeoMetas';
 import LocationPage from '@/components/seo/template/locationpages';
 import Link from 'next/link';
 import { BUSINESS } from '@/lib/constants';
+import { PRICES, MIN_CHARGE } from '@/lib/prices';
 
 export const metadata = buildLocationMetadata('kogarah');
 
@@ -40,7 +41,7 @@ export default function Page() {
             We work around lift bookings, loading zones and busy streets near the station and the Princes Highway. You point to what needs to go, and we handle the heavy lifting from start to finish.
           </p>
           <p>
-            Book in the morning or early afternoon and we can usually collect the same day. You get a clear price first, with no surprises. That is rubbish removal in Kogarah made simple.
+            Book in the morning or early afternoon and we can usually collect the same day. You get a clear price first, with no surprises. We are always one call away from making rubbish removal in Kogarah simple and effortless.
           </p>
         </>
       }
@@ -120,7 +121,7 @@ export default function Page() {
 
           <h2>How Much Does Rubbish Removal Cost in Kogarah?</h2>
           <p>
-            We charge $90 per hour for residential jobs, and there is a minimum charge of $250 per job. That covers labour, loading, cleanup and disposal fees. Nothing is added later.
+            We charge ${PRICES['residential-rubbish-removal'].hourlyRate} per hour for residential jobs, and there is a minimum charge of ${MIN_CHARGE} per job. That covers labour, loading, cleanup and disposal fees. Nothing is added later.
           </p>
           <p>
             A skip bin is hard to fit outside most unit blocks, and you still have to fill it yourself. Our{' '}
@@ -156,7 +157,7 @@ export default function Page() {
           <p>
             <strong>How much does it cost to remove one washing machine?</strong>
             <br />
-            A single item job is charged at our $250 minimum. If you have other rubbish to go, add it to the same visit so you get more value from the booking.
+            A single item job is charged at our ${MIN_CHARGE} minimum. If you have other rubbish to go, add it to the same visit so you get more value from the booking.
           </p>
           <p>
             <strong>Do I need my strata manager&apos;s approval to book you?</strong>

@@ -58,6 +58,10 @@ const locationGroups = [
     heading: "Southern Sydney",
     slugs: ["kogarah", "miranda", "cronulla", "rockdale", "hurstville", "sutherland", "brighton-le-sands"],
   },
+  {
+    heading: "Eastern Sydney",
+    slugs: ["bondi", "botany", "mascot", "maroubra", "randwick", "coogee", "paddington"],
+  },
 ] as const;
 
 const headingClass =

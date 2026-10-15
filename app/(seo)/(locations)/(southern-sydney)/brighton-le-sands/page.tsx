@@ -2,6 +2,7 @@ import { buildLocationMetadata } from '@/components/seo/lib/locationSeoMetas';
 import LocationPage from '@/components/seo/template/locationpages';
 import Link from 'next/link';
 import { BUSINESS } from '@/lib/constants';
+import { PRICES, MIN_CHARGE } from '@/lib/prices';
 
 export const metadata = buildLocationMetadata('brighton-le-sands');
 
@@ -40,7 +41,7 @@ export default function Page() {
             Brighton Le Sands has lots of apartments close to the beach, plus older homes on the quieter streets back from the water. We work with both. We can collect from a third floor unit, a garage, a backyard or a shop on The Grand Parade. You never have to drag anything down the stairs or out to the kerb.
           </p>
           <p>
-            Need it gone today? Book in the morning or early afternoon and we can usually collect the same day. We work seven days a week, and you get a clear price before we start. That is rubbish removal in Brighton Le Sands made simple.
+            Need it gone today? Book in the morning or early afternoon and we can usually collect the same day. We work seven days a week, and you get a clear price before we start. We are always one call away from making rubbish removal in Brighton Le Sands simple and effortless.
           </p>
         </>
       }
@@ -104,7 +105,7 @@ export default function Page() {
 
           <h2>How Much Does Rubbish Removal Cost in Brighton Le Sands?</h2>
           <p>
-            We keep our pricing affordable and easy to understand. Residential jobs are $90 per hour, with a minimum charge of $250. Your price includes labour, loading, cleanup and disposal fees, so there are no hidden costs.
+            We keep our pricing affordable and easy to understand. Residential jobs are ${PRICES['residential-rubbish-removal'].hourlyRate} per hour, with a minimum charge of ${MIN_CHARGE}. Your price includes labour, loading, cleanup and disposal fees, so there are no hidden costs.
           </p>
           <p>
             For a quick guide, try our <Link href="/quote-estimator">instant price estimator</Link>. For an exact price,{' '}

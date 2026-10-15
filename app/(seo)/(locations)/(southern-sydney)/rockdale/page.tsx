@@ -151,9 +151,9 @@ export default function Page() {
             Yes. We collect cardboard, foam and plastic wrap, and recycle the cardboard wherever we can.
           </p>
           <p>
-            <strong>Is Rockdale in Bayside Council?</strong>
+            <strong>Can you take renovation rubbish as well as furniture?</strong>
             <br />
-            Yes. The old Rockdale City Council and the City of Botany Bay joined in 2016 to form Bayside Council.
+            Yes. Old kitchens, tiles, timber, plasterboard and broken concrete can go in the same load as your furniture. Building and renovation waste is charged at ${PRICES['construction-rubbish-removal'].hourlyRate} per hour, and we can collect during the job or once it is finished.
           </p>
           <p>
             Got a move, a renovation or a big clean out coming up? Call our team on <a href={`tel:${BUSINESS.phoneRaw}`}>{BUSINESS.phone}</a> or message us on WhatsApp at{' '}

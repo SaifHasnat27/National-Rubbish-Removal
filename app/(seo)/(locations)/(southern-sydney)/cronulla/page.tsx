@@ -133,9 +133,9 @@ export default function Page() {
             Usually, yes. Book before early afternoon and we can often offer same day rubbish removal in Cronulla.
           </p>
           <p>
-            <strong>What should I do with an old computer or TV?</strong>
+            <strong>Can you get a lounge out of a Cronulla unit with no lift?</strong>
             <br />
-            We cannot take electronic waste. Take it to the Shire&apos;s free e waste drop off, or a recycling point listed on the council website. Remember to wipe your data first.
+            Yes. Our crew carries it down the stairs by hand, takes it apart if it will not fit, and loads it straight onto the truck. You do not have to lift a thing.
           </p>
           <p>
             <strong>Can you clear a holiday rental on a changeover day?</strong>

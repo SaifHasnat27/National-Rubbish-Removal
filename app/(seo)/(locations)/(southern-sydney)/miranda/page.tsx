@@ -130,10 +130,10 @@ export default function Page() {
             Often, yes. If you book in the morning or early afternoon, we can usually offer same day rubbish removal in Miranda.
           </p>
           <p>
-            <strong>Should I just wait for the council clean up?</strong>
+            <strong>Why book a rubbish removal service instead of waiting for a council clean up?</strong>
             <br />
-            Sutherland Shire Council gives each home up to{' '}
-            <a href="https://www.sutherlandshire.nsw.gov.au/living-here/waste-and-recycling/book-a-clean-up" {...ext}>two pre booked clean ups per financial year</a>. In busy periods, the wait can be more than 8 weeks. If you can wait, it is a good free option. If not, we can usually come within a day.
+            Because you do not have to wait. Sutherland Shire Council gives each home{' '}
+            <a href="https://www.sutherlandshire.nsw.gov.au/living-here/waste-and-recycling/book-a-clean-up" {...ext}>two pre booked clean ups per financial year</a>, and in busy periods the wait can be more than 8 weeks. We can usually come the same day, carry everything out from wherever it is and take the whole load in one visit.
           </p>
           <p>
             <strong>Can you take a sofa that is still upstairs?</strong>

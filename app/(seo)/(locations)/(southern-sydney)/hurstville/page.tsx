@@ -126,9 +126,9 @@ export default function Page() {
             In most cases, yes. Book in the morning or early afternoon and we can usually offer same day rubbish removal in Hurstville.
           </p>
           <p>
-            <strong>What should I throw away before moving?</strong>
+            <strong>Can you clear out what I am not taking before moving day?</strong>
             <br />
-            Start with broken furniture, old mattresses, things you have not used in a year and anything that will not fit in your new home. Clearing it before moving day can also make your move quicker and cheaper.
+            Yes. Broken furniture, old mattresses and anything that will not fit in your new home can go in one visit before the removalists arrive. Less to move often means a quicker and cheaper move.
           </p>
           <p>
             <strong>Can you work with my building&apos;s loading dock booking?</strong>

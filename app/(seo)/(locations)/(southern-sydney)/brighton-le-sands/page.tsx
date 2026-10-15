@@ -166,14 +166,14 @@ export default function Page() {
             Yes. Our crew carries everything down the stairs for you. We can also work around your building&apos;s loading area and parking rules.
           </p>
           <p>
-            <strong>What is the cheapest way to get rid of junk in Brighton Le Sands?</strong>
+            <strong>What is the cheapest way to get rid of a lot of junk in Brighton Le Sands?</strong>
             <br />
-            For a small load that can wait, the free Bayside Council clean up is the cheapest choice. For a bigger load, a move out or anything you need gone now, a private pickup saves you time and stress. You also skip the trailer hire and tip fees.
+            Book one pickup for everything at once. You pay only for the time we spend, from a ${MIN_CHARGE} minimum, and that already covers loading and tip fees. No trailer hire, no trips to the tip and no waiting for a council date.
           </p>
           <p>
             <strong>Do you help when a family is downsizing?</strong>
             <br />
-            Yes. We can clear the items you are not taking to your new home. We set aside what can be donated and remove the rest in one visit.
+            Yes. We can clear the items you are not taking to your new home. We donate and recycle as much as we can, up to 95% of what we collect, and the rest goes to licensed Sydney waste facilities.
           </p>
           <p>
             Ready to book rubbish removal in Brighton Le Sands? Call <a href={`tel:${BUSINESS.phoneRaw}`}>{BUSINESS.phone}</a> or send us a message on WhatsApp on{' '}

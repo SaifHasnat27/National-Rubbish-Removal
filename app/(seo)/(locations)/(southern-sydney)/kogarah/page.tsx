@@ -165,9 +165,9 @@ export default function Page() {
             Not for clearing your own unit. You just need to follow your building&apos;s rules for lifts and loading. For common areas, the strata manager or owners corporation should book the job.
           </p>
           <p>
-            <strong>Is my street in Georges River or Bayside Council?</strong>
+            <strong>Can you clear my Kogarah office or clinic outside business hours?</strong>
             <br />
-            Most of Kogarah is in Georges River Council. Check your rates notice, or search your address on the council website if you are not sure.
+            Yes. Just let us know in advance and we will arrange a time that suits your business, before you open or after you close. We clear desks, chairs, shelving and old fit outs so you do not lose trading time. Business jobs are ${PRICES['commercial-rubbish-removal'].hourlyRate} per hour.
           </p>
           <p>
             Need your rubbish gone? Call us on <a href={`tel:${BUSINESS.phoneRaw}`}>{BUSINESS.phone}</a> or send a WhatsApp message to{' '}

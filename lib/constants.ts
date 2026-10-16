@@ -7,8 +7,8 @@ export const to12Hour = (time: string) => {
 export const BUSINESS = {
   name: "National Rubbish Removal",
   shortName: "NRR",
-  phone: "02 9000 6666",
-  phoneRaw: "+61290006666",
+  phone: "0489 043 888",
+  phoneRaw: "+61489043888",
   whatsapp: "0418 665 429",
   whatsappRaw: "+61418665429",
   whatsappLink: "https://wa.me/61418665429",

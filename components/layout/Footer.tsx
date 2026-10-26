@@ -48,9 +48,11 @@ const Instagram = () => (
   </BrandIcon>
 );
 
-const Twitter = () => (
+const LinkedIn = () => (
   <BrandIcon>
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
   </BrandIcon>
 );
 
@@ -66,9 +68,9 @@ const quickLinks = [
 // Must stay in step with Navbar.tsx (same routes). See Notes/recentChanges.txt.
 
 const socialLinks = [
-  { href: '#', label: 'Follow us on Facebook', Icon: Facebook },
-  { href: '#', label: 'Follow us on Instagram', Icon: Instagram },
-  { href: '#', label: 'Follow us on Twitter', Icon: Twitter },
+  { href: BUSINESS.facebook, label: 'Follow us on Facebook', Icon: Facebook },
+  { href: BUSINESS.instagram, label: 'Follow us on Instagram', Icon: Instagram },
+  { href: BUSINESS.linkedin, label: 'Follow us on LinkedIn', Icon: LinkedIn },
 ];
 
 // Icon chips — the dark rounded squares behind footer icons (tokens in globals.css)
@@ -81,7 +83,7 @@ const socialLinks = [
    --text-black is WHITE (misleading name, left alone — renaming means touching
    every call site). */
 const socialChip =
-  'p-2 rounded-lg bg-[var(--bg-social-icons)]';
+  'p-2 rounded-lg bg-[var(--bg-social-icons)] text-[var(--color-white)] hover:text-[var(--color-accent)] transition-colors duration-300';
 const contactChip =
   'p-2 rounded-lg bg-[var(--bg-footer-icons)] text-[var(--text-accent)] group-hover:text-[var(--text-black)] transition-colors cursor-pointer';
 
@@ -153,10 +155,18 @@ export default function Footer() {
               needs.
             </p>
             <div className="flex space-x-3 justify-center">
-              {socialLinks.map(({ label, Icon }) => (
-                <span key={label} title={label} className={socialChip}>
+              {socialLinks.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label} (opens in a new tab)`}
+                  title={label}
+                  className={socialChip}
+                >
                   <Icon />
-                </span>
+                </a>
               ))}
             </div>
           </div>

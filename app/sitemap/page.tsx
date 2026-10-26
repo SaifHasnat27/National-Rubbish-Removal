@@ -62,6 +62,10 @@ const locationGroups = [
     heading: "Eastern Sydney",
     slugs: ["bondi", "botany", "mascot", "maroubra", "randwick", "coogee", "paddington"],
   },
+  {
+    heading: "Northern Sydney",
+    slugs: ["north-sydney", "chatswood", "mosman", "lane-cove", "ryde", "hornsby", "manly"],
+  },
 ] as const;
 
 const headingClass =
@@ -137,7 +141,7 @@ export default function SitemapPage() {
                 {group.slugs.map((slug) => (
                   <li key={slug}>
                     <Link href={LOCATION_META[slug].canonical} className={linkClass}>
-                      {LOCATION_META[slug].title}
+                      {LOCATION_META[slug].title.split(" | ")[0]}
                     </Link>
                   </li>
                 ))}

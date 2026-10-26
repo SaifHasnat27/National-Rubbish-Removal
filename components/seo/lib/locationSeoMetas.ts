@@ -78,6 +78,41 @@ export const LOCATION_META = {
     description: 'Rubbish removal in Paddington. Same day pickup available. No lifting for you. Swept clean finish. Transparent prices. Get a free quote.',
     canonical: '/paddington',
   },
+  'north-sydney': {
+    title: 'Rubbish Removal North Sydney | Same Day, No Lifting',
+    description: 'Rubbish removal in North Sydney for apartments, towers and offices. We carry it down, load the truck and sweep up. Same day pickup available. Free quotes.',
+    canonical: '/north-sydney',
+  },
+  chatswood: {
+    title: 'Rubbish Removal Chatswood | Fast Pickup, Fair Prices',
+    description: 'Rubbish removal in Chatswood for high rise units, homes and offices. From your lift to our truck, any size load. Same day pickup. Free quotes.',
+    canonical: '/chatswood',
+  },
+  mosman: {
+    title: 'Rubbish Removal Mosman | Licensed, Insured, Same Day',
+    description: 'Rubbish removal in Mosman for family homes, estates and downsizing. Heavy furniture over 30kg handled with care. Same day pickup. Free quotes.',
+    canonical: '/mosman',
+  },
+  'lane-cove': {
+    title: 'Rubbish Removal Lane Cove | Free Quotes, Fast Pickup',
+    description: 'Rubbish removal in Lane Cove for families, renovations and gardens. Bathroom rubbish, boxes and branches gone same day. No skip permit. Free quotes.',
+    canonical: '/lane-cove',
+  },
+  ryde: {
+    title: 'Rubbish Removal Ryde | One Call, All Gone',
+    description: 'Rubbish removal in Ryde for homes, units and businesses. Fridges, pianos and furniture gone same day. We lift, load and sweep up. Free quotes.',
+    canonical: '/ryde',
+  },
+  hornsby: {
+    title: 'Rubbish Removal Hornsby | Same Day Pickup',
+    description: 'Rubbish removal in Hornsby for houses, units and businesses. Furniture, green waste and junk gone same day. We do all the lifting. Free quotes.',
+    canonical: '/hornsby',
+  },
+  manly: {
+    title: 'Rubbish Removal Manly | No Lifting, No Skip Bin',
+    description: 'Rubbish removal in Manly for apartments, homes, shops and renovations. Carried down, loaded and swept clean. Same day pickup. Free quotes.',
+    canonical: '/manly',
+  },
 } as const satisfies Record<string, LocationPageMeta>;
 
 export function buildLocationMetadata(key: keyof typeof LOCATION_META): Metadata {

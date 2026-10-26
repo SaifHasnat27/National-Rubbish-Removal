@@ -72,4 +72,39 @@ export const LOCATION_HERO: Record<string, SeoHeroData> = {
     subheading:
       'Simple, stress free rubbish removal in Paddington for terraces, apartments and offices, with clear pricing and same day availability.',
   },
+  'north-sydney': {
+    heading: 'Rubbish Removal North Sydney',
+    subheading:
+      'Fast, reliable rubbish removal in North Sydney for apartments, homes and offices, with clear pricing and same day pickups available.',
+  },
+  chatswood: {
+    heading: 'Rubbish Removal Chatswood',
+    subheading:
+      'Simple, hassle free rubbish removal in Chatswood for homes, units and businesses, with affordable and transparent prices and same day service.',
+  },
+  mosman: {
+    heading: 'Rubbish Removal Mosman',
+    subheading:
+      'Careful, effortless rubbish removal in Mosman for homes, apartments and estates, with clear pricing and same day availability.',
+  },
+  'lane-cove': {
+    heading: 'Rubbish Removal Lane Cove',
+    subheading:
+      'Easy, reliable rubbish removal in Lane Cove for homes, units and offices, with affordable and transparent prices and same day pickups.',
+  },
+  ryde: {
+    heading: 'Rubbish Removal Ryde',
+    subheading:
+      'Quick and easy rubbish removal in Ryde for homes, apartments and businesses, with clear prices and same day service available.',
+  },
+  hornsby: {
+    heading: 'Rubbish Removal Hornsby',
+    subheading:
+      'Effortless rubbish removal in Hornsby for houses, units and businesses, with affordable and transparent pricing and same day availability.',
+  },
+  manly: {
+    heading: 'Rubbish Removal Manly',
+    subheading:
+      'Fast, friendly rubbish removal in Manly for apartments, homes and shops, with clear prices and same day pickups available.',
+  },
 };

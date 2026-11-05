@@ -15,6 +15,7 @@ import PriceEstimate from "./PriceEstimate";
 import PhotoUpload from "./PhotoUpload";
 import { BUSINESS } from "@/lib/constants";
 import { LOAD_SIZES } from "@/lib/quote";
+import { trackQuoteSubmit } from "@/lib/tracking";
 
 const GOOGLE_SCRIPT_URL = BUSINESS.googleScriptUrl;
 
@@ -91,6 +92,7 @@ export default function PageContactForm() {
       headers: { "Content-Type": "text/plain;charset=UTF-8" },
       body: JSON.stringify(payload),
     });
+    trackQuoteSubmit(data, payload.size);
     setStatus("success");
     reset();
   };

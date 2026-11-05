@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { localBusinessSchema, websiteSchema } from "@/lib/schema";
@@ -50,6 +51,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, websiteSchema]) }}
         />
       </head>
+      <GoogleTagManager gtmId={BUSINESS.gtmId} />
       <body className="antialiased flex flex-col min-h-screen bg-base text-pretty">
         <Navbar />
         <main className="flex-grow">

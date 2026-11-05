@@ -32,6 +32,7 @@ export const BUSINESS = {
   instagram: "https://www.instagram.com/nationalrubbishremoval/",
   facebook: "https://www.facebook.com/p/National-Rubbish-Removal-61593067173554/",
   googleScriptUrl: "https://script.google.com/macros/s/AKfycby8JvAaP204NeE44FiQzOlyKlWssbYDMnv3mLs9k9X2LBH529Ngse5nKYiyuIBmebCB0g/exec",
+  gtmId: "GTM-T2DRQQ74",
   serviceArea: "Sydney Metro Area",
   mobileBreakpoint: 1023,
 };
